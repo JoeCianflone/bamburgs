@@ -1,0 +1,37 @@
+/// A global Z-index counter
+/// @param  Number $increment: 1
+/// @return Number
+@function z($increment: 1) {
+   @return $current-zindex + $increment;
+}
+
+/// This will strip a unit off a number turning it from a string to a number
+/// @param  String $n
+/// @return Number
+@function value($n) {
+   @return $n / ($n * 0 + 1);
+}
+
+/// Returns the REM value based on the pixel value
+/// @param  String $pxl
+/// @return Number
+@function rem($pxl) {
+   $base: value($base-size / 100);
+   $base-px-size: 16 * $base;
+
+   @return (value($pxl) / $base-px-size) + rem;
+}
+
+
+%flatten {
+   margin: 0;
+   padding: 0;
+}
+
+%base-image {
+   border-style: none;
+   height: auto;
+   max-width: 100%;
+   vertical-align: middle;
+}
+

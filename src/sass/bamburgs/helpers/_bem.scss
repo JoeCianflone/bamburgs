@@ -1,0 +1,15 @@
+$component: '';
+
+@mixin component($name) {
+   $component: $name !global;
+
+   #{$component} {
+      @content;
+   }
+}
+
+@mixin root {
+   #{$component} {
+      @content;
+   }
+}
