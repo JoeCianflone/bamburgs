@@ -7,14 +7,15 @@ let outputPath = `${config.dist.path}/${config.dist.styles}`;
 
 console.log('');
 console.log('Compile Sass...');
-shell.exec(`node-sass ${sassPath} -o ${outputPath}`);
 
-let postCSSOptions = 'postcss-import autoprefixer';
-if (config.env === 'production') {
-   postCSSOptions = postCSSOptions + ' cssnano';
-}
+shell.exec(`node-sass --output-style='nested' --error-bell ${sassPath} -o ${outputPath}`);
 
 console.log('');
 console.log('Running PostCSS...');
 
-shell.exec(`postcss -u ${postCSSOptions} -r ${outputPath}//\*`);
+let options = `-c ./postcss.config.js -r`;
+if (config.env === 'production') {
+   options = `-c ./postcss.config.js -r -e production `;
+}
+
+shell.exec(`postcss ${outputPath}//\* ${options}`);

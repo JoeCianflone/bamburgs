@@ -22,11 +22,10 @@ $font-weights: (
    ultra-bold:   900,
 );
 
-/**
- * Set all your font props in one go
- * @param  String $type
- * @param  Number $size
- */
+
+/// Set all your font props in one go
+/// @param  String $type
+/// @param  Number $size
 @mixin fontstack($type, $size) {
    font: {
       family: font($type, 'family');
@@ -43,42 +42,34 @@ $font-weights: (
    }
 }
 
-/**
- * Pulls the font-weight number out of the font-weight map
- * @param  String $size
- * @return Number
- */
+/// Pulls the font-weight number out of the font-weight map
+/// @param  String $size
+/// @return Number
 @function weight($size) {
    @return map-get($font-weights, $size);
 }
 
-/**
- * Gets the stuff you need from the font map
- * @param  String $type - primary, secondary
- * @param  String $key - line-height
- * @return String
- */
+/// Gets the stuff you need from the font map
+/// @param  String $type - primary, secondary
+/// @param  String $key - line-height
+/// @return String
 @function font($type, $key) {
    $item: '#{$type}-#{$key}';
    @return map-get($font, $item);
 }
 
-/**
- * Calculates the correct unitless line-height based on
- * the given font-size and line-height in pixels
- * @param  String $font-size
- * @param  String $line-height
- * @return Number
- */
+/// Calculates the correct unitless line-height based on
+/// the given font-size and line-height in pixels
+/// @param  String $font-size
+/// @param  String $line-height
+/// @return Number
 @function line-height($font-size, $line-height) {
    @return value($line-height / $font-size);
 }
 
-/**
- * Converts the tracking number from Photoshop into EMs
- * @param  Integer $tracking
- * @return Number
- */
+/// Converts the tracking number from Photoshop into EMs
+/// @param  Integer $tracking
+/// @return Number
 @function tracking($tracking) {
    @return ($tracking / 1000) + em;
 }
