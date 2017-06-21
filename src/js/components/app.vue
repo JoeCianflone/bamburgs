@@ -14,7 +14,6 @@ export default {
       return {
          msg: 'This is a test'
       }
-
    }
 }
 </script>

@@ -13,7 +13,8 @@ let output    = `${config.dist.path}/${config.dist.images}`;
 let rawImages = `${config.src.path}/${config.src.images}`;
 
 if (config.env !== 'production') {
-   console.log('**WARNING: IMAGE COMPRESSION ONLY OCCURS IN PRODUCTION, COPYING FILES**');
+   console.log('**NOTICE: IMAGE COMPRESSION ONLY OCCURS IN PRODUCTION**');
+   console.log('**CHANGE ENV IN PACKAGE.JSON TO SET PRODUCTION ENVIRONMENT**');
    fs.copy(rawImages, output);
 } else {
    walk(rawImages, (err, results) => {

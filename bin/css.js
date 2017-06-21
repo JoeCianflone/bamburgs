@@ -13,9 +13,4 @@ shell.exec(`node-sass --output-style='nested' --error-bell ${sassPath} -o ${outp
 console.log('');
 console.log('Running PostCSS...');
 
-let options = `-c ./postcss.config.js -r`;
-if (config.env === 'production') {
-   options = `-c ./postcss.config.js -r -e production `;
-}
-
-shell.exec(`postcss ${outputPath}//\* ${options}`);
+shell.exec(`postcss ${outputPath}//\* -c ./postcss.config.js -r`);

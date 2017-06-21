@@ -9,8 +9,11 @@ module.exports = function(ctx) {
             stylesheetPath: config.dist.styles,
             spritePath: config.dist.path + "/" + config.dist.sprites
          },
+         'postcss-urlrev': {
+            relativePath: config.dist.styles
+         },
          'autoprefixer': {},
-         'cssnano': ctx.env === 'production' ? {} : false,
+         'cssnano': config.env === 'production' ? {} : false,
       }
    }
 }

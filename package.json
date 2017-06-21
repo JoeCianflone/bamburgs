@@ -23,7 +23,9 @@
          "fonts": "fonts",
          "sprites": "sprites"
       },
-      "copy": ["fonts"]
+      "copy": [
+         "fonts"
+      ]
    },
    "browserslist": [
       "> 2%",
@@ -70,6 +72,7 @@
       "postcss-cli": "^4.1.0",
       "postcss-import": "^10.0.0",
       "postcss-sprites": "^4.2.1",
+      "postcss-urlrev": "^2.0.0",
       "sass-lint": "^1.10.2",
       "shelljs": "^0.7.7",
       "susy": "^2.2.12",
