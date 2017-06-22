@@ -1,0 +1,7 @@
+node_modules/
+{{dest}}/
+.sass-cache/
+.vscode
+.DS_Store
+*.sublime-*
+.sass-cache

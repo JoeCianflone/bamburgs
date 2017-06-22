@@ -1,0 +1,55 @@
+{
+   "name": "{{name}}",
+   "version": "0.0.1",
+   "description": "{{description}}",
+   "author": "{{author}}",
+   "email": "{{email}}",
+   "license": "MIT",
+   "main": "main.js",
+   "config": {
+      "env": "development",
+      "src": {
+         "path": "{{src}}",
+         "scripts": "js",
+         "images": "images",
+         "styles": "sass",
+         "fonts": "fonts",
+         "entry": "main"
+      },
+      "dist": {
+         "path": "{{dist}}",
+         "scripts": "js",
+         "images": "images",
+         "styles": "css",
+         "fonts": "fonts",
+         "sprites": "sprites"
+      },
+      "copy": [
+         "fonts"
+      ]
+   },
+   "browserslist": [
+      "> 2%",
+      "IE 11",
+      "last 2 versions"
+   ],
+   "scripts": {
+      "build": "npm-run-all clean build:*",
+      "build:copy": "copy",
+      "build:images": "images",
+      "build:css": "css",
+      "build:scripts": "scripts",
+      "clean": "clean",
+      "deploy": "npm-run-all clean lint build:*",
+      "lint": "lint",
+      "watch": "npm-run-all clean --parallel watch:*",
+      "watch:copy": "watch-copy",
+      "watch:images": "watch-images",
+      "watch:css": "watch-css",
+      "watch:scripts": "watch-scripts"
+   },
+   "dependencies": {
+      "npm-run-all": "^4.0.2",
+      "bamburgs": "mettleshop/bamburgs"
+   }
+}
