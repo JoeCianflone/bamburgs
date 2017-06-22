@@ -48,7 +48,16 @@
       "watch:scripts": "bin/watch-scripts.js"
    },
    "bin":{
-     "clean": "./bin/clean.js"
+     "clean": "./bin/clean.js",
+     "copy": "./bin/copy.js",
+     "images": "./bin/images.js",
+     "scripts": "./bin/scripts.js",
+     "css": "./bin/css.js",
+     "lint": ".bin/lint.js",
+      "watch-copy": "./bin/watch-copy.js",
+      "watch-images": "./bin/watch-images.js",
+      "watch-css": "./bin/watch-css.js",
+      "watch-scripts": "./bin/watch-scripts.js"
    },
    "dependencies": {
       "autoprefixer": "^7.1.1",
