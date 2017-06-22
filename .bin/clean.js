@@ -9,13 +9,18 @@ let scripts = `${p}/${config.dist.scripts}`;
 let fonts   = `${p}/${config.dist.fonts}`;
 let images  = `${p}/${config.dist.images}`;
 
-console.log('');
+console.log();
 console.log('Cleaning Out Files...');
 
-fs.removeSync(p);
+fs.remove(p, (err) => {
+   fs.mkdirs(styles, (err) => {
+      fs.mkdirs(scripts, (err) => {
+         fs.mkdirs(fonts, (err) => {
+            fs.mkdirs(images, (err) => {});
+         });
+      });
+   });
+});
 
-fs.mkdirSync(p);
-fs.mkdirSync(styles);
-fs.mkdirSync(scripts);
-fs.mkdirSync(fonts);
-fs.mkdirSync(images);
+
+
