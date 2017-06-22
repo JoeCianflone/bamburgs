@@ -47,6 +47,9 @@
       "watch:css": "bin/watch-css.js",
       "watch:scripts": "bin/watch-scripts.js"
    },
+   "bin":{
+     "clean": "./bin/clean.js"
+   },
    "dependencies": {
       "autoprefixer": "^7.1.1",
       "babel-core": "^6.24.1",

@@ -1,0 +1,27 @@
+$component: '.mediabox';
+
+.mediabox {
+   color: red;
+
+   &__container {
+      float: left;
+   }
+
+   &__media {
+      float: right;
+   }
+   &--flip {
+
+      color: purple;
+
+      @include root {
+         &__container {
+            float: right;
+         }
+
+         &__media {
+            float: left;
+         }
+      }
+   }
+}
