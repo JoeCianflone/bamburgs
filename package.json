@@ -4,6 +4,14 @@
    "description": "the sane front end toolkit",
    "author": "Joe Cianflone",
    "email": "joe@mettleshop.co",
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/mettleshop/bamburgs"
+   },
+   "bugs": {
+      "url": "https://github.com/mettleshop/bamburgs/issues"
+   },
+   "homepage": "https://joecianflone.co/bamburgs",
    "license": "MIT",
    "main": "main.js",
    "config": {
