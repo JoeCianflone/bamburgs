@@ -6,8 +6,8 @@ $colors: (
 );
 
 /// Pulls the hex code out of the color map
-/// @param  String $name
-/// @return String
+/// @param  {String} $name
+/// @return {String}
 @function color($name) {
    @return map-get($colors, $name);
 }

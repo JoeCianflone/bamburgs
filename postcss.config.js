@@ -9,6 +9,7 @@ module.exports = function(ctx) {
             stylesheetPath: config.dist.styles,
             spritePath: config.dist.path + "/" + config.dist.sprites
          },
+         'postcss-flexbugs-fixes':{},
          'postcss-urlrev': {
             relativePath: config.dist.styles
          },

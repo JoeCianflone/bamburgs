@@ -43,6 +43,7 @@
    ],
    "scripts": {
       "build": "npm-run-all clean build:*",
+      "build:docs": ".bin/doc.js",
       "build:copy": ".bin/copy.js",
       "build:images": ".bin/images.js",
       "build:css": ".bin/css.js",
@@ -56,9 +57,10 @@
       "watch:css": ".bin/watch-css.js",
       "watch:scripts": ".bin/watch-scripts.js"
    },
-   "bin":{
+   "bin": {
       "clean": "./.bin/clean.js",
       "copy": "./.bin/copy.js",
+      "docs": ".bin/doc.js",
       "images": "./.bin/images.js",
       "scripts": "./.bin/scripts.js",
       "css": "./.bin/css.js",
@@ -91,10 +93,12 @@
       "onchange": "^3.2.1",
       "postcss": "^6.0.1",
       "postcss-cli": "^4.1.0",
+      "postcss-flexbugs-fixes": "^3.0.0",
       "postcss-import": "^10.0.0",
       "postcss-sprites": "^4.2.1",
       "postcss-urlrev": "^2.0.0",
       "sass-lint": "^1.10.2",
+      "sassdoc": "^2.3.0",
       "shelljs": "^0.7.7",
       "susy": "^2.2.12",
       "uglify-js": "^3.0.15",

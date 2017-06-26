@@ -1,0 +1,28 @@
+$card-border: 1px solid color('charcoal');
+
+
+.card {
+   @include fontstack(primary, 16px);
+   border: $card-border;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   align-content: center;
+
+   position: relative;
+
+   &__header {
+      font-size: rem(20px);
+   }
+
+   &__footer {
+      font-size: rem(12px);
+      margin: rem(20px);
+      border: 1px solid blue;
+      width: 100%;
+      height: 100px;
+   }
+
+   &__body {
+   }
+}
