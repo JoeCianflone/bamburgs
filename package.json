@@ -33,7 +33,7 @@
          "sprites": "sprites"
       },
       "copy": [
-         "fonts"
+         {"fonts": ["fonts"]}
       ]
    },
    "browserslist": [
@@ -96,7 +96,6 @@
       "postcss-flexbugs-fixes": "^3.0.0",
       "postcss-import": "^10.0.0",
       "postcss-sprites": "^4.2.1",
-      "postcss-urlrev": "^2.0.0",
       "sass-lint": "^1.10.2",
       "sassdoc": "^2.3.0",
       "shelljs": "^0.7.7",

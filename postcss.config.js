@@ -10,9 +10,6 @@ module.exports = function(ctx) {
             spritePath: config.dist.path + "/" + config.dist.sprites
          },
          'postcss-flexbugs-fixes':{},
-         'postcss-urlrev': {
-            relativePath: config.dist.styles
-         },
          'autoprefixer': {},
          'cssnano': config.env === 'production' ? {} : false,
       }
