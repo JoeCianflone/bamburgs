@@ -8,20 +8,17 @@ config.copy.forEach((obj) => {
 
    distList.forEach((distFolder) => {
       obj[distFolder].forEach((folder) => {
-         let src = `${config.src.path}/${folder}`;
-         if (folder.startsWith('/')) {
-            src = `${process.cwd()}${folder}`;
-         }
-         fs.pathExists(src)
-            .then(exists => {
-               console.log(exists);
-               if (exists) {
-                  let dist = `${config.dist.path}/${distFolder}`;
-                  console.log(`Copying ${src} => ${dist}`);
-                  fs.copySync(src, dist);
-               }
-            });
+         let src =  folder.startsWith('/') ? `${process.cwd()}${folder}` : `${config.src.path}/${folder}`;
 
+         fs.pathExists(src).then(exists => {
+            if (exists) {
+               let dist = `${config.dist.path}/${distFolder}`;
+               console.log(`Copying ${src} => ${dist}`);
+               fs.copySync(src, dist);
+            } else {
+               console.log(`${src} does not exist`);
+            }
+         });
       });
    });
 });
