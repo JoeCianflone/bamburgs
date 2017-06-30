@@ -68,6 +68,7 @@ a {
 nav {
    ol, ul {
       @extend %flatten;
+      list-style-type: none;
 
       li {
          @extend %flatten;
