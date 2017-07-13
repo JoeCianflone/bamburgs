@@ -15,3 +15,7 @@ I've got plans to add more stuff, but for right now here's what you get:
 6. VueJS Integration
 7. A sane default Sass Structure
 8. Transpiling JS w/Babel
+9. CLI tool to install and set everything up for you
+10. Documentation builders
+11. Testing
+12. Copying and moving files around

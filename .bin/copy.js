@@ -10,8 +10,9 @@ config.copy.forEach((obj) => {
       obj[distFolder].forEach((folder) => {
          let src =  folder.startsWith('/') ? `${process.cwd()}${folder}` : `${config.src.path}/${folder}`;
 
-         fs.pathExists(src).then(exists => {
-            if (exists) {
+         fs.pathExists(src).then((err, result) => {
+
+            if (!err) {
                let dist = `${config.dist.path}/${distFolder}`;
                console.log(`Copying ${src} => ${dist}`);
                fs.copySync(src, dist);
