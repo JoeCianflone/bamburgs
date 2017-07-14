@@ -15,7 +15,9 @@ let rawImages = `${config.src.path}/${config.src.images}`;
 if (config.env !== 'production') {
    console.log('**NOTICE: IMAGE COMPRESSION ONLY OCCURS IN PRODUCTION**');
    console.log('**CHANGE ENV IN PACKAGE.JSON TO SET PRODUCTION ENVIRONMENT**');
-   fs.copy(rawImages, output);
+   fs.copy(rawImages, output)
+      .then(result => console.log(result))
+      .catch(err => console.error(`\nCan't find: ${err.path}`));
 } else {
    walk(rawImages, (err, results) => {
       let imgs = results.filter((img) => {
