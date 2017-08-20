@@ -1,0 +1,21 @@
+.dsp--block   { display: block;  }
+.dsp--inline   { display: inline; }
+.dsp--ib { display: inline-block;       }
+.dsp--none   { display: none;   }
+.dsp--flex   { display: flex;   }
+.dsp--if  { display: inline-flex;        }
+.ds--grid { display: grid; }
+.dsp--ig { display: inline-grid; }
+.dsp--sub { display: subgrid; }
+
+@each $key, $value in $breakpoints {
+   @include resize-to($key, 'dsp--block')   { display: block !important;  }
+   @include resize-to($key, 'dsp--inline')   { display: inline !important; }
+   @include resize-to($key, 'dsp--ib')  { display: inline-block !important;       }
+   @include resize-to($key, 'dsp--none')   { display: none !important;   }
+   @include resize-to($key, 'dsp--flex')   { display: flex !important;   }
+   @include resize-to($key, 'dsp--if')  { display: inline-flex !important;        }
+   @include resize-to($key, 'dsp--grid')  { display: grid !important;        }
+   @include resize-to($key, 'dsp--ig')  { display: inline-grid !important;        }
+   @include resize-to($key, 'dsp--sub')  { display: subgrid !important;        }
+}

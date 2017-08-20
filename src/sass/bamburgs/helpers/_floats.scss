@@ -1,0 +1,22 @@
+.xflt       { float: none !important;    }
+.flt--right  { float: right !important;   }
+.flt--left   { float: left !important;    }
+.flt--initial  { float: initial !important; }
+.flt--inherit { float: inherit !important; }
+
+.clearfix,
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@each $key, $breakpoint in $breakpoints {
+   @include resize-to($key, 'xflt')  { float: none !important;    }
+   @include resize-to($key, 'flt--right')  { float: right !important;   }
+   @include resize-to($key, 'flt--left')   { float: left !important;    }
+   @include resize-to($key, 'flt--initial')  { float: initial !important; }
+   @include resize-to($key, 'flt--inherit') { float: inherit !important; }
+}

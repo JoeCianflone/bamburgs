@@ -1,0 +1,60 @@
+$block-width: 100% / $grid-columns;
+
+@mixin gutters() {
+   padding-left: $grid-gutter;
+   padding-right: $grid-gutter;
+}
+
+@mixin column() {
+   @include gutters();
+   flex-basis: 0;
+   flex-grow: 1;
+   position: relative;
+
+   @content;
+}
+
+.col {
+   @include column();
+}
+
+.col--first { order: 0; }
+.col--last { order: 1; }
+
+@for $i from 1 through $grid-columns {
+   .col#{$i} {
+      @include column();
+      flex-basis: $i * $block-width;
+   }
+
+   .col--offset#{$i} {
+      margin-left: $i * $block-width;
+   }
+
+   .col--push#{$i} {
+      left: $i * $block-width;
+   }
+
+   .col--pull#{$i} {
+      right: $i * $block-width;
+   }
+}
+
+@each $key, $breakpoint in $breakpoints {
+
+   @include resize-to($key, 'col--first') { order: 0; }
+   @include resize-to($key, 'col--last') { order: 1; }
+
+   @for $i from 1 through $grid-columns {
+      @include resize-to($key, 'col#{$i}') {
+         @include column();
+         flex-basis: $i * $block-width;
+      }
+
+      @include resize-to($key, 'col--offset#{$i}') { margin-left: $i * $block-width; }
+
+      @include resize-to($key, 'col--push#{$i}') { left: $i * $block-width; }
+
+      @include resize-to($key, 'col--pull#{$i}') { right: $i * $block-width; }
+   }
+}

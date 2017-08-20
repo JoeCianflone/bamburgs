@@ -1,0 +1,55 @@
+.fd--row  { flex-direction: row;            }
+.fd--col  { flex-direction: column;         }
+.fd--rowrev { flex-direction: row-reverse;    }
+.fd--colrev { flex-direction: column-reverse; }
+
+.fw--wrap { flex-wrap: wrap;         }
+.fw--nowrap { flex-wrap: nowrap;       }
+.fw--wraprev { flex-wrap: wrap-reverse; }
+
+.jc--between { justify-content: space-between; }
+.jc--around { justify-content: space-around;  }
+.jc--start { justify-content: flex-start;    }
+.jc--end { justify-content: flex-end;      }
+.jc--center  { justify-content: center;        }
+
+.ai--center  { align-items: center;     }
+.ai--start { align-items: flex-start; }
+.ai--end { align-items: flex-end;   }
+.ai--stretch  { align-items: stretch;    }
+.ai--baseline  { align-items: baseline;   }
+
+.ac--center  { align-content: center;     }
+.ac--start { align-content: flex-start; }
+.ac--end { align-content: flex-end;   }
+.ac--stretch  { align-content: stretch;    }
+.ac--baseline  { align-content: baseline;   }
+
+@each $key, $breakpoint in $breakpoints {
+   @include resize-to($key, 'fd--row')  { flex-direction: row;            }
+   @include resize-to($key, 'fd--rowrev') { flex-direction: row-reverse;    }
+   @include resize-to($key, 'fd--col')  { flex-direction: column;         }
+   @include resize-to($key, 'fd--colrev') { flex-direction: column-reverse; }
+
+   @include resize-to($key, 'fw--nowrap') { flex-wrap: nowrap;       }
+   @include resize-to($key, 'fw--wrap') { flex-wrap: wrap;         }
+   @include resize-to($key, 'fw--wraprev') { flex-wrap: wrap-reverse; }
+
+   @include resize-to($key, 'jc--center')  { justify-content: center;        }
+   @include resize-to($key, 'jc--between') { justify-content: space-between; }
+   @include resize-to($key, 'jc--around') { justify-content: space-around;  }
+   @include resize-to($key, 'jc--start') { justify-content: flex-start;    }
+   @include resize-to($key, 'jc--end') { justify-content: flex-end;      }
+
+   @include resize-to($key, 'ai--center')  { align-items: center;     }
+   @include resize-to($key, 'ai--start') { align-items: flex-start; }
+   @include resize-to($key, 'ai--end') { align-items: flex-end;   }
+   @include resize-to($key, 'ai--stretch')  { align-items: stretch;    }
+   @include resize-to($key, 'ai--baseline')  { align-items: baseline;   }
+
+   @include resize-to($key, 'ac--center')  { align-content: center;     }
+   @include resize-to($key, 'ac--start') { align-content: flex-start; }
+   @include resize-to($key, 'ac--end') { align-content: flex-end;   }
+   @include resize-to($key, 'ac--stretch')  { align-content: stretch;    }
+   @include resize-to($key, 'ac--baseline')  { align-content: baseline;   }
+}

@@ -1,9 +1,7 @@
 * {
-   // sass-lint:disable no-vendor-prefixes no-misspelled-properties
    -webkit-overflow-scrolling: touch;
    box-sizing: inherit;
 
-   // sass-lint:disable pseudo-element single-line-per-selector
    &:before, &:after {
       box-sizing: inherit;
    }
@@ -11,42 +9,32 @@
 
 html {
    box-sizing: border-box;
+   font-size: $font-base-size;
    height: 100vh;
 }
 
-:focus {
-   outline: none;
-}
+:focus { outline: none; }
 
 body {
-   @extend %flatten;
-   // sass-lint:disable no-important no-vendor-prefixes
    -moz-osx-font-smoothing: grayscale !important;
    -webkit-font-smoothing: antialiased !important;
    height: 100vh;
-   min-width: $floor;
+   min-width: $site-floor;
 }
 
 img {
-   @extend %flatten;
-   @extend %base-image;
+   border-style: none;
+   max-width: 100%;
+   font-style: italic;
+   vertical-align: middle;
 
-   &.is-fixed {
-      @extend %base-image;
-      max-width: auto;
-   }
-
-   &.respond-height {
-      @extend %base-image;
-      height: 100%;
-      max-height: 100%;
-      max-width: auto;
-      width: auto;
+   &[width], &[height] {
+      max-width: none;
    }
 }
 
 h1, h2, h3, h4, h5, h6 {
-   @extend %flatten;
+   @include flatten();
 }
 
 p, ul, ol {
@@ -54,11 +42,12 @@ p, ul, ol {
 }
 
 p {
-   @extend %flatten;
+   @include flatten();
 }
 
 a {
    color: inherit;
+
    font: {
       family: inherit;
       weight: inherit;
@@ -67,11 +56,11 @@ a {
 
 nav {
    ol, ul {
-      @extend %flatten;
+      @include flatten();
       list-style-type: none;
 
       li {
-         @extend %flatten;
+         @include flatten();
       }
    }
 }

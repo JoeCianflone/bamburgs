@@ -1,0 +1,56 @@
+$greys: (
+   g05: darken(map-get($colors, w), 5%),
+   g10: darken(map-get($colors, w), 10%),
+   g20: darken(map-get($colors, w), 20%),
+   g30: darken(map-get($colors, w), 30%),
+   g40: darken(map-get($colors, w), 40%),
+   g50: darken(map-get($colors, w), 50%),
+   g60: darken(map-get($colors, w), 60%),
+   g70: darken(map-get($colors, w), 70%),
+   g80: darken(map-get($colors, w), 80%),
+   g90: darken(map-get($colors, w), 90%),
+);
+
+$colors: map-merge($greys ,$colors) !global;
+
+.xbg { background-color: transparent !important; }
+
+%default-hover,
+.default-hover {
+    &:hover,
+    &:focus {
+        opacity: 0.5;
+    }
+}
+
+%default-active,
+.default-active {
+    &:active {
+        opacity: 0.8;
+    }
+}
+
+%dim,
+.dim {
+    @extend %default-active;
+    @extend %default-hover;
+}
+
+@each $key, $hex in $colors {
+   .bg--#{$key}           { background-color: $hex !important; }
+   .tc--#{$key}           { color: $hex !important; }
+   .bc--#{$key}           { border-color: $hex !important; }
+
+   .\:bg--#{$key}:hover   { background-color: $hex !important; }
+   .\:tc--#{$key}:hover   { color: $hex !important; }
+   .\:bc--#{$key}:hover   { border-color: $hex !important; }
+
+   .\:\:bg--#{$key}:focus { background-color: $hex !important; }
+   .\:\:tc--#{$key}:focus { color: $hex !important; }
+   .\:\:bc--#{$key}:focus { border-color: $hex !important; }
+
+   .\@bg--#{$key}:active  { background-color: $hex !important; }
+   .\@tc--#{$key}:active  { color: $hex !important; }
+   .\@bc--#{$key}:active  { border-color: $hex !important; }
+}
+

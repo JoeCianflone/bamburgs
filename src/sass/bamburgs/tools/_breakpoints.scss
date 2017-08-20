@@ -1,0 +1,35 @@
+$breakpoints: (
+   fl: '(min-width: #{$fl})',
+   xs: '(min-width: #{$xs})',
+   sm: '(min-width: #{$sm})',
+   md: '(min-width: #{$md})',
+   lg: '(min-width: #{$lg})',
+   xl: '(min-width: #{$xl})',
+
+   fl-down: '(max-width: #{$fl})',
+   xs-down: '(max-width: #{$xs})',
+   sm-down: '(max-width: #{$sm})',
+   md-down: '(max-width: #{$md})',
+   lg-down: '(max-width: #{$lg})',
+   xl-down: '(max-width: #{$xl})',
+
+   fl-only: '(min-width: #{$fl}) and (max-width: #{$xs} - 1px)',
+   xs-only: '(min-width: #{$xs}) and (max-width: #{$sm} - 1px)',
+   sm-only: '(min-width: #{$sm}) and (max-width: #{$md} - 1px)',
+   md-only: '(min-width: #{$md}) and (max-width: #{$lg} - 1px)',
+   lg-only: '(min-width: #{$lg}) and (max-width: #{$xl} - 1px)',
+   xl-only: '(min-width: #{$xl})',
+) !global;
+
+@mixin media($bp) {
+    $value: map-get($breakpoints, $bp);
+    $mq: 'screen and' + $value;
+
+    @media #{$mq} { @content; }
+}
+
+// I want to use responsive mixins like this sm:foo md:foo
+@mixin resize-to($k, $name) {
+   .#{$k}\:#{$name} { @include media($k) { @content; } }
+}
+

@@ -1,15 +1,15 @@
 {
    "name": "bamburgs",
-   "version": "0.0.1",
-   "description": "the sane front end toolkit",
+   "version": "0.0.2",
+   "description": "The Frontend Toolkit",
    "author": "Joe Cianflone",
-   "email": "joe@mettleshop.co",
+   "email": "joe@cianflone.co",
    "repository": {
       "type": "git",
-      "url": "https://github.com/mettleshop/bamburgs"
+      "url": "https://github.com/joecianflone/bamburgs"
    },
    "bugs": {
-      "url": "https://github.com/mettleshop/bamburgs/issues"
+      "url": "https://github.com/joecianflone/bamburgs/issues"
    },
    "homepage": "https://joecianflone.co/bamburgs",
    "license": "MIT",
@@ -22,7 +22,8 @@
          "images": "images",
          "styles": "sass",
          "fonts": "fonts",
-         "entry": "main"
+         "jsEntry": "main",
+         "styleEntry": "app.scss"
       },
       "dist": {
          "path": "public/assets",
@@ -30,11 +31,12 @@
          "images": "images",
          "styles": "css",
          "fonts": "fonts",
-         "sprites": "sprites"
+         "sprites": "sprites",
+         "styleOutput": "app.css"
       },
-      "copy": [
-         {"fonts": ["fonts"]}
-      ]
+      "copy": [{
+            "fonts": ["fonts"]
+      }]
    },
    "browserslist": [
       "> 2%",
@@ -93,8 +95,11 @@
       "onchange": "^3.2.1",
       "postcss": "^6.0.1",
       "postcss-cli": "^4.1.0",
+      "postcss-cssnext": "^3.0.2",
+      "postcss-easy-import": "^2.1.0",
       "postcss-flexbugs-fixes": "^3.0.0",
       "postcss-import": "^10.0.0",
+      "postcss-pxtorem": "^4.0.1",
       "postcss-sprites": "^4.2.1",
       "sass-lint": "^1.10.2",
       "sassdoc": "^2.3.0",

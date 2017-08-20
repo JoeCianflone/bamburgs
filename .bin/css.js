@@ -1,16 +1,15 @@
 #! /usr/bin/env node
 const shell  = require("shelljs");
+const wl     = require('../tools/wl.js');
 const config = require(process.cwd() + '/package.json').config;
 
-let sassPath   = `${config.src.path}/${config.src.styles}`;
-let outputPath = `${config.dist.path}/${config.dist.styles}`;
+let entryFile   = `${config.src.path}/${config.src.styles}/${config.src.styleEntry}`;
+let outputFile  = `${config.dist.path}/${config.dist.styles}`;
 
-console.log('');
-console.log('Compile Sass...');
+wl('Sass...');
+shell.exec(`node-sass --output-style='nested' --error-bell ${entryFile} -o ${outputFile}`);
+wl('...Done Sass');
 
-shell.exec(`node-sass --output-style='nested' --error-bell ${sassPath} -o ${outputPath}`);
-
-console.log('');
-console.log('Running PostCSS...');
-
-shell.exec(`postcss ${outputPath}//\* -c ./postcss.config.js -r`);
+wl('PostCSS...');
+shell.exec(`postcss ${outputFile}/${config.dist.styleOutput}  -o ${outputFile}/${config.dist.styleOutput} -c ./postcss.config.js -r`);
+wl('...Done PostCSS');

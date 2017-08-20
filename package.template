@@ -14,7 +14,8 @@
          "images": "images",
          "styles": "sass",
          "fonts": "fonts",
-         "entry": "main"
+         "entry": "main",
+         "styleEntry" "app.scss"
       },
       "dist": {
          "path": "{{dist}}",
@@ -22,7 +23,8 @@
          "images": "images",
          "styles": "css",
          "fonts": "fonts",
-         "sprites": "sprites"
+         "sprites": "sprites",
+         "styleOutput": "app.css"
       },
       "copy": [
          {"fonts": ["fonts"]}
