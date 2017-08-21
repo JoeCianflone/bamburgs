@@ -15,7 +15,7 @@
          "styles": "sass",
          "fonts": "fonts",
          "entry": "main",
-         "styleEntry" "app.scss"
+         "styleEntry": "app.scss"
       },
       "dist": {
          "path": "{{dist}}",
