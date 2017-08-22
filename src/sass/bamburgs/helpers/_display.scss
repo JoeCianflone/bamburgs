@@ -1,21 +1,27 @@
-.display--block   { display: block;  }
+.display--block,
+.display--show { display: block;  }
+
+.display--none,
+.display--hide { display: none; }
+
 .display--inline   { display: inline; }
-.display--ib { display: inline-block;       }
-.display--none   { display: none;   }
-.display--flex   { display: flex;   }
-.display--if  { display: inline-flex;        }
+.display--ib { display: inline-block; }
+.display--flex   { display: flex; }
+.display--if  { display: inline-flex; }
 .display--grid { display: grid; }
 .display--ig { display: inline-grid; }
 .display--sub { display: subgrid; }
 
 @each $key, $value in $breakpoints {
    @include resize-to($key, 'display--block')   { display: block !important;  }
+   @include resize-to($key, 'display--show')   { display: block !important;  }
    @include resize-to($key, 'display--inline')   { display: inline !important; }
-   @include resize-to($key, 'display--ib')  { display: inline-block !important;       }
-   @include resize-to($key, 'display--none')   { display: none !important;   }
-   @include resize-to($key, 'display--flex')   { display: flex !important;   }
-   @include resize-to($key, 'display--if')  { display: inline-flex !important;        }
-   @include resize-to($key, 'display--grid')  { display: grid !important;        }
-   @include resize-to($key, 'dsp--ig')  { display: inline-grid !important;        }
-   @include resize-to($key, 'dsp--sub')  { display: subgrid !important;        }
+   @include resize-to($key, 'display--ib')  { display: inline-block !important; }
+   @include resize-to($key, 'display--none')   { display: none !important; }
+   @include resize-to($key, 'display--hide')   { display: none !important; }
+   @include resize-to($key, 'display--flex')   { display: flex !important; }
+   @include resize-to($key, 'display--if')  { display: inline-flex !important; }
+   @include resize-to($key, 'display--grid')  { display: grid !important; }
+   @include resize-to($key, 'dsp--ig')  { display: inline-grid !important; }
+   @include resize-to($key, 'dsp--sub')  { display: subgrid !important; }
 }
