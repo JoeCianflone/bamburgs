@@ -1,21 +1,21 @@
-.dsp--block   { display: block;  }
-.dsp--inline   { display: inline; }
-.dsp--ib { display: inline-block;       }
-.dsp--none   { display: none;   }
-.dsp--flex   { display: flex;   }
-.dsp--if  { display: inline-flex;        }
-.ds--grid { display: grid; }
-.dsp--ig { display: inline-grid; }
-.dsp--sub { display: subgrid; }
+.display--block   { display: block;  }
+.display--inline   { display: inline; }
+.display--ib { display: inline-block;       }
+.display--none   { display: none;   }
+.display--flex   { display: flex;   }
+.display--if  { display: inline-flex;        }
+.display--grid { display: grid; }
+.display--ig { display: inline-grid; }
+.display--sub { display: subgrid; }
 
 @each $key, $value in $breakpoints {
-   @include resize-to($key, 'dsp--block')   { display: block !important;  }
-   @include resize-to($key, 'dsp--inline')   { display: inline !important; }
-   @include resize-to($key, 'dsp--ib')  { display: inline-block !important;       }
-   @include resize-to($key, 'dsp--none')   { display: none !important;   }
-   @include resize-to($key, 'dsp--flex')   { display: flex !important;   }
-   @include resize-to($key, 'dsp--if')  { display: inline-flex !important;        }
-   @include resize-to($key, 'dsp--grid')  { display: grid !important;        }
+   @include resize-to($key, 'display--block')   { display: block !important;  }
+   @include resize-to($key, 'display--inline')   { display: inline !important; }
+   @include resize-to($key, 'display--ib')  { display: inline-block !important;       }
+   @include resize-to($key, 'display--none')   { display: none !important;   }
+   @include resize-to($key, 'display--flex')   { display: flex !important;   }
+   @include resize-to($key, 'display--if')  { display: inline-flex !important;        }
+   @include resize-to($key, 'display--grid')  { display: grid !important;        }
    @include resize-to($key, 'dsp--ig')  { display: inline-grid !important;        }
    @include resize-to($key, 'dsp--sub')  { display: subgrid !important;        }
 }

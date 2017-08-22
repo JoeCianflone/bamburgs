@@ -35,10 +35,10 @@
 }
 
 @each $key, $breakpoint in $breakpoints {
-   @include resize-to($key, 'ta--left') { text-align: left !important; }
-   @include resize-to($key, 'ta--center') { text-align: center !important; }
-   @include resize-to($key, 'ta--right') { text-align: right !important; }
-   @include resize-to($key, 'hidetext') {
+   @include resize-to($key, 'align--left') { text-align: left !important; }
+   @include resize-to($key, 'align--center') { text-align: center !important; }
+   @include resize-to($key, 'align--right') { text-align: right !important; }
+   @include resize-to($key, 'text--hide') {
       text-indent: 100%;
       white-space: nowrap;
       overflow: hidden;
