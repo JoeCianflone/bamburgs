@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 const shell    = require("shelljs");
 const walk     = require('../tools/walker.js');
+const wl       = require('../tools/wl.js');
 const config   = require(process.cwd() + '/package.json').config;
 const imagemin = require('imagemin');
 const svgo     = require('imagemin-svgo');
