@@ -14,6 +14,8 @@ $colors: map-merge((
 .xbg { background-color: transparent !important; }
 
 .dim {
+   transition: 500ms ease-in-out;
+
    &:active {
       opacity: 0.8;
    }

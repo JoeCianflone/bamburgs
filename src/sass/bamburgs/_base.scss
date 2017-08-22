@@ -43,8 +43,11 @@ p {
    @include flatten();
 }
 
+button, label { cursor: pointer; }
+
 a {
    color: inherit;
+   cursor: pointer;
 
    font: {
       family: inherit;
