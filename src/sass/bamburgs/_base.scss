@@ -55,6 +55,7 @@ a {
 nav {
    ol, ul {
       @include flatten();
+
       list-style-type: none;
 
       li {

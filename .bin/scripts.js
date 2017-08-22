@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 const shell      = require("shelljs");
+const wl     = require('../tools/wl.js');
 const config     = require(process.cwd() + '/package.json').config;
 
 let jsInput          = `${config.src.path}/${config.src.scripts}/${config.src.entry}.js`;

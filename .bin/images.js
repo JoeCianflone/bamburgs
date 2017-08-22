@@ -13,8 +13,8 @@ let output    = `${config.dist.path}/${config.dist.images}`;
 let rawImages = `${config.src.path}/${config.src.images}`;
 
 if (config.env !== 'production') {
-   console.log('**NOTICE: IMAGE COMPRESSION ONLY OCCURS IN PRODUCTION**');
-   console.log('**CHANGE ENV IN PACKAGE.JSON TO SET PRODUCTION ENVIRONMENT**');
+   wl('**NOTICE: IMAGE COMPRESSION ONLY OCCURS IN PRODUCTION**');
+   wl('**CHANGE ENV IN PACKAGE.JSON TO SET PRODUCTION ENVIRONMENT**');
    fs.copy(rawImages, output)
       .then(result => console.log(result))
       .catch(err => console.error(`\nCan't find: ${err.path}`));
