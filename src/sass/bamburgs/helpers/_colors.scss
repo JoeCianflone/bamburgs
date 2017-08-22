@@ -1,14 +1,14 @@
 $colors: map-merge((
-   g05: darken(map-get($colors, white), 5%),
-   g10: darken(map-get($colors, white), 10%),
-   g20: darken(map-get($colors, white), 20%),
-   g30: darken(map-get($colors, white), 30%),
-   g40: darken(map-get($colors, white), 40%),
-   g50: darken(map-get($colors, white), 50%),
-   g60: darken(map-get($colors, white), 60%),
-   g70: darken(map-get($colors, white), 70%),
-   g80: darken(map-get($colors, white), 80%),
-   g90: darken(map-get($colors, white), 90%),
+   gray-5: darken(map-get($colors, white), 5%),
+   gray-10: darken(map-get($colors, white), 10%),
+   gray-20: darken(map-get($colors, white), 20%),
+   gray-30: darken(map-get($colors, white), 30%),
+   gray-40: darken(map-get($colors, white), 40%),
+   gray-50: darken(map-get($colors, white), 50%),
+   gray-60: darken(map-get($colors, white), 60%),
+   gray-70: darken(map-get($colors, white), 70%),
+   gray-80: darken(map-get($colors, white), 80%),
+   gray-90: darken(map-get($colors, white), 90%),
 ) ,$colors) !global;
 
 .xbg { background-color: transparent !important; }
