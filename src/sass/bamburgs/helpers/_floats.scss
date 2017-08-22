@@ -1,8 +1,8 @@
-.xflt       { float: none !important;    }
-.flt--right  { float: right !important;   }
-.flt--left   { float: left !important;    }
-.flt--initial  { float: initial !important; }
-.flt--inherit { float: inherit !important; }
+.xfloat       { float: none !important;    }
+.float--right  { float: right !important;   }
+.float--left   { float: left !important;    }
+.float--initial  { float: initial !important; }
+.float--inherit { float: inherit !important; }
 
 .clearfix,
 %clearfix {
@@ -14,9 +14,9 @@
 }
 
 @each $key, $breakpoint in $breakpoints {
-   @include resize-to($key, 'xflt')  { float: none !important;    }
-   @include resize-to($key, 'flt--right')  { float: right !important;   }
-   @include resize-to($key, 'flt--left')   { float: left !important;    }
-   @include resize-to($key, 'flt--initial')  { float: initial !important; }
-   @include resize-to($key, 'flt--inherit') { float: inherit !important; }
+   @include resize-to($key, 'xfloat')  { float: none !important;    }
+   @include resize-to($key, 'float--right')  { float: right !important;   }
+   @include resize-to($key, 'float--left')   { float: left !important;    }
+   @include resize-to($key, 'float--initial')  { float: initial !important; }
+   @include resize-to($key, 'float--inherit') { float: inherit !important; }
 }

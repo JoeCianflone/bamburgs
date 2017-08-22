@@ -22,20 +22,23 @@ $block-width: 100% / $grid-columns;
 .col--last { order: 1; }
 
 @for $i from 1 through $grid-columns {
-   .col#{$i} {
-      @include column();
+   .col-#{$i} {
+      @include gutters();
+
       flex-basis: $i * $block-width;
+      max-width: $i * $block-width;
+      position: relative;
    }
 
-   .col--offset#{$i} {
+   .offset-#{$i} {
       margin-left: $i * $block-width;
    }
 
-   .col--push#{$i} {
+   .push-#{$i} {
       left: $i * $block-width;
    }
 
-   .col--pull#{$i} {
+   .pull-#{$i} {
       right: $i * $block-width;
    }
 }
@@ -46,15 +49,17 @@ $block-width: 100% / $grid-columns;
    @include resize-to($key, 'col--last') { order: 1; }
 
    @for $i from 1 through $grid-columns {
-      @include resize-to($key, 'col#{$i}') {
-         @include column();
+      @include resize-to($key, 'col-#{$i}') {
+         @include gutters();
          flex-basis: $i * $block-width;
+         max-width: $i * $block-width;
+         position: relative;
       }
 
-      @include resize-to($key, 'col--offset#{$i}') { margin-left: $i * $block-width; }
+      @include resize-to($key, 'offset-#{$i}') { margin-left: $i * $block-width; }
 
-      @include resize-to($key, 'col--push#{$i}') { left: $i * $block-width; }
+      @include resize-to($key, 'push-#{$i}') { left: $i * $block-width; }
 
-      @include resize-to($key, 'col--pull#{$i}') { right: $i * $block-width; }
+      @include resize-to($key, 'pull-#{$i}') { right: $i * $block-width; }
    }
 }

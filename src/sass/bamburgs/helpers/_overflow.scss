@@ -1,9 +1,9 @@
-.off--hidden { overflow: hidden !important; }
-.off--x { overflow-x: scroll !important; }
-.off--y { overflow-y: scroll !important; }
+.overflow--hidden { overflow: hidden !important; }
+.overflow--x      { overflow-x: scroll !important; }
+.overflow--y      { overflow-y: scroll !important; }
 
 @each $key, $breakpoint in $breakpoints {
-   @include resize-to($key, 'off--hidden') { overflow: hidden !important;   }
-   @include resize-to($key, 'off--x') { overflow-x: scroll !important; }
-   @include resize-to($key, 'off--y') { overflow-y: scroll !important; }
+   @include resize-to($key, 'overflow--hidden') { overflow: hidden !important;   }
+   @include resize-to($key, 'overflow--x')      { overflow-x: scroll !important; }
+   @include resize-to($key, 'overflow--y')      { overflow-y: scroll !important; }
 }

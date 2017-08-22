@@ -1,20 +1,20 @@
 
-.fw--thin     { font-weight: 100 !important; }
-.fw--xlight   { font-weight: 200 !important; }
-.fw--light    { font-weight: 300 !important; }
-.fw--normal   { font-weight: 400 !important; }
-.fw--medium   { font-weight: 500 !important; }
-.fw--semibold { font-weight: 600 !important; }
-.fw--bold     { font-weight: 700 !important; }
-.fw--xbold    { font-weight: 800 !important; }
-.fw--black    { font-weight: 900 !important; }
+.weight--thin     { font-weight: 100 !important; }
+.weight--xlight   { font-weight: 200 !important; }
+.weight--light    { font-weight: 300 !important; }
+.weight--normal   { font-weight: 400 !important; }
+.weight--medium   { font-weight: 500 !important; }
+.weight--semibold { font-weight: 600 !important; }
+.weight--bold     { font-weight: 700 !important; }
+.weight--xbold    { font-weight: 800 !important; }
+.weight--black    { font-weight: 900 !important; }
 
-.ta--left { text-align: left !important; }
-.ta--center { text-align: center !important; }
-.ta--right { text-align: right !important; }
+.align--left { text-align: left !important; }
+.align--center { text-align: center !important; }
+.align--right { text-align: right !important; }
 
-.lowercase { text-transform: lowercase; }
-.uppercase { text-transform: uppercase; }
+.text--lower { text-transform: lowercase; }
+.text--upper { text-transform: uppercase; }
 
 .ell {
    overflow: hidden;
@@ -22,8 +22,7 @@
    white-space: nowrap;
 }
 
-%hidetext,
-.hidetext {
+.text--hide {
    text-indent: 100%;
    white-space: nowrap;
    overflow: hidden;
@@ -32,7 +31,7 @@
 .vam { vertical-align: middle; }
 
 @each $key, $family in $font-families {
-   .text--#{$key} {font-family: $family;}
+   .#{$key} {font-family: $family;}
 }
 
 @each $key, $breakpoint in $breakpoints {

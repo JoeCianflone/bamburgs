@@ -1,6 +1,6 @@
-.pos--rel   { position: relative; }
-.pos--abs   { position: absolute; }
-.pos--fixed { position: fixed; }
+.rel   { position: relative; }
+.abs   { position: absolute; }
+.fixed { position: fixed; }
 
 .pin--top    { top: 0; }
 .pin--right  { right: 0; }
@@ -15,9 +15,9 @@
 }
 
 @each $key, $breakpoint in $breakpoints {
-   @include resize-to($key, 'pos--rel')   { position: relative; }
-   @include resize-to($key, 'pos--abs')   { position: absolute; }
-   @include resize-to($key, 'pos--fixed') { position: fixed; }
+   @include resize-to($key, 'rel')   { position: relative; }
+   @include resize-to($key, 'abs')   { position: absolute; }
+   @include resize-to($key, 'fixed') { position: fixed; }
 
    @include resize-to($key, 'pin--top')    { top: 0; }
    @include resize-to($key, 'pin--right')  { right: 0; }

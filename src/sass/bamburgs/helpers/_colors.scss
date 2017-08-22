@@ -15,42 +15,39 @@ $colors: map-merge($greys ,$colors) !global;
 
 .xbg { background-color: transparent !important; }
 
-%default-hover,
 .default-hover {
-    &:hover,
-    &:focus {
-        opacity: 0.5;
-    }
+
 }
 
-%default-active,
 .default-active {
-    &:active {
-        opacity: 0.8;
-    }
+
 }
 
-%dim,
 .dim {
-    @extend %default-active;
-    @extend %default-hover;
+   &:active {
+      opacity: 0.8;
+   }
+   &:hover,
+   &:focus {
+      opacity: 0.5;
+   }
 }
 
 @each $key, $hex in $colors {
-   .bg--#{$key}           { background-color: $hex !important; }
-   .tc--#{$key}           { color: $hex !important; }
-   .bc--#{$key}           { border-color: $hex !important; }
+   .bg-#{$key}           { background-color: $hex !important; }
+   .tc-#{$key}           { color: $hex !important; }
+   .bc-#{$key}           { border-color: $hex !important; }
 
-   .\:bg--#{$key}:hover   { background-color: $hex !important; }
-   .\:tc--#{$key}:hover   { color: $hex !important; }
-   .\:bc--#{$key}:hover   { border-color: $hex !important; }
+   .\:bg-#{$key}:hover   { background-color: $hex !important; }
+   .\:tc-#{$key}:hover   { color: $hex !important; }
+   .\:bc-#{$key}:hover   { border-color: $hex !important; }
 
-   .\:\:bg--#{$key}:focus { background-color: $hex !important; }
-   .\:\:tc--#{$key}:focus { color: $hex !important; }
-   .\:\:bc--#{$key}:focus { border-color: $hex !important; }
+   .\:\:bg-#{$key}:focus { background-color: $hex !important; }
+   .\:\:tc-#{$key}:focus { color: $hex !important; }
+   .\:\:bc-#{$key}:focus { border-color: $hex !important; }
 
-   .\@bg--#{$key}:active  { background-color: $hex !important; }
-   .\@tc--#{$key}:active  { color: $hex !important; }
-   .\@bc--#{$key}:active  { border-color: $hex !important; }
+   .\@bg-#{$key}:active  { background-color: $hex !important; }
+   .\@tc-#{$key}:active  { color: $hex !important; }
+   .\@bc-#{$key}:active  { border-color: $hex !important; }
 }
 

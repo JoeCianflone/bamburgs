@@ -1,67 +1,67 @@
-.xpad { padding: 0 !important; }
-.xpadvert { padding-top: 0 !important; padding-bottom: 0 !important; }
-.xpadhoriz { padding-left: 0 !important; padding-right: 0 !important; }
+.xpadding { padding: 0 !important; }
+.xpadding--vert { padding-top: 0 !important; padding-bottom: 0 !important; }
+.xpadding--horiz { padding-left: 0 !important; padding-right: 0 !important; }
 
-.xmar { margin: 0 !important; }
-.xmarvert { margin-top: 0 !important; margin-bottom: 0 !important; }
-.xmarhoriz { margin-left: 0 !important; margin-right: 0 !important; }
+.xmargin { margin: 0 !important; }
+.xmargin--vert { margin-top: 0 !important; margin-bottom: 0 !important; }
+.xmargin--horiz { margin-left: 0 !important; margin-right: 0 !important; }
 
-.mar--center {
+.margin--center {
    margin-left: auto !important;
    margin-right: auto !important;
 }
 
-.pad--center {
+.padding--center {
    padding-left: auto !important;
    padding-right: auto !important;
 }
 
 @for $i from 1 through $spacing-amount {
-   .mar--all#{$i} { margin: #{$i * $spacing-multiplier}px !important; }
-   .mar--left#{$i} { margin-left: #{$i * $spacing-multiplier}px !important; }
-   .mar--right#{$i} { margin-right: #{$i * $spacing-multiplier}px !important; }
-   .mar--top#{$i} { margin-top: #{$i * $spacing-multiplier}px !important; }
-   .mar--bottom#{$i} { margin-bottom: #{$i * $spacing-multiplier}px !important; }
-   .mar--vert#{$i} { margin-top: #{$i * $spacing-multiplier}px !important; margin-bottom: #{$i * $spacing-multiplier}px !important;}
-   .mar--horiz#{$i} { margin-left: #{$i * $spacing-multiplier}px !important; margin-right: #{$i * $spacing-multiplier}px !important; }
+   .margin-#{$i} { margin: #{$i * $spacing-multiplier}px !important; }
+   .margin-#{$i}--left { margin-left: #{$i * $spacing-multiplier}px !important; }
+   .margin-#{$i}--right { margin-right: #{$i * $spacing-multiplier}px !important; }
+   .margin-#{$i}--top { margin-top: #{$i * $spacing-multiplier}px !important; }
+   .margin-#{$i}--bottom { margin-bottom: #{$i * $spacing-multiplier}px !important; }
+   .margin-#{$i}--vert { margin-top: #{$i * $spacing-multiplier}px !important; margin-bottom: #{$i * $spacing-multiplier}px !important;}
+   .margin-#{$i}--horiz { margin-left: #{$i * $spacing-multiplier}px !important; margin-right: #{$i * $spacing-multiplier}px !important; }
 
-   .pad--all#{$i} { padding: #{$i * $spacing-multiplier}px !important; }
-   .pad--left#{$i} { padding-left: #{$i * $spacing-multiplier}px !important; }
-   .pad--right#{$i} { padding-right: #{$i * $spacing-multiplier}px !important; }
-   .pad--top#{$i} { padding-top: #{$i * $spacing-multiplier}px !important; }
-   .pad--bottom#{$i} { padding-bottom: #{$i * $spacing-multiplier}px !important; }
-   .pad--vert#{$i} { padding-top: #{$i * $spacing-multiplier}px !important; padding-bottom: #{$i * $spacing-multiplier}px !important;}
-   .pad--horiz#{$i} { padding-left: #{$i * $spacing-multiplier}px !important; padding-right: #{$i * $spacing-multiplier}px !important; }
+   .padding-#{$i} { padding: #{$i * $spacing-multiplier}px !important; }
+   .padding-#{$i}--left { padding-left: #{$i * $spacing-multiplier}px !important; }
+   .padding-#{$i}--right { padding-right: #{$i * $spacing-multiplier}px !important; }
+   .padding-#{$i}--top { padding-top: #{$i * $spacing-multiplier}px !important; }
+   .padding-#{$i}--bottom { padding-bottom: #{$i * $spacing-multiplier}px !important; }
+   .padding-#{$i}--vert { padding-top: #{$i * $spacing-multiplier}px !important; padding-bottom: #{$i * $spacing-multiplier}px !important;}
+   .padding-#{$i}--horiz { padding-left: #{$i * $spacing-multiplier}px !important; padding-right: #{$i * $spacing-multiplier}px !important; }
 }
 
 @each $key, $breakpoint in $breakpoints {
 
-   @include resize-to($key, 'xpad') { padding: 0 !important; }
-   @include resize-to($key, 'xpadvert') { padding-top: 0 !important; padding-bottom: 0 !important; }
-   @include resize-to($key, 'xpadhoriz') { padding-left: 0 !important; padding-right: 0 !important; }
-   @include resize-to($key, 'pad--center') { padding-left: auto !important; padding-right: auto !important; }
+   @include resize-to($key, 'xpadding') { padding: 0 !important; }
+   @include resize-to($key, 'xpaddingvert') { padding-top: 0 !important; padding-bottom: 0 !important; }
+   @include resize-to($key, 'xpaddinghoriz') { padding-left: 0 !important; padding-right: 0 !important; }
+   @include resize-to($key, 'padding--center') { padding-left: auto !important; padding-right: auto !important; }
 
-   @include resize-to($key, 'xmar') { margin: 0 !important; }
-   @include resize-to($key, 'xmarvert') { margin-top: 0 !important; margin-bottom: 0 !important; }
-   @include resize-to($key, 'xmarhoriz') { margin-left: 0 !important; margin-right: 0 !important; }
-   @include resize-to($key, 'mar--center') { margin-left: auto !important; margin-right: auto !important; }
+   @include resize-to($key, 'xmargin') { margin: 0 !important; }
+   @include resize-to($key, 'xmargin--vert') { margin-top: 0 !important; margin-bottom: 0 !important; }
+   @include resize-to($key, 'xmargin--horiz') { margin-left: 0 !important; margin-right: 0 !important; }
+   @include resize-to($key, 'margin--center') { margin-left: auto !important; margin-right: auto !important; }
 
    @for $i from 1 to $spacing-amount {
-      @include resize-to($key,'mar--all#{$i}') { margin: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'mar--left#{$i}') { margin-left: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'mar--right#{$i}') { margin-right: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'mar--top#{$i}') { margin-top: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'mar--bottom#{$i}') { margin-bottom: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'mar--vert#{$i}') { margin-top: #{$i * $spacing-multiplier}px !important; margin-bottom: #{$i * $spacing-multiplier}px !important;}
-      @include resize-to($key,'mar--horiz#{$i}') { margin-left: #{$i * $spacing-multiplier}px !important; margin-right: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'margin-#{$i}') { margin: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'margin-#{$i}--left') { margin-left: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'margin-#{$i}--right') { margin-right: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'margin-#{$i}--top') { margin-top: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'margin-#{$i}--bottom') { margin-bottom: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'margin-#{$i}--vert') { margin-top: #{$i * $spacing-multiplier}px !important; margin-bottom: #{$i * $spacing-multiplier}px !important;}
+      @include resize-to($key,'margin-#{$i}--horiz') { margin-left: #{$i * $spacing-multiplier}px !important; margin-right: #{$i * $spacing-multiplier}px !important; }
 
-      @include resize-to($key,'pad--all#{$i}') { padding: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'pad--left#{$i}') { padding-left: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'pad--right#{$i}') { padding-right: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'pad--top#{$i}') { padding-top: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'pad--bottom#{$i}') { padding-bottom: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'pad--vert#{$i}') { padding-top: #{$i * $spacing-multiplier}px !important; padding-bottom: #{$i * $spacing-multiplier}px !important;}
-      @include resize-to($key,'pad--horiz#{$i}') { padding-left: #{$i * $spacing-multiplier}px !important; padding-right: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'padding-#{$i}') { padding: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'padding-#{$i}--left') { padding-left: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'padding-#{$i}--right') { padding-right: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'padding-#{$i}--top') { padding-top: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'padding-#{$i}--bottom') { padding-bottom: #{$i * $spacing-multiplier}px !important; }
+      @include resize-to($key,'padding-#{$i}--vert') { padding-top: #{$i * $spacing-multiplier}px !important; padding-bottom: #{$i * $spacing-multiplier}px !important;}
+      @include resize-to($key,'padding-#{$i}--horiz') { padding-left: #{$i * $spacing-multiplier}px !important; padding-right: #{$i * $spacing-multiplier}px !important; }
    }
 
 }
