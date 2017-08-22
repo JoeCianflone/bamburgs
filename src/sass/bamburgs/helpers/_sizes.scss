@@ -5,6 +5,6 @@ $width-multiple: 100 / $width-breaks;
    .width-#{$value} { width: $value * 1% }
 
    @each $key, $breakpoint in $breakpoints {
-      @include set-to($key, 'width-#{$value}') { width: $value * 1%; }
+      @include resize-to($key, 'width-#{$value}') { width: $value * 1%; }
    }
 }

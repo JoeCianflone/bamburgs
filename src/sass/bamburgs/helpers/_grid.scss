@@ -1,21 +1,23 @@
 $block-width: 100% / $grid-columns;
 
 @mixin gutters() {
-   padding-left: $grid-gutter;
-   padding-right: $grid-gutter;
+   @if $grid-gutter-setting == 'padding' or $grid-gutter-setting == 'margin'  {
+      #{$grid-gutter-setting}-left: $grid-gutter;
+      #{$grid-gutter-setting}-right: $grid-gutter;
+   }
+   @else {
+      margin-left: $grid-gutter / 2;
+      margin-right: $grid-gutter / 2;
+      padding-left: $grid-gutter / 2;
+      padding-right: $grid-gutter / 2;
+   }
 }
 
-@mixin column() {
+.col {
    @include gutters();
    flex-basis: 0;
    flex-grow: 1;
    position: relative;
-
-   @content;
-}
-
-.col {
-   @include column();
 }
 
 .col--first { order: 0; }
