@@ -27,7 +27,7 @@ $colors: (
 $font-base-size: 62.5%; // If you change this you're going to need to change rootValue in postcss.config.js too
 
 $font-families: (
-   fam-serif: #{Merriweather, Georgia, serif},
+   fam-serif: #{Georgia, serif},
    fam-sans: #{'Helvetica Neue', Helvetica, Arial, sans-serif},
    fam-code:  #{Menlo, Consolas, Monaco, 'Andale Mono', monospace},
 );
@@ -89,5 +89,3 @@ $grid-gutter: 10px;
 // Spacing ....................................................................
 $spacing-amount: 20;
 $spacing-multiplier: 5;
-
-

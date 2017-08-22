@@ -37,9 +37,7 @@ h1, h2, h3, h4, h5, h6 {
    @include flatten();
 }
 
-p, ul, ol {
-   font-size: inherit;
-}
+p, ul, ol { font-size: inherit; }
 
 p {
    @include flatten();
