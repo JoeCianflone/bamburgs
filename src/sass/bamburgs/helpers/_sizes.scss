@@ -1,6 +1,6 @@
 $width-multiple: 100 / $width-breaks;
 
-@for $i from 1 to $width-breaks {
+@for $i from 1 to $width-breaks + 1 {
    $value: $i * $width-multiple;
    .width-#{$value} { width: $value * 1% }
 
