@@ -22,10 +22,8 @@
          "images": "images",
          "styles": "sass",
          "fonts": "fonts",
-         "inputFiles": {
-            "js": "main",
-            "style": "app.css"
-         }
+         "jsFilename": "main",
+         "stylesFilename": "app.scss"
       },
       "dist": {
          "path": "public/assets",
@@ -34,10 +32,8 @@
          "styles": "css",
          "fonts": "fonts",
          "sprites": "sprites",
-         "outputFiles": {
-            "js": "main",
-            "style": "app.css"
-         }
+         "jsFilename": "main",
+         "stylesFilename": "app.css"
       },
       "copy": [
          {

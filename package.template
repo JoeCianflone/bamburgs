@@ -14,8 +14,8 @@
          "images": "images",
          "styles": "sass",
          "fonts": "fonts",
-         "jsEntry": "main"
-         "styleEntry": "app.scss"
+         "jsFilename": "main",
+         "stylesFilename": "app.scss"
       },
       "dist": {
          "path": "{{dist}}",
@@ -24,10 +24,15 @@
          "styles": "css",
          "fonts": "fonts",
          "sprites": "sprites",
-         "styleOutput": "app.css"
+         "jsFilename": "main",
+         "stylesFilename": "app.css"
       },
       "copy": [
-         {"fonts": ["fonts"]}
+         {
+            "fonts": [
+               "fonts"
+            ]
+         }
       ]
    },
    "browserslist": [
