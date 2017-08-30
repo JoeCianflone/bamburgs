@@ -1,9 +1,7 @@
-var Vue = require('vue');
-var App = require('./components/app.vue');
+window.Vue = require('vue');
 
-new Vue({
-   el: '#app',
-      render: function (createElement) {
-         return createElement(App)
-   }
-})
+Vue.component('example', require('./components/Example.vue'));
+
+const app = new Vue({
+    el: '#app'
+});

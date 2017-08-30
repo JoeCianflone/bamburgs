@@ -1,22 +1,48 @@
 $block-width: 100% / $grid-columns;
+$row-compensation: $grid-gutter * -1;
 
 @mixin gutters() {
-   @if $grid-gutter-setting == 'padding' or $grid-gutter-setting == 'margin'  {
-      #{$grid-gutter-setting}-left: $grid-gutter;
-      #{$grid-gutter-setting}-right: $grid-gutter;
-   }
-   @else {
-      margin-left: $grid-gutter / 2;
-      margin-right: $grid-gutter / 2;
+   @if $grid-gutter-setting == 'split'  {
       padding-left: $grid-gutter / 2;
       padding-right: $grid-gutter / 2;
    }
+   @else {
+      padding-left: $grid-gutter;
+      padding-right: $grid-gutter;
+   }
+}
+
+.grid {
+   align-content: center;
+   align-items: flex-start;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+}
+
+.grid--centered {
+   align-items: center;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+.row {
+   @if $grid-gutter-setting == 'split' {
+      $row-compensation: $row-compensation / 2;
+   }
+
+   display: flex;
+   flex: 0 1 auto;
+   flex-direction: row;
+   flex-wrap: wrap;
+   margin-right: $row-compensation;
+   margin-left: $row-compensation;
 }
 
 .col {
    @include gutters();
-   flex-basis: 0;
-   flex-grow: 1;
+   flex: 0 1 auto;
    position: relative;
 }
 
@@ -59,9 +85,7 @@ $block-width: 100% / $grid-columns;
       }
 
       @include resize-to($key, 'offset-#{$i}') { margin-left: $i * $block-width; }
-
       @include resize-to($key, 'push-#{$i}') { left: $i * $block-width; }
-
       @include resize-to($key, 'pull-#{$i}') { right: $i * $block-width; }
    }
 }

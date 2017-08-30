@@ -1,8 +1,16 @@
 .xpadding { padding: 0 !important; }
+.xpadding--top { padding-top: 0 !important; }
+.xpadding--right { padding-right: 0 !important; }
+.xpadding--bottom { padding-bottom: 0 !important; }
+.xpadding--left { padding-left: 0 !important; }
 .xpadding--vert { padding-top: 0 !important; padding-bottom: 0 !important; }
 .xpadding--horiz { padding-left: 0 !important; padding-right: 0 !important; }
 
 .xmargin { margin: 0 !important; }
+.xmargin--top { margin-top: 0 !important; }
+.xmargin--right { margin-right: 0 !important; }
+.xmargin--bottom { margin-bottom: 0 !important; }
+.xmargin--left { margin-left: 0 !important; }
 .xmargin--vert { margin-top: 0 !important; margin-bottom: 0 !important; }
 .xmargin--horiz { margin-left: 0 !important; margin-right: 0 !important; }
 
@@ -37,11 +45,19 @@
 @each $key, $breakpoint in $breakpoints {
 
    @include resize-to($key, 'xpadding') { padding: 0 !important; }
-   @include resize-to($key, 'xpaddingvert') { padding-top: 0 !important; padding-bottom: 0 !important; }
-   @include resize-to($key, 'xpaddinghoriz') { padding-left: 0 !important; padding-right: 0 !important; }
+   @include resize-to($key, 'xpadding--top') { padding-top: 0 !important; }
+   @include resize-to($key, 'xpadding--right') { padding-right: 0 !important; }
+   @include resize-to($key, 'xpadding--bottom') { padding-bottom: 0 !important; }
+   @include resize-to($key, 'xpadding--left') { padding-left: 0 !important; }
+   @include resize-to($key, 'xpadding--vert') { padding-top: 0 !important; padding-bottom: 0 !important; }
+   @include resize-to($key, 'xpadding--horiz') { padding-left: 0 !important; padding-right: 0 !important; }
    @include resize-to($key, 'padding--center') { padding-left: auto !important; padding-right: auto !important; }
 
    @include resize-to($key, 'xmargin') { margin: 0 !important; }
+   @include resize-to($key, 'xmargin--top') { margin-top: 0 !important; }
+   @include resize-to($key, 'xmargin--right') { margin-right: 0 !important; }
+   @include resize-to($key, 'xmargin--bottom') { margin-bottom: 0 !important; }
+   @include resize-to($key, 'xmargin--left') { margin-left: 0 !important; }
    @include resize-to($key, 'xmargin--vert') { margin-top: 0 !important; margin-bottom: 0 !important; }
    @include resize-to($key, 'xmargin--horiz') { margin-left: 0 !important; margin-right: 0 !important; }
    @include resize-to($key, 'margin--center') { margin-left: auto !important; margin-right: auto !important; }
@@ -63,7 +79,4 @@
       @include resize-to($key,'padding-#{$i}--vert') { padding-top: #{$i * $spacing-multiplier}px !important; padding-bottom: #{$i * $spacing-multiplier}px !important;}
       @include resize-to($key,'padding-#{$i}--horiz') { padding-left: #{$i * $spacing-multiplier}px !important; padding-right: #{$i * $spacing-multiplier}px !important; }
    }
-
 }
-
-

@@ -14,6 +14,10 @@
    top: 0;
 }
 
+@for $i from 1 through 100 {
+   .z-#{$i} { z-index: $i * 2; }
+}
+
 @each $key, $breakpoint in $breakpoints {
    @include resize-to($key, 'rel')   { position: relative; }
    @include resize-to($key, 'abs')   { position: absolute; }
@@ -30,5 +34,4 @@
       right: 0;
       top: 0;
    }
-
 }
