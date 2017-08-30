@@ -3,9 +3,9 @@ const shell      = require("shelljs");
 const wl         = require('../tools/wl.js');
 const config     = require(process.cwd() + '/package.json').config;
 
-let jsInput          = `${config.src.path}/${config.src.scripts}/${config.src.jsEntry}.js`;
-let jsOutput         = `${config.dist.path}/${config.dist.scripts}/${config.src.jsEntry}.js`;
-let jsOutputMinified = `${config.dist.path}/${config.dist.scripts}/${config.src.jsEntry}.min.js`;
+let jsInput          = `${config.src.path}/${config.src.scripts}/${config.src.entryFiles.js}.js`;
+let jsOutput         = `${config.dist.path}/${config.dist.scripts}/${config.src.entryFiles.js}.js`;
+let jsOutputMinified = `${config.dist.path}/${config.dist.scripts}/${config.src.entryFiles.js}.min.js`;
 
 wl('Compiling Scripts...');
 

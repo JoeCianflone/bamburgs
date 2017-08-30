@@ -1,6 +1,6 @@
 {
    "name": "bamburgs",
-   "version": "0.0.2",
+   "version": "0.0.3",
    "description": "The Frontend Toolkit",
    "author": "Joe Cianflone",
    "email": "joe@cianflone.co",
@@ -22,8 +22,10 @@
          "images": "images",
          "styles": "sass",
          "fonts": "fonts",
-         "jsEntry": "main",
-         "styleEntry": "app.scss"
+         "inputFiles": {
+            "js": "main",
+            "style": "app.css"
+         }
       },
       "dist": {
          "path": "public/assets",
@@ -32,7 +34,10 @@
          "styles": "css",
          "fonts": "fonts",
          "sprites": "sprites",
-         "styleOutput": "app.css"
+         "outputFiles": {
+            "js": "main",
+            "style": "app.css"
+         }
       },
       "copy": [
          {
