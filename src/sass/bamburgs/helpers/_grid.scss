@@ -34,7 +34,7 @@ $row-compensation: $grid-gutter * -1;
    }
 
    display: flex;
-   flex: 1 1 auto;
+   flex: 1 0 auto;
    flex-direction: row;
    flex-wrap: wrap;
    margin-right: $row-compensation;
@@ -43,7 +43,7 @@ $row-compensation: $grid-gutter * -1;
 
 .col {
    @include gutters();
-   flex: 1 1 auto;
+   flex: 1 0 auto;
    position: relative;
 }
 
