@@ -11,70 +11,76 @@ $colors: map-merge((
    gray90: darken(map-get($colors, white), 90%),
 ) ,$colors) !global;
 
+@mixin color-variants($type, $hex) {
+   @for $i from 1 to 19 {
+      $key: $i * 5;
+      // Darken
+      @include variant("\+#{$key}") { #{$type}: darken($hex, $key); }
 
+      // Lighten
+      @include variant("\-#{$key}") { #{$type}: lighten($hex, $key); }
 
-.dim {
-   transition: 500ms ease-in-out;
-
-   &:active {
-      opacity: 0.8;
-   }
-   &:hover,
-   &:focus {
-      opacity: 0.5;
+      // Opacity
+      @include variant("#{$key}\%") { #{$type}: rgba($hex, $key / 100); }
    }
 }
-
-
 
 @each $key, $hex in $colors {
    .color {
       @include modifier('background', $key) {
          background-color: $hex !important;
 
-         @for $i from 1 to 19 {
-            $opacity: $i * 5;
-            @include variant($opacity) { background: rgba($hex, $opacity / 100); }
-         }
+         @include color-variants('background-color', $hex);
       }
       @include modifier('background', 'transparent') { background-color: transparent !important; }
       @include modifier('text', $key) {
          color: $hex !important;
-         @for $i from 1 to 19 {
-            $opacity: $i * 5;
-            @include variant($opacity) { background: rgba($hex, $opacity / 100); }
-         }
+
+         @include color-variants('color', $hex);
       }
       @include modifier('border', $key) {border-color: $hex !important; }
       @include modifier('border', 'transparent') {border-color: transparent !important; }
 
-      @include modifier(':background', $key, 'hover') { background-color: $hex !important; }
+      @include modifier(':background', $key, 'hover') {
+         background-color: $hex !important;
+
+         @include color-variants('background-color', $hex);
+      }
       @include modifier(':background', 'transparent', 'hover') { background-color: transparent !important; }
-      @include modifier(':text', $key, 'hover') { color: $hex !important; }
+      @include modifier(':text', $key, 'hover') {
+         color: $hex !important;
+
+         @include color-variants('color', $hex);
+      }
       @include modifier(':border', $key, 'hover') {border-color: $hex !important; }
       @include modifier(':border', 'transparent', 'hover') {border-color: transparent !important; }
 
-      @include modifier('::background', $key, 'focus') { background-color: $hex !important; }
+      @include modifier('::background', $key, 'focus') {
+         background-color: $hex !important;
+
+         @include color-variants('background-color', $hex);
+      }
       @include modifier('::background', 'transparent', 'focus') { background-color: transparent !important; }
-      @include modifier('::text', $key, 'focus') { color: $hex !important; }
+      @include modifier('::text', $key, 'focus') {
+         color: $hex !important;
+
+         @include color-variants('color', $hex);
+      }
       @include modifier('::border', $key, 'focus') {border-color: $hex !important; }
       @include modifier('::border', 'transparent', 'focus') {border-color: transparent !important; }
 
-      @include modifier('@background', $key, 'active') { background-color: $hex !important; }
+      @include modifier('@background', $key, 'active') {
+         background-color: $hex !important;
+
+         @include color-variants('background-color', $hex);
+      }
       @include modifier('@background', 'transparent', 'active') { background-color: transparent !important; }
-      @include modifier('@text', $key, 'active') { color: $hex !important; }
+      @include modifier('@text', $key, 'active') {
+         color: $hex !important;
+
+         @include color-variants('color', $hex);
+      }
       @include modifier('@border', $key, 'active') {border-color: $hex !important; }
       @include modifier('@border', 'transparent', 'active') {border-color: transparent !important; }
    }
-
-   .opacity {
-      @include modifier('background', $key) {
-
-       }
-      // @include modifier('text', $key) { }
-      // @include modifier('border', $key) {}
-   }
 }
-
-
-

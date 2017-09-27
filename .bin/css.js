@@ -5,10 +5,10 @@ const config = require(process.cwd() + '/package.json').config;
 
 let input   = `${config.src.path}/${config.src.styles}/${config.src.stylesFilename}`;
 let output  = `${config.dist.path}/${config.dist.styles}`;
-let cfg = `--output-style='nested' --error-bell ${input} -o ${output}`;
+let cfg = `--output-style='nested' --sourcemap=none --error-bell ${input} -o ${output}`;
 
 if (config.dist === 'production') {
-   cfg = `--sourcemap=none -output-style='nested' --error-bell ${input} -o ${output}`;
+   cfg = `--sourcemap=none --output-style='nested' --error-bell ${input} -o ${output}`;
 }
 
 console.log(output);

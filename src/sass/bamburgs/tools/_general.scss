@@ -42,7 +42,7 @@
 }
 
 @mixin variant($value) {
-   &-\{#{$value}\} {
+   &\(#{$value}\) {
       @content;
    }
 }

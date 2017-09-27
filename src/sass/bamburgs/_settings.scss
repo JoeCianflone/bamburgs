@@ -1,4 +1,6 @@
 // Breakpoints ................................................................
+$mobile-first: false;
+
 $breakpoint-list: (
    fl: 320px,
    xs: 480px,
@@ -7,7 +9,6 @@ $breakpoint-list: (
    lg: 900px,
    xl: 1200px
 );
-$mobile-first: false;
 
 // Max/Min site sizes .........................................................
 $site-floor: 320px;
