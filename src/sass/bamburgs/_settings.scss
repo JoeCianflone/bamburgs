@@ -1,14 +1,17 @@
 // Breakpoints ................................................................
-$fl: 320px;
-$xs: 480px;
-$sm: 576px;
-$md: 768px;
-$lg: 900px;
-$xl: 1200px;
+$breakpoint-list: (
+   fl: 320px,
+   xs: 480px,
+   sm: 576px,
+   md: 768px,
+   lg: 900px,
+   xl: 1200px
+);
+$mobile-first: false;
 
 // Max/Min site sizes .........................................................
 $site-floor: 320px;
-$site-max: 1440px;
+$site-ceil: 1440px;
 
 // Colors .....................................................................
 $colors: (
@@ -17,75 +20,28 @@ $colors: (
    success: #28a745,
    danger:  #dc3545,
    warning: #ffc107,
-   info:    #17a2b8,
-   brand-1:  #007bff,
-   brand-2:  #868e96,
-   brand-3:  #050f2c
+   info:    #17a2b8
 ) !global;
 
 // Fonts ......................................................................
 $font-base-size: 62.5%; // If you change this you're going to need to change rootValue in postcss.config.js too
 
 $font-families: (
-   fam-serif: #{Georgia, serif},
-   fam-sans: #{'Helvetica Neue', Helvetica, Arial, sans-serif},
-   fam-code:  #{Menlo, Consolas, Monaco, 'Andale Mono', monospace},
+   serif: #{'Playfair Display', Georgia, serif},
+   sans:  #{Oswald,'Helvetica Neue', Helvetica, Arial, sans-serif},
+   code:  #{Menlo, Consolas, Monaco, 'Andale Mono', monospace},
 );
 
-$font-sizes: (
-   size-1:  10px,
-   size-2:  11px,
-   size-3:  12px,
-   size-4:  15px,
-   size-5:  16.5px,
-   size-6:  18px,
-   size-7:  22.5px,
-   size-8:  24.75px,
-   size-9:  27px,
-   size-10: 33.75px,
-   size-11: 37.13px,
-   size-12: 40.5px,
-   size-13: 50.63px,
-   size-14: 55.69px,
-   size-15: 60.75px,
-   size-16: 75.94px,
-   size-17: 83.53px,
-) !global;
-
-$letter-spacing: (
-   letter-spacing-1:  1px,
-   letter-spacing-2:  2px,
-   letter-spacing-3:  3px,
-   letter-spacing-4:  4px,
-   letter-spacing-5:  5px,
-   letter-spacing-6:  6px,
-   letter-spacing-7:  7px,
-   letter-spacing-8:  8px,
-   letter-spacing-9:  9px,
-   letter-spacing-10: 10px,
-) !global;
-
-$line-height: (
-   line-height-1:  1.1,
-   line-height-2:  1.2,
-   line-height-3:  1.3,
-   line-height-4:  1.4,
-   line-height-5:  1.5,
-   line-height-6:  1.6,
-   line-height-7:  1.7,
-   line-height-8:  1.8,
-   line-height-9:  1.9,
-   line-height-10: 2.0,
-) !global;
+$font-sizes: (10px, 11px, 12px, 15px, 16.5px, 18px, 22.5px, 24.75px, 27px, 33.75px, 37.13px, 40.5px, 50.63px, 55.69px, 60.75px, 75.94px, 83.53px) !global;
 
 // Borders ....................................................................
-$border-size-amount: 10;
+$border-size-amount: 20;
 $border-radius-amount: 10;
 
 // Grid .......................................................................
 $grid-columns: 16;
 $grid-gutter: 10px;
-$grid-gutter-setting: 'padding'; // padding | split;
+$grid-gutter-setting: 'padding'; // padding| split;
 
 // Spacing ....................................................................
 $spacing-amount: 20;

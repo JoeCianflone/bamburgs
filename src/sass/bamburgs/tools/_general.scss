@@ -1,17 +1,3 @@
-////
-/// General helper functions used throughout your Sass files
-/// @name _general-helpers
-/// @group helpers
-/// @author Joe Cianflone
-////
-
-/// A global Z-index counter
-/// @param  {Number} $increment [1] - global counter for zIndex can be negative too
-/// @return {Number}
-@function z($increment: 1) {
-   @return $current-zindex + $increment;
-}
-
 /// This will strip a unit off a number turning it from a string to a number
 /// @param  {String} $n
 /// @return {Number}
@@ -25,4 +11,38 @@
    padding: 0;
 }
 
+@mixin modifier($name: false, $value: false, $state: false) {
+   $statement: "";
 
+   @if ($name != false) {
+      $statement: \[#{$name}\];
+   }
+
+   @if ($value != false) {
+      $statement: #{$statement}\:#{$value};
+   }
+
+   @if ($state != false) {
+      $statement: "#{$statement}:#{$state}";
+   }
+
+   @if ($statement != "") {
+     &#{$statement} {
+       @content
+     }
+   } @else {
+     @content;
+   }
+}
+
+@mixin value-modifier($value) {
+   &\:#{$value} {
+      @content;
+   }
+}
+
+@mixin variant($value) {
+   &-\{#{$value}\} {
+      @content;
+   }
+}

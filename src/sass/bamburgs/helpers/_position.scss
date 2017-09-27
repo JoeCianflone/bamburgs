@@ -1,37 +1,45 @@
-.rel   { position: relative; }
-.abs   { position: absolute; }
-.fixed { position: fixed; }
-
-.pin--top    { top: 0; }
-.pin--right  { right: 0; }
-.pin--bottom { bottom: 0; }
-.pin--left   { left: 0; }
-
-.pin--corners {
-   bottom: 0;
-   left: 0;
-   right: 0;
-   top: 0;
+.position {
+   @include modifier('rel') { position: relative; }
+   @include modifier('abs') { position: absolute; }
+   @include modifier('fixed') { position: fixed; }
 }
 
-@for $i from 1 through 100 {
-   .z-#{$i} { z-index: $i * 2; }
-}
-
-@each $key, $breakpoint in $breakpoints {
-   @include resize-to($key, 'rel')   { position: relative; }
-   @include resize-to($key, 'abs')   { position: absolute; }
-   @include resize-to($key, 'fixed') { position: fixed; }
-
-   @include resize-to($key, 'pin--top')    { top: 0; }
-   @include resize-to($key, 'pin--right')  { right: 0; }
-   @include resize-to($key, 'pin--bottom') { bottom: 0; }
-   @include resize-to($key, 'pin--left')   { left: 0; }
-
-   @include resize-to($key, 'pin--corners') {
+.pin {
+   @include modifier('top') { top: 0; }
+   @include modifier('right') { right: 0; }
+   @include modifier('bottom') { bottom: 0; }
+   @include modifier('left') { left: 0; }
+   @include modifier('corners') {
       bottom: 0;
       left: 0;
       right: 0;
       top: 0;
+   }
+}
+
+@for $i from 1 through 100 {
+   .z {
+      @include value-modifier($i) { z-index: $i * 2; }
+   }
+}
+
+@each $key, $breakpoint in $breakpoints {
+   .position {
+      @include resize-to($key, 'rel') { position: relative; }
+      @include resize-to($key, 'abs') { position: absolute; }
+      @include resize-to($key, 'fixed') { position: fixed; }
+   }
+
+   .pin {
+      @include resize-to($key, 'top') { top: 0; }
+      @include resize-to($key, 'right') { right: 0; }
+      @include resize-to($key, 'bottom') { bottom: 0; }
+      @include resize-to($key, 'left') { left: 0; }
+      @include resize-to($key, 'corners') {
+         bottom: 0;
+         left: 0;
+         right: 0;
+         top: 0;
+      }
    }
 }

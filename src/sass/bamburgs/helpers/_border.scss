@@ -1,24 +1,42 @@
-
 .circle { border-radius: 100%;   }
-.xborder { border: none !important; }
-.xradius { border: none !important;  }
 
-@for $i from 1 through $border-radius-amount {
-   .radius-#{$i}               { border-radius: #{$i}px !important; }
-   .radius-#{$i}--left         { border-top-left-radius: #{$i}px !important; border-bottom-left-radius: #{$i}px !important; }
-   .radius-#{$i}--right        { border-top-right-radius: #{$i}px !important; border-bottom-right-radius: #{$i}px !important; }
-   .radius-#{$i}--top-left     { border-top-left-radius: #{$i}px !important;  }
-   .radius-#{$i}--top-right    { border-top-right-radius: #{$i}px !important; }
-   .radius-#{$i}--bottom-right { border-bottom-right-radius: #{$i}px !important; }
-   .radius-#{$i}--bottom-left  { border-bottom-left-radius: #{$i}px !important; }
+@for $i from 0 through $border-radius-amount {
+   .radius {
+      @include value-modifier($i)          { border-radius: #{$i}px !important; }
+      @include modifier('left', $i)         {
+         border-top-left-radius: #{$i}px !important;
+         border-bottom-left-radius: #{$i}px !important;
+      }
+      @include modifier('right', $i)        {
+         border-top-right-radius: #{$i}px !important;
+         border-bottom-right-radius: #{$i}px !important;
+      }
+      @include modifier('top-left', $i)     { border-top-left-radius: #{$i}px !important; }
+      @include modifier('top-right', $i)    { border-top-right-radius: #{$i}px !important; }
+      @include modifier('bottom-left', $i)  { border-bottom-right-radius: #{$i}px !important; }
+      @include modifier('bottom-right', $i) { border-bottom-left-radius: #{$i}px !important; }
+   }
+
+   .border {
+      @include value-modifier($i) {
+         border-style: solid !important;
+         border-width: #{$i}px !important;
+      }
+      @include modifier('left', $i) {
+         border-left-style: solid !important;
+         border-left-width: #{$i}px !important;
+      }
+      @include modifier('right', $i) {
+         border-right-style: solid !important;
+         border-right-width: #{$i}px !important;
+      }
+      @include modifier('top', $i) {
+         border-top-style: solid !important;
+         border-top-width: #{$i}px !important;
+      }
+      @include modifier('bottom', $i) {
+         border-bottom-style: solid !important;
+         border-bottom-width: #{$i}px !important;
+      }
+   }
  }
-
-@for $i from 0 through $border-size-amount {
-   .border-#{$i}         { border-style: solid !important; border-width: #{$i}px !important; }
-   .border-#{$i}--top    { border-top-style: solid !important; border-top-width: #{$i}px !important; }
-   .border-#{$i}--right  { border-right-style: solid !important; border-right-width: #{$i}px !important; }
-   .border-#{$i}--bottom { border-bottom-style: solid !important; border-bottom-width: #{$i}px !important; }
-   .border-#{$i}--left   { border-left-style: solid !important; border-left-width: #{$i}px !important; }
-}
-
-

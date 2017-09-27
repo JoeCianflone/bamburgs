@@ -5,8 +5,7 @@ $row-compensation: $grid-gutter * -1;
    @if $grid-gutter-setting == 'split'  {
       padding-left: $grid-gutter / 2;
       padding-right: $grid-gutter / 2;
-   }
-   @else {
+   } @else {
       padding-left: $grid-gutter;
       padding-right: $grid-gutter;
    }
@@ -15,14 +14,6 @@ $row-compensation: $grid-gutter * -1;
 .grid {
    align-content: center;
    align-items: flex-start;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: flex-start;
-}
-
-.grid--centered {
-   align-content: center;
-   align-items: center;
    display: flex;
    flex-wrap: wrap;
    justify-content: flex-start;
@@ -45,48 +36,75 @@ $row-compensation: $grid-gutter * -1;
    @include gutters();
    flex: 1 0 auto;
    position: relative;
-}
 
-.col--first { order: 0; }
-.col--last { order: 1; }
+   @include modifier('first') { order: 0; }
+   @include modifier('last') { order: 1; }
+}
 
 @for $i from 1 through $grid-columns {
-   .col-#{$i} {
-      @include gutters();
-
-      flex-basis: $i * $block-width;
-      max-width: $i * $block-width;
-      position: relative;
-   }
-
-   .offset-#{$i} {
-      margin-left: $i * $block-width;
-   }
-
-   .push-#{$i} {
-      left: $i * $block-width;
-   }
-
-   .pull-#{$i} {
-      right: $i * $block-width;
-   }
-}
-
-@each $key, $breakpoint in $breakpoints {
-
-   @include resize-to($key, 'col--first') { order: 0; }
-   @include resize-to($key, 'col--last') { order: 1; }
-
-   @for $i from 1 through $grid-columns {
-      @include resize-to($key, 'col-#{$i}') {
+   .col {
+      @include value-modifier($i) {
          @include gutters();
          flex-basis: $i * $block-width;
          max-width: $i * $block-width;
          position: relative;
       }
+   }
 
-      @include resize-to($key, 'offset-#{$i}') { margin-left: $i * $block-width; }
-      @include resize-to($key, 'push-#{$i}') { left: $i * $block-width; }
-      @include resize-to($key, 'pull-#{$i}') { right: $i * $block-width; }
+   .push {
+      @include value-modifier($i) { margin-left: $i * $block-width; }
+   }
+   .pull {
+      @include value-modifier($i) {
+         margin-left: auto;
+         margin-right: $i * $block-width;
+      }
+   }
+}
+
+.pull {
+   @include value-modifier('right') {
+      margin-left: auto;
+      margin-right: 0;
+   }
+}
+
+@each $key, $breakpoint in $breakpoints {
+   .col {
+      @include gutters();
+      flex: 1 0 auto;
+      position: relative;
+
+      @include resize-to($key, 'first') { order: 0; }
+      @include resize-to($key, 'last') { order: 1; }
+   }
+
+   @for $i from 1 through $grid-columns {
+      .col {
+         @include resize-to($key, false, $i) {
+            @include gutters();
+
+            flex-basis: $i * $block-width;
+            max-width: $i * $block-width;
+            position: relative;
+         }
+      }
+
+      .push {
+         @include resize-to($key, false, $i) { margin-left: $i * $block-width; }
+      }
+      .pull {
+         @include resize-to($key, false, $i) {
+            margin-left: auto;
+            margin-right: $i * $block-width;
+         }
+      }
+   }
+
+   .pull {
+      @include resize-to($key, false, 'right') {
+         margin-left: auto;
+         margin-right: 0;
+      }
    }
 }

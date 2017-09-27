@@ -1,3 +1,14 @@
-.bg--cover { background-size: cover; }
-.bg--center { background-position: center; }
+.bg {
+   &-size {
+      @include modifier('cover')   { background-size: cover; }
+      @include modifier('contain') { background-size: contain; }
+   }
 
+   &-position {
+      @include modifier('top')    { background-size: top; }
+      @include modifier('right')  { background-size: right; }
+      @include modifier('bottom') { background-size: bottom; }
+      @include modifier('left')   { background-size: left; }
+      @include modifier('center') { background-size: center; }
+   }
+}

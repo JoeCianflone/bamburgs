@@ -1,27 +1,29 @@
-.display--block,
-.display--show { display: block;  }
-
-.display--none,
-.display--hide { display: none; }
-
-.display--inline   { display: inline; }
-.display--iblock { display: inline-block; }
-.display--flex   { display: flex; }
-.display--iflex  { display: inline-flex; }
-.display--grid { display: grid; }
-.display--igrid { display: inline-grid; }
-.display--subgrid { display: subgrid; }
+.display {
+   @include modifier('block')        { display: block; }
+   @include modifier('show')         { display: block; }
+   @include modifier('hide')         { display: none; }
+   @include modifier('none')         { display: none; }
+   @include modifier('inline')       { display: inline; }
+   @include modifier('inline-block') { display: inline-block; }
+   @include modifier('flex')         { display: flex; }
+   @include modifier('inline-flex')  { display: inline-flex; }
+   @include modifier('grid')         { display: grid; }
+   @include modifier('inline-grid')  { display: inline-grid; }
+   @include modifier('subgrid')      { display: subgrid; }
+}
 
 @each $key, $value in $breakpoints {
-   @include resize-to($key, 'display--block')    { display: block !important;  }
-   @include resize-to($key, 'display--show')     { display: block !important;  }
-   @include resize-to($key, 'display--inline')   { display: inline !important; }
-   @include resize-to($key, 'display--iblock')   { display: inline-block !important; }
-   @include resize-to($key, 'display--none')     { display: none !important; }
-   @include resize-to($key, 'display--hide')     { display: none !important; }
-   @include resize-to($key, 'display--flex')     { display: flex !important; }
-   @include resize-to($key, 'display--iflex')    { display: inline-flex !important; }
-   @include resize-to($key, 'display--grid')     { display: grid !important; }
-   @include resize-to($key, 'display--igrid')    { display: inline-grid !important; }
-   @include resize-to($key, 'display--subgrid')  { display: subgrid !important; }
+   .display {
+      @include resize-to($key, 'block')        { display: block !important;  }
+      @include resize-to($key, 'show')         { display: block !important;  }
+      @include resize-to($key, 'inline')       { display: inline !important; }
+      @include resize-to($key, 'inline-block') { display: inline-block !important; }
+      @include resize-to($key, 'none')         { display: none !important; }
+      @include resize-to($key, 'hide')         { display: none !important; }
+      @include resize-to($key, 'flex')         { display: flex !important; }
+      @include resize-to($key, 'inline-flex')  { display: inline-flex !important; }
+      @include resize-to($key, 'grid')         { display: grid !important; }
+      @include resize-to($key, 'inline-grid')  { display: inline-grid !important; }
+      @include resize-to($key, 'subgrid')      { display: subgrid !important; }
+   }
 }

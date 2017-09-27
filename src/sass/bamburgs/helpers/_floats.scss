@@ -1,8 +1,14 @@
-.xfloat         { float: none !important;    }
-.float--right   { float: right !important;   }
-.float--left    { float: left !important;    }
-.float--initial { float: initial !important; }
-.float--inherit { float: inherit !important; }
+.float {
+   @include modifier('right') { float: right !important; }
+   @include modifier('left') { float: left !important;  }
+   @include modifier('none') { float: none !important; }
+
+   @each $key, $breakpoint in $breakpoints {
+      @include resize-to($key, 'right') { float: right !important; }
+      @include resize-to($key, 'left')  { float: left !important;  }
+      @include resize-to($key, 'none')  { float: none !important; }
+   }
+}
 
 .clearfix,
 %clearfix {
@@ -13,10 +19,4 @@
     }
 }
 
-@each $key, $breakpoint in $breakpoints {
-   @include resize-to($key, 'xfloat')         { float: none !important; }
-   @include resize-to($key, 'float--right')   { float: right !important; }
-   @include resize-to($key, 'float--left')    { float: left !important; }
-   @include resize-to($key, 'float--initial') { float: initial !important; }
-   @include resize-to($key, 'float--inherit') { float: inherit !important; }
-}
+

@@ -1,82 +1,77 @@
-.xpadding { padding: 0 !important; }
-.xpadding--top { padding-top: 0 !important; }
-.xpadding--right { padding-right: 0 !important; }
-.xpadding--bottom { padding-bottom: 0 !important; }
-.xpadding--left { padding-left: 0 !important; }
-.xpadding--vert { padding-top: 0 !important; padding-bottom: 0 !important; }
-.xpadding--horiz { padding-left: 0 !important; padding-right: 0 !important; }
+@for $i from 0 through $spacing-amount {
+   .padding {
+      @include value-modifier ($i) { padding: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('top', $i) { padding-top: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('right', $i) { padding-right: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('bottom', $i) { padding-bottom: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('left', $i) { padding-left: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('top-bottom', $i) {
+         padding-bottom: #{$i * $spacing-multiplier}px !important;
+         padding-top: #{$i * $spacing-multiplier}px !important;
+      }
+      @include modifier ('left-right', $i) {
+         padding-left: #{$i * $spacing-multiplier}px !important;
+         padding-right: #{$i * $spacing-multiplier}px !important;
+      }
+   }
 
-.xmargin { margin: 0 !important; }
-.xmargin--top { margin-top: 0 !important; }
-.xmargin--right { margin-right: 0 !important; }
-.xmargin--bottom { margin-bottom: 0 !important; }
-.xmargin--left { margin-left: 0 !important; }
-.xmargin--vert { margin-top: 0 !important; margin-bottom: 0 !important; }
-.xmargin--horiz { margin-left: 0 !important; margin-right: 0 !important; }
-
-.margin--center {
-   margin-left: auto !important;
-   margin-right: auto !important;
+   .margin {
+      @include value-modifier ($i) { margin: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('top', $i) { margin-top: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('right', $i) { margin-right: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('bottom', $i) { margin-bottom: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('left', $i) { margin-left: #{$i * $spacing-multiplier}px !important; }
+      @include modifier ('top-bottom', $i) {
+         margin-bottom: #{$i * $spacing-multiplier}px !important;
+         margin-top: #{$i * $spacing-multiplier}px !important;
+      }
+      @include modifier ('left-right', $i) {
+         margin-left: #{$i * $spacing-multiplier}px !important;
+         margin-right: #{$i * $spacing-multiplier}px !important;
+      }
+   }
 }
 
-.padding--center {
-   padding-left: auto !important;
-   padding-right: auto !important;
+.margin {
+   @include modifier('center') {
+      margin-left: auto !important;
+      margin-right: auto !important;
+   }
 }
 
-@for $i from 1 through $spacing-amount {
-   .margin-#{$i} { margin: #{$i * $spacing-multiplier}px !important; }
-   .margin-#{$i}--left { margin-left: #{$i * $spacing-multiplier}px !important; }
-   .margin-#{$i}--right { margin-right: #{$i * $spacing-multiplier}px !important; }
-   .margin-#{$i}--top { margin-top: #{$i * $spacing-multiplier}px !important; }
-   .margin-#{$i}--bottom { margin-bottom: #{$i * $spacing-multiplier}px !important; }
-   .margin-#{$i}--vert { margin-top: #{$i * $spacing-multiplier}px !important; margin-bottom: #{$i * $spacing-multiplier}px !important;}
-   .margin-#{$i}--horiz { margin-left: #{$i * $spacing-multiplier}px !important; margin-right: #{$i * $spacing-multiplier}px !important; }
-
-   .padding-#{$i} { padding: #{$i * $spacing-multiplier}px !important; }
-   .padding-#{$i}--left { padding-left: #{$i * $spacing-multiplier}px !important; }
-   .padding-#{$i}--right { padding-right: #{$i * $spacing-multiplier}px !important; }
-   .padding-#{$i}--top { padding-top: #{$i * $spacing-multiplier}px !important; }
-   .padding-#{$i}--bottom { padding-bottom: #{$i * $spacing-multiplier}px !important; }
-   .padding-#{$i}--vert { padding-top: #{$i * $spacing-multiplier}px !important; padding-bottom: #{$i * $spacing-multiplier}px !important;}
-   .padding-#{$i}--horiz { padding-left: #{$i * $spacing-multiplier}px !important; padding-right: #{$i * $spacing-multiplier}px !important; }
-}
 
 @each $key, $breakpoint in $breakpoints {
+   @for $i from 0 through $spacing-amount {
+      .padding {
+         @include resize-to($key, false, $i) { padding: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'top', $i) { padding-top: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'right', $i) { padding-right: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'bottom', $i) { padding-bottom: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'left', $i) { padding-left: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'top-bottom', $i) {
+            padding-bottom: #{$i * $spacing-multiplier}px !important;
+            padding-top: #{$i * $spacing-multiplier}px !important;
+         }
+         @include resize-to($key, 'left-right', $i) {
+            padding-left: #{$i * $spacing-multiplier}px !important;
+            padding-right: #{$i * $spacing-multiplier}px !important;
+         }
+      }
 
-   @include resize-to($key, 'xpadding') { padding: 0 !important; }
-   @include resize-to($key, 'xpadding--top') { padding-top: 0 !important; }
-   @include resize-to($key, 'xpadding--right') { padding-right: 0 !important; }
-   @include resize-to($key, 'xpadding--bottom') { padding-bottom: 0 !important; }
-   @include resize-to($key, 'xpadding--left') { padding-left: 0 !important; }
-   @include resize-to($key, 'xpadding--vert') { padding-top: 0 !important; padding-bottom: 0 !important; }
-   @include resize-to($key, 'xpadding--horiz') { padding-left: 0 !important; padding-right: 0 !important; }
-   @include resize-to($key, 'padding--center') { padding-left: auto !important; padding-right: auto !important; }
-
-   @include resize-to($key, 'xmargin') { margin: 0 !important; }
-   @include resize-to($key, 'xmargin--top') { margin-top: 0 !important; }
-   @include resize-to($key, 'xmargin--right') { margin-right: 0 !important; }
-   @include resize-to($key, 'xmargin--bottom') { margin-bottom: 0 !important; }
-   @include resize-to($key, 'xmargin--left') { margin-left: 0 !important; }
-   @include resize-to($key, 'xmargin--vert') { margin-top: 0 !important; margin-bottom: 0 !important; }
-   @include resize-to($key, 'xmargin--horiz') { margin-left: 0 !important; margin-right: 0 !important; }
-   @include resize-to($key, 'margin--center') { margin-left: auto !important; margin-right: auto !important; }
-
-   @for $i from 1 to $spacing-amount {
-      @include resize-to($key,'margin-#{$i}') { margin: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'margin-#{$i}--left') { margin-left: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'margin-#{$i}--right') { margin-right: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'margin-#{$i}--top') { margin-top: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'margin-#{$i}--bottom') { margin-bottom: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'margin-#{$i}--vert') { margin-top: #{$i * $spacing-multiplier}px !important; margin-bottom: #{$i * $spacing-multiplier}px !important;}
-      @include resize-to($key,'margin-#{$i}--horiz') { margin-left: #{$i * $spacing-multiplier}px !important; margin-right: #{$i * $spacing-multiplier}px !important; }
-
-      @include resize-to($key,'padding-#{$i}') { padding: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'padding-#{$i}--left') { padding-left: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'padding-#{$i}--right') { padding-right: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'padding-#{$i}--top') { padding-top: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'padding-#{$i}--bottom') { padding-bottom: #{$i * $spacing-multiplier}px !important; }
-      @include resize-to($key,'padding-#{$i}--vert') { padding-top: #{$i * $spacing-multiplier}px !important; padding-bottom: #{$i * $spacing-multiplier}px !important;}
-      @include resize-to($key,'padding-#{$i}--horiz') { padding-left: #{$i * $spacing-multiplier}px !important; padding-right: #{$i * $spacing-multiplier}px !important; }
+      .margin {
+         @include resize-to($key, false, $i) { margin: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'top', $i) { margin-top: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'right', $i) { margin-right: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'bottom', $i) { margin-bottom: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'left', $i) { margin-left: #{$i * $spacing-multiplier}px !important; }
+         @include resize-to($key, 'top-bottom', $i) {
+            margin-bottom: #{$i * $spacing-multiplier}px !important;
+            margin-top: #{$i * $spacing-multiplier}px !important;
+         }
+         @include resize-to($key, 'left-right', $i) {
+            margin-left: #{$i * $spacing-multiplier}px !important;
+            margin-right: #{$i * $spacing-multiplier}px !important;
+         }
+      }
    }
 }

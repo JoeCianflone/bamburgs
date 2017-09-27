@@ -1,0 +1,33 @@
+$width-multiple: 100 / $width-breaks;
+
+.width {
+   @include value-modifier('floor') { width: $site-floor; }
+   @include value-modifier('ceil') { width: $site-ceil; }
+   @include modifier('min', 'floor') { min-width: $site-floor; }
+   @include modifier('min', 'ceil') { min-width: $site-ceil; }
+   @include modifier('max', 'floor') { max-width: $site-floor; }
+   @include modifier('max', 'ceil') { max-width: $site-ceil; }
+   @include modifier('max-center', 'ceil') {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: $site-ceil;
+   }
+}
+
+@for $i from 1 to $width-breaks + 1 {
+   $value: $i * $width-multiple;
+
+   .width {
+      @include value-modifier($value) { width: $value * 1%; }
+      @include modifier('min', $value) { min-width: $value * 1%; }
+      @include modifier('max', $value) { max-width: $value * 1%; }
+   }
+
+   @each $key, $breakpoint in $breakpoints {
+      .width {
+         @include resize-to($key, false, $value) { width: $value * 1%; }
+         @include resize-to($key, 'min', $value) { min-width: $value * 1%; }
+         @include resize-to($key, 'max', $value) { max-width: $value * 1%; }
+      }
+   }
+}
