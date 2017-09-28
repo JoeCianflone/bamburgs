@@ -23,13 +23,18 @@ $row-compensation: $grid-gutter * -1;
    @if $grid-gutter-setting == 'split' {
       $row-compensation: $row-compensation / 2;
    }
-
+   align-content: center;
+   align-items: flex-start;
    display: flex;
    flex: 1 0 auto;
    flex-direction: row;
    flex-wrap: wrap;
-   margin-right: $row-compensation;
-   margin-left: $row-compensation;
+   justify-content: flex-start;
+
+   .row {
+      margin-right: $row-compensation;
+      margin-left: $row-compensation;
+   }
 }
 
 .col {
