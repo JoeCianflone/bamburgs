@@ -35,7 +35,7 @@
    }
 }
 
-@mixin value-modifier($value) {
+@mixin value($value) {
    &\:#{$value} {
       @content;
    }

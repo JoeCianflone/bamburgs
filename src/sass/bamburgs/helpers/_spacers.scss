@@ -1,6 +1,6 @@
 @for $i from 0 through $spacing-amount {
    .padding {
-      @include value-modifier ($i) { padding: #{$i * $spacing-multiplier}px !important; }
+      @include value ($i) { padding: #{$i * $spacing-multiplier}px !important; }
       @include modifier ('top', $i) { padding-top: #{$i * $spacing-multiplier}px !important; }
       @include modifier ('right', $i) { padding-right: #{$i * $spacing-multiplier}px !important; }
       @include modifier ('bottom', $i) { padding-bottom: #{$i * $spacing-multiplier}px !important; }
@@ -16,7 +16,7 @@
    }
 
    .margin {
-      @include value-modifier ($i) { margin: #{$i * $spacing-multiplier}px !important; }
+      @include value ($i) { margin: #{$i * $spacing-multiplier}px !important; }
       @include modifier ('top', $i) { margin-top: #{$i * $spacing-multiplier}px !important; }
       @include modifier ('right', $i) { margin-right: #{$i * $spacing-multiplier}px !important; }
       @include modifier ('bottom', $i) { margin-bottom: #{$i * $spacing-multiplier}px !important; }

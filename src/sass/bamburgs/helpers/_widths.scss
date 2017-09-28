@@ -1,8 +1,8 @@
 $width-multiple: 100 / $width-breaks;
 
 .width {
-   @include value-modifier('floor') { width: $site-floor; }
-   @include value-modifier('ceil') { width: $site-ceil; }
+   @include value('floor') { width: $site-floor; }
+   @include value('ceil') { width: $site-ceil; }
    @include modifier('min', 'floor') { min-width: $site-floor; }
    @include modifier('min', 'ceil') { min-width: $site-ceil; }
    @include modifier('max', 'floor') { max-width: $site-floor; }
@@ -18,7 +18,7 @@ $width-multiple: 100 / $width-breaks;
    $value: $i * $width-multiple;
 
    .width {
-      @include value-modifier($value) { width: $value * 1%; }
+      @include value($value) { width: $value * 1%; }
       @include modifier('min', $value) { min-width: $value * 1%; }
       @include modifier('max', $value) { max-width: $value * 1%; }
    }

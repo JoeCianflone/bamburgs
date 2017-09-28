@@ -19,7 +19,7 @@
 
 @for $i from 1 through 100 {
    .z {
-      @include value-modifier($i) { z-index: $i * 2; }
+      @include value($i) { z-index: $i * 2; }
    }
 }
 

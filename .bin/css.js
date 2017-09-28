@@ -8,7 +8,7 @@ let output  = `${config.dist.path}/${config.dist.styles}`;
 let cfg = `--output-style='nested' --sourcemap=none --error-bell ${input} -o ${output}`;
 
 if (config.dist === 'production') {
-   cfg = `--sourcemap=none --output-style='nested' --error-bell ${input} -o ${output}`;
+   cfg = `--output-style='nested' --sourcemap=none --error-bell ${input} -o ${output}`;
 }
 
 wl('Sass...');

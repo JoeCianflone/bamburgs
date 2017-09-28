@@ -11,18 +11,7 @@ $row-compensation: $grid-gutter * -1;
    }
 }
 
-.grid {
-   align-content: center;
-   align-items: flex-start;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: flex-start;
-}
-
 .row {
-   @if $grid-gutter-setting == 'split' {
-      $row-compensation: $row-compensation / 2;
-   }
    align-content: center;
    align-items: flex-start;
    display: flex;
@@ -32,6 +21,10 @@ $row-compensation: $grid-gutter * -1;
    justify-content: flex-start;
 
    .row {
+      @if $grid-gutter-setting == 'split' {
+         $row-compensation: $row-compensation / 2;
+      }
+
       margin-right: $row-compensation;
       margin-left: $row-compensation;
    }
@@ -48,7 +41,7 @@ $row-compensation: $grid-gutter * -1;
 
 @for $i from 1 through $grid-columns {
    .col {
-      @include value-modifier($i) {
+      @include value($i) {
          @include gutters();
          flex-basis: $i * $block-width;
          max-width: $i * $block-width;
@@ -57,10 +50,10 @@ $row-compensation: $grid-gutter * -1;
    }
 
    .push {
-      @include value-modifier($i) { margin-left: $i * $block-width; }
+      @include value($i) { margin-left: $i * $block-width; }
    }
    .pull {
-      @include value-modifier($i) {
+      @include value($i) {
          margin-left: auto;
          margin-right: $i * $block-width;
       }
@@ -68,7 +61,7 @@ $row-compensation: $grid-gutter * -1;
 }
 
 .pull {
-   @include value-modifier('right') {
+   @include value('right') {
       margin-left: auto;
       margin-right: 0;
    }

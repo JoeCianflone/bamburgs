@@ -2,7 +2,7 @@
 
 @for $i from 0 through $border-radius-amount {
    .radius {
-      @include value-modifier($i)          { border-radius: #{$i}px !important; }
+      @include value($i)          { border-radius: #{$i}px !important; }
       @include modifier('left', $i)         {
          border-top-left-radius: #{$i}px !important;
          border-bottom-left-radius: #{$i}px !important;
@@ -18,7 +18,7 @@
    }
 
    .border {
-      @include value-modifier($i) {
+      @include value($i) {
          border-style: solid !important;
          border-width: #{$i}px !important;
       }

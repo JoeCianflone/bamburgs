@@ -65,7 +65,7 @@
 $i: 1;
 @each $value in $font-sizes {
    .font-size {
-      @include value-modifier($i) { font-size: $value; }
+      @include value($i) { font-size: $value; }
       $i: $i + 1;
    }
 
@@ -76,15 +76,15 @@ $i: 1;
 
 @for $i from 0 to 20 {
    .letter-spacing {
-      @include value-modifier($i) { letter-spacing: #{$i}px; }
+      @include value($i) { letter-spacing: #{$i}px; }
 
       @if ($i > 0) {
-         @include value-modifier('-#{$i}') { letter-spacing: -#{$i}px; }
+         @include value('-#{$i}') { letter-spacing: -#{$i}px; }
       }
    }
 
    .line-height {
-      @include value-modifier($i) { line-height: #{$i} / 10; }
+      @include value($i) { line-height: #{$i} / 10; }
    }
 
    @each $key, $breakpoint in $breakpoints {
