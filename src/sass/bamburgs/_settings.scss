@@ -25,7 +25,8 @@ $colors: (
 ) !global;
 
 // Fonts ......................................................................
-$font-base-size: 62.5%; // If you change this you're going to need to change rootValue in postcss.config.js too
+$font-base-size: 62.5%; // If you change this you're going to need to change
+                        // rootValue in postcss.config.js too
 
 $font-families: (
    serif: #{'Playfair Display', Georgia, serif},
@@ -33,7 +34,7 @@ $font-families: (
    code:  #{Menlo, Consolas, Monaco, 'Andale Mono', monospace},
 );
 
-$font-sizes: (10px, 11px, 12px, 15px, 16.5px, 18px, 22.5px, 24.75px, 27px, 33.75px, 37.13px, 40.5px, 50.63px, 55.69px, 60.75px, 75.94px, 83.53px) !global;
+$font-sizes: setFontSizes();
 
 // Borders ....................................................................
 $border-size-amount: 20;

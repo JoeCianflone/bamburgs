@@ -1,0 +1,28 @@
+@function setFontSizes($ratio: 1.5, $bases: (1, 1.1, 1.2), $sets: 6) {
+   $baseFont: (16 * $font-base-size) / 100%;
+   $list: ();
+   $lastSet: ();
+   $computed: ();
+   $fonts: ();
+
+   @each $b in $bases {
+      $computed: join($computed, ($baseFont * $b));
+   }
+   $lastSet: $computed;
+
+   @for $i from 1 through $sets {
+      @each $item in $lastSet {
+         $list: join($list, ($item * $ratio));
+      }
+
+      $computed: join($computed, $list);
+      $lastSet: $list;
+      $list: ();
+   }
+
+   @each $value in $computed {
+      $fonts: ($fonts, ($value * 1px));
+   }
+
+   @return $fonts;
+}
