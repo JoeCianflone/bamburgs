@@ -1,80 +1,83 @@
-* {
-   -webkit-overflow-scrolling: touch;
-   box-sizing: inherit;
-
-   &:before, &:after {
+@if ($use-sensible-defaults == true) {
+   * {
+      -webkit-overflow-scrolling: touch;
       box-sizing: inherit;
+
+      &:before, &:after {
+         box-sizing: inherit;
+      }
    }
-}
 
-html {
-   box-sizing: border-box;
-   font-size: $font-base-size;
-   height: 100vh;
-}
-
-:focus { outline: none; }
-
-body {
-   -moz-osx-font-smoothing: grayscale !important;
-   -webkit-font-smoothing: antialiased !important;
-   height: 100vh;
-   min-width: $site-min;
-}
-
-img {
-   @include flatten();
-   border-style: none;
-   max-width: 100%;
-   font-style: italic;
-   vertical-align: middle;
-
-   &[width], &[height] {
-      max-width: none;
+   html {
+      box-sizing: border-box;
+      font-size: $font-base-size;
+      height: 100vh;
    }
-}
 
-h1, h2, h3, h4, h5, h6 {
-   @include flatten();
-}
+   :focus { outline: none; }
 
-p, ul, ol { font-size: inherit; }
-
-p {
-   @include flatten();
-}
-
-blockquote {
-   @include flatten();
-}
-
-button, label { cursor: pointer; }
-
-a {
-   color: inherit;
-   cursor: pointer;
-
-   font: {
-      family: inherit;
-      weight: inherit;
+   body {
+      -moz-osx-font-smoothing: grayscale !important;
+      -webkit-font-smoothing: antialiased !important;
+      height: 100vh;
+      min-width: $site-min;
    }
-}
 
-nav {
-   ol, ul {
+   img {
       @include flatten();
+      border-style: none;
+      max-width: 100%;
+      font-style: italic;
+      vertical-align: middle;
 
-      list-style-type: none;
+      &[width], &[height] {
+         max-width: none;
+      }
+   }
 
-      li {
+   table {
+      // display: block;
+      max-width: 100%;
+      overflow-x: auto;
+      width: 100%;
+   }
+
+   h1, h2, h3, h4, h5, h6 {
+      @include flatten();
+   }
+
+   p, ul, ol { font-size: inherit; }
+
+   p {
+      @include flatten();
+   }
+
+   blockquote {
+      @include flatten();
+   }
+
+   button, label { cursor: pointer; }
+
+   a {
+      color: inherit;
+      cursor: pointer;
+
+      font: {
+         family: inherit;
+         weight: inherit;
+      }
+   }
+
+   nav {
+      ol, ul {
          @include flatten();
+
+         list-style-type: none;
+
+         li {
+            @include flatten();
+         }
       }
    }
 }
 
-table {
-   display: block;
-   max-width: 100%;
-   overflow-x: auto;
-   width: 100%;
-}
