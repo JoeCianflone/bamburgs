@@ -19,7 +19,6 @@ module.exports = function(ctx) {
             spritePath: config.dist.path + "/" + config.dist.sprites
          },
          'css-mqpacker': {},
-         'postcss-merge-selectors': {},
          'cssnano': config.env === 'production' ? {'presets': ['default', {'autoprefixer' : false}] } : false
       }
    }
