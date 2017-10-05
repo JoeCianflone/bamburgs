@@ -1,8 +1,42 @@
-// Breakpoints ................................................................
-$mobile-first: false !default;
-$use-sensible-defaults: true !default;
+// You don't need to change these vaules in here,
+// These are all overrideable in your app.scss
+// See docs for more information
+$font-base-size:        62.5% !default; // change rootValue in postcss.cofig.js too
 
-$user-breakpoints:() !default;
+$use-mobile-first-mq:   false !default;
+$use-sensible-defaults: true  !default;
+$use-flexbox-grid:      true  !default;
+$use-modular-scale:     true  !default;
+
+$font-sizes:  ()            !default; // only set this if $use-modular-scale = false
+$scale-ratio: 1.5           !default;
+$scale-sets:  5             !default;
+$scale-bases: (1, 1.1, 1.2) !default;
+
+$user-breakpoints:   () !default;
+$user-colors:        () !default;
+$user-font-families: () !default;
+
+$grid-columns:        12        !default;
+$grid-gutter:         10px      !default;
+$grid-gutter-setting: 'padding' !default; // padding || split;
+
+$site-min: 320px  !default;
+$site-max: 1440px !default;
+
+$border-size-amount:   20 !default;
+$border-radius-amount: 10 !default;
+
+$spacing-amount:     20 !default;
+$spacing-multiplier: 5  !default;
+
+$width-breaks: 20 !default;
+
+// DEFAULT VALUES DO NOT EDIT BELOW THIS POINT ................................
+// All these things can be overridden/merged by $user-* lists see the docs
+// for more information
+
+// Breakpoints ................................................................
 $breakpoint-list: (
    fl: 320px,
    xs: 480px,
@@ -14,12 +48,7 @@ $breakpoint-list: (
 
 $breakpoint-list: map-merge($breakpoint-list, $user-breakpoints);
 
-// Max/Min site sizes .........................................................
-$site-min: 320px !default;
-$site-max: 1440px !default;
-
 // Colors .....................................................................
-$user-colors: () !default;
 $colors: (
    black:   #000000,
    white:   #ffffff,
@@ -31,10 +60,7 @@ $colors: (
 
 $breakpoint-list: map-merge($colors, $user-colors);
 
-// Fonts ......................................................................
-$font-base-size: 62.5% !default; // change rootValue in postcss.cofig.js too
-
-$user-font-families: () !default;
+// Font Families ..............................................................
 $font-families: (
    serif: #{'Playfair Display', Georgia, serif},
    sans:  #{Oswald,'Helvetica Neue', Helvetica, Arial, sans-serif},
@@ -43,32 +69,11 @@ $font-families: (
 
 $font-families: map-merge($font-families, $user-font-families);
 
-$use-modular-scale: true !default;
-$scale-ratio: 1.5 !default;
-$scale-bases: (1, 1.1, 1.2) !default;
-$scale-sets: 5 !default;
-
-$sizes: (10px, 11px, 12px, 15px, 16.5px, 18px);
+// Font Sizes .................................................................
 @if ($use-modular-scale == true){
-   $sizes:setFontSizes($scale-ratio, $scale-bases, $scale-sets);
+   $font-sizes: setFontSizes($scale-ratio, $scale-bases, $scale-sets);
 }
 
-$font-sizes: $sizes !default;
 
-// Borders ....................................................................
-$border-size-amount: 20 !default;
-$border-radius-amount: 10 !default;
 
-// Grid .......................................................................
-$use-flexbox-grid: true;
 
-$grid-columns: 12 !default;
-$grid-gutter: 10px !default;
-$grid-gutter-setting: 'padding' !default; // padding || split;
-
-// Spacing ....................................................................
-$spacing-amount: 20 !default;
-$spacing-multiplier: 5 !default;
-
-// Widths: width-5 = width: 5% ................................................
-$width-breaks: 20 !default;

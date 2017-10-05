@@ -1,7 +1,7 @@
 $breakpoints: ();
 $break-type: 'max-width';
 
-@if ($mobile-first == true) {
+@if ($use-mobile-first-mq == true) {
    $break-type: 'min-width';
 }
 
