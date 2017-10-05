@@ -1,35 +1,35 @@
 $width-multiple: 100 / $width-breaks;
 
 .width {
-   @include value('min') { width: $site-floor; }
-   @include value('max') { width: $site-ceil; }
+   @include value('min') { width: $site-min; }
+   @include value('max') { width: $site-max; }
    @include value('full') { width: 100%; }
    @include modifier('center') {
       margin-left: auto;
       margin-right: auto;
-      width: $site-ceil;
+      width: $site-max;
    }
 }
 
 .max-width {
-   @include value('min') { max-width: $site-floor; }
-   @include value('max') { max-width: $site-ceil; }
+   @include value('min') { max-width: $site-min; }
+   @include value('max') { max-width: $site-max; }
    @include value('full') { max-width: 100%; }
    @include modifier('center') {
       margin-left: auto;
       margin-right: auto;
-      max-width: $site-ceil;
+      max-width: $site-max;
    }
 }
 
 .min-width {
-   @include value('min') { min-width: $site-floor; }
-   @include value('max') { min-width: $site-ceil; }
+   @include value('min') { min-width: $site-min; }
+   @include value('max') { min-width: $site-max; }
    @include value('full') { min-width: 100%; }
    @include modifier('center') {
       margin-left: auto;
       margin-right: auto;
-      min-width: $site-ceil;
+      min-width: $site-max;
    }
 }
 

@@ -1,27 +1,27 @@
 .font-weight {
-   @include modifier('thin') { font-weight: 100 !important; }
-   @include modifier('xlight') { font-weight: 200 !important; }
-   @include modifier('light') { font-weight: 300 !important; }
-   @include modifier('regular') { font-weight: 400 !important; }
-   @include modifier('medium') { font-weight: 500 !important; }
-   @include modifier('semi-bold') { font-weight: 600 !important; }
-   @include modifier('bold') { font-weight: 700 !important; }
-   @include modifier('xbold') { font-weight: 800 !important; }
-   @include modifier('black') { font-weight: 900 !important; }
+   @include modifier('thin') { font-weight: 100; }
+   @include modifier('xlight') { font-weight: 200; }
+   @include modifier('light') { font-weight: 300; }
+   @include modifier('regular') { font-weight: 400; }
+   @include modifier('medium') { font-weight: 500; }
+   @include modifier('semi-bold') { font-weight: 600; }
+   @include modifier('bold') { font-weight: 700; }
+   @include modifier('xbold') { font-weight: 800; }
+   @include modifier('black') { font-weight: 900; }
 }
 
 .text {
    &-align {
-      @include modifier('left') { text-align: left !important; }
-      @include modifier('right') { text-align: right !important; }
-      @include modifier('center') { text-align: center !important; }
+      @include modifier('left') { text-align: left; }
+      @include modifier('right') { text-align: right; }
+      @include modifier('center') { text-align: center; }
    }
 
    &-transform {
-      @include modifier('uppercase') { text-transform: uppercase !important; }
-      @include modifier('lowercase') { text-transform: lowercase !important; }
-      @include modifier('capitalize') { text-transform: capitalize !important; }
-      @include modifier('full-width') { text-transform: full-width !important; }
+      @include modifier('uppercase') { text-transform: uppercase; }
+      @include modifier('lowercase') { text-transform: lowercase; }
+      @include modifier('capitalize') { text-transform: capitalize; }
+      @include modifier('full-width') { text-transform: full-width; }
    }
 
    &-hide {
@@ -40,16 +40,16 @@
 @each $key, $breakpoint in $breakpoints {
    .text {
       &-align {
-         @include resize-to($key, 'left') { text-align: left !important; }
-         @include resize-to($key, 'right') { text-align: right !important; }
-         @include resize-to($key, 'center') { text-align: center !important; }
+         @include resize-to($key, 'left') { text-align: left; }
+         @include resize-to($key, 'right') { text-align: right; }
+         @include resize-to($key, 'center') { text-align: center; }
       }
 
       &-transform {
-         @include resize-to($key, 'uppercase') { text-transform: uppercase !important; }
-         @include resize-to($key, 'lowercase') { text-transform: lowercase !important; }
-         @include resize-to($key, 'capitalize') { text-transform: capitalize !important; }
-         @include resize-to($key, 'full-width') { text-transform: full-width !important; }
+         @include resize-to($key, 'uppercase') { text-transform: uppercase; }
+         @include resize-to($key, 'lowercase') { text-transform: lowercase; }
+         @include resize-to($key, 'capitalize') { text-transform: capitalize; }
+         @include resize-to($key, 'full-width') { text-transform: full-width; }
       }
 
       &-hide {

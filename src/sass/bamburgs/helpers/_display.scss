@@ -14,16 +14,16 @@
 
 @each $key, $value in $breakpoints {
    .display {
-      @include resize-to($key, 'block')        { display: block !important;  }
-      @include resize-to($key, 'show')         { display: block !important;  }
-      @include resize-to($key, 'inline')       { display: inline !important; }
-      @include resize-to($key, 'inline-block') { display: inline-block !important; }
-      @include resize-to($key, 'none')         { display: none !important; }
-      @include resize-to($key, 'hide')         { display: none !important; }
-      @include resize-to($key, 'flex')         { display: flex !important; }
-      @include resize-to($key, 'inline-flex')  { display: inline-flex !important; }
-      @include resize-to($key, 'grid')         { display: grid !important; }
-      @include resize-to($key, 'inline-grid')  { display: inline-grid !important; }
-      @include resize-to($key, 'subgrid')      { display: subgrid !important; }
+      @include resize-to($key, 'block')        { display: block;  }
+      @include resize-to($key, 'show')         { display: block;  }
+      @include resize-to($key, 'inline')       { display: inline; }
+      @include resize-to($key, 'inline-block') { display: inline-block; }
+      @include resize-to($key, 'none')         { display: none; }
+      @include resize-to($key, 'hide')         { display: none; }
+      @include resize-to($key, 'flex')         { display: flex; }
+      @include resize-to($key, 'inline-flex')  { display: inline-flex; }
+      @include resize-to($key, 'grid')         { display: grid; }
+      @include resize-to($key, 'inline-grid')  { display: inline-grid; }
+      @include resize-to($key, 'subgrid')      { display: subgrid; }
    }
 }
