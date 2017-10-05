@@ -12,13 +12,15 @@ module.exports = function(ctx) {
          'postcss-pxtorem': {
             propList: ["*"],
             rootValue: 10,
-            mediaQuery: true
+            mediaQuery: false
          },
          'postcss-sprites': {
             stylesheetPath: config.dist.styles,
             spritePath: config.dist.path + "/" + config.dist.sprites
          },
-         'cssnano': config.env === 'production' ? {} : false,
+         'css-mqpacker': {},
+         'postcss-merge-selectors': {},
+         'cssnano': config.env === 'production' ? {'presets': ['default', {'autoprefixer' : false}] } : false
       }
    }
 }
