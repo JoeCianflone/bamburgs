@@ -1,33 +1,64 @@
 $width-multiple: 100 / $width-breaks;
 
 .width {
-   @include value('floor') { width: $site-floor; }
-   @include value('ceil') { width: $site-ceil; }
-   @include modifier('min', 'floor') { min-width: $site-floor; }
-   @include modifier('min', 'ceil') { min-width: $site-ceil; }
-   @include modifier('max', 'floor') { max-width: $site-floor; }
-   @include modifier('max', 'ceil') { max-width: $site-ceil; }
-   @include modifier('max-center', 'ceil') {
+   @include value('min') { width: $site-floor; }
+   @include value('max') { width: $site-ceil; }
+   @include value('full') { width: 100%; }
+   @include modifier('center') {
+      margin-left: auto;
+      margin-right: auto;
+      width: $site-ceil;
+   }
+}
+
+.max-width {
+   @include value('min') { max-width: $site-floor; }
+   @include value('max') { max-width: $site-ceil; }
+   @include value('full') { max-width: 100%; }
+   @include modifier('center') {
       margin-left: auto;
       margin-right: auto;
       max-width: $site-ceil;
    }
 }
 
-@for $i from 1 to $width-breaks + 1 {
+.min-width {
+   @include value('min') { min-width: $site-floor; }
+   @include value('max') { min-width: $site-ceil; }
+   @include value('full') { min-width: 100%; }
+   @include modifier('center') {
+      margin-left: auto;
+      margin-right: auto;
+      min-width: $site-ceil;
+   }
+}
+
+@for $i from 1 through $width-breaks {
    $value: $i * $width-multiple;
 
    .width {
       @include value($value) { width: $value * 1%; }
-      @include modifier('min', $value) { min-width: $value * 1%; }
-      @include modifier('max', $value) { max-width: $value * 1%; }
+   }
+
+   .min-width {
+      @include value($value) { min-width: $value * 1%; }
+   }
+
+   .max-width {
+      @include value($value) { max-width: $value * 1%; }
    }
 
    @each $key, $breakpoint in $breakpoints {
       .width {
          @include resize-to($key, false, $value) { width: $value * 1%; }
-         @include resize-to($key, 'min', $value) { min-width: $value * 1%; }
-         @include resize-to($key, 'max', $value) { max-width: $value * 1%; }
+      }
+
+      .min-width {
+         @include resize-to($key, false, $value) { min-width: $value * 1%; }
+      }
+
+      .max-width {
+         @include resize-to($key, false, $value) { max-width: $value * 1%; }
       }
    }
 }

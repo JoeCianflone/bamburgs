@@ -7,25 +7,20 @@ $break-type: 'max-width';
 
 @each $name, $value in $breakpoint-list {
    $point: ($name: '(#{$break-type}: #{$value})');
-   $max: (#{$name}-max: '(max-width: #{$value})');
-   $min: (#{$name}-min: '(min-width: #{$value})');
    $breakpoints: map-merge($breakpoints, $point);
-   $breakpoints: map-merge($breakpoints, $min);
-   $breakpoints: map-merge($breakpoints, $max);
 }
 
-@mixin media($bp) {
+@mixin mq($bp) {
     $value: map-get($breakpoints, $bp);
     $mq: 'screen and' + $value;
 
     @media #{$mq} { @content; }
 }
 
-// I want to use responsive mixins like this foo@sm foo@md
 @mixin resize-to($key, $name, $value: false) {
    @include modifier($name, $value) {
       &\@#{$key} {
-         @include media($key) { @content; }
+         @include mq($key) { @content; }
       }
    }
 }

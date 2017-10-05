@@ -31,8 +31,6 @@
    }
 }
 
-
-
 @each $key, $family in $font-families {
    .font {
       @include modifier($key) { font-family: $family; }
@@ -66,11 +64,11 @@ $i: 1;
 @each $value in $font-sizes {
    .font-size {
       @include value($i) { font-size: $value; }
-      $i: $i + 1;
-   }
+      @each $key, $breakpoint in $breakpoints {
+         @include resize-to($key, false, $i) { font-size: $value; }
+      }
 
-   @each $key, $breakpoint in $breakpoints {
-      @include resize-to($key, false, $value) { font-size: $value; }
+      $i: $i + 1;
    }
 }
 

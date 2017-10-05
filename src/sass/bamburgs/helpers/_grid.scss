@@ -69,10 +69,6 @@ $row-compensation: $grid-gutter * -1;
 
 @each $key, $breakpoint in $breakpoints {
    .col {
-      @include gutters();
-      flex: 1 0 auto;
-      position: relative;
-
       @include resize-to($key, 'first') { order: 0; }
       @include resize-to($key, 'last') { order: 1; }
    }
