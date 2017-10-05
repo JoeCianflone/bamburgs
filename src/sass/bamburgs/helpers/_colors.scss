@@ -13,7 +13,7 @@
       }
 
       // Opacity
-      @include variant($key,'opacity' )  { #{$type}: rgba($hex, $key / 100); }
+      @include variant($key,'opacity')  { #{$type}: rgba($hex, $key / 100); }
    }
 }
 

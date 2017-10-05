@@ -1,6 +1,7 @@
 // Breakpoints ................................................................
-$mobile-first: false;
+$mobile-first: false !default;
 
+$user-breakpoints:() !default;
 $breakpoint-list: (
    fl: 320px,
    xs: 480px,
@@ -8,46 +9,65 @@ $breakpoint-list: (
    md: 768px,
    lg: 900px,
    xl: 1200px
-);
+) !global;
+
+$breakpoint-list: map-merge($breakpoint-list, $user-breakpoints);
 
 // Max/Min site sizes .........................................................
-$site-min: 320px;
-$site-max: 1440px;
+$site-min: 320px !default;
+$site-max: 1440px !default;
 
 // Colors .....................................................................
+$user-colors: () !default;
 $colors: (
-   black: #000000,
-   white: #ffffff,
+   black:   #000000,
+   white:   #ffffff,
    success: #28a745,
    danger:  #dc3545,
    warning: #ffc107,
    info:    #17a2b8
 ) !global;
 
-// Fonts ......................................................................
-$font-base-size: 62.5%; // If you change this you're going to need to change
-                        // rootValue in postcss.config.js too
+$breakpoint-list: map-merge($colors, $user-colors);
 
+// Fonts ......................................................................
+$font-base-size: 62.5% !default; // change rootValue in postcss.cofig.js too
+
+$user-font-families: () !default;
 $font-families: (
    serif: #{'Playfair Display', Georgia, serif},
    sans:  #{Oswald,'Helvetica Neue', Helvetica, Arial, sans-serif},
    code:  #{Menlo, Consolas, Monaco, 'Andale Mono', monospace},
-);
+) !global;
 
-$font-sizes: setFontSizes();
+$font-families: map-merge($font-families, $user-font-families);
+
+$use-modular-scale: true !default;
+$scale-ratio: 1.5 !default;
+$scale-bases: (1, 1.1, 1.2) !default;
+$scale-sets: 5 !default;
+
+$sizes: (10px, 11px, 12px, 15px, 16.5px, 18px);
+@if ($use-modular-scale == true){
+   $sizes:setFontSizes($scale-ratio, $scale-bases, $scale-sets);
+}
+
+$font-sizes: $sizes !default;
 
 // Borders ....................................................................
-$border-size-amount: 20;
-$border-radius-amount: 10;
+$border-size-amount: 20 !default;
+$border-radius-amount: 10 !default;
 
 // Grid .......................................................................
-$grid-columns: 16;
-$grid-gutter: 10px;
-$grid-gutter-setting: 'padding'; // padding || split;
+$use-flexbox-grid: true;
+
+$grid-columns: 12 !default;
+$grid-gutter: 10px !default;
+$grid-gutter-setting: 'padding' !default; // padding || split;
 
 // Spacing ....................................................................
-$spacing-amount: 20;
-$spacing-multiplier: 5;
+$spacing-amount: 20 !default;
+$spacing-multiplier: 5 !default;
 
 // Widths: width-5 = width: 5% ................................................
-$width-breaks: 20;
+$width-breaks: 20 !default;

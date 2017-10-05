@@ -1,7 +1,5 @@
 /// This will strip a unit off a number turning it from a string to a number
-/// @param  {String} $n
-/// @return {Number}
-@function value($n) {
+@function strip-unit($n) {
    @return $n / ($n * 0 + 1);
 }
 
@@ -41,8 +39,16 @@
    }
 }
 
-@mixin variant($value) {
-   &\(#{$value}\) {
+@mixin variant($value, $type) {
+   $x: '#{$value}\%';
+
+   @if ($type == 'lighten') {
+      $x: '\-#{$value}';
+   } @else if ($type == 'darken') {
+      $x: '\+#{$value}';
+   }
+
+   &\(#{$x}\) {
       @content;
    }
 }
