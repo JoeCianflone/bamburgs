@@ -1,40 +1,40 @@
-.circle { border-radius: 100%;   }
+.circle { border-radius: 100%; }
 
 @for $i from 0 through $border-radius-amount {
    .radius {
-      @include value($i)          { border-radius: #{$i}px; }
-      @include modifier('left', $i)         {
+      @include builder ((value: $i)) { border-radius: #{$i}px; }
+
+      @include builder ((modifier: 'left', value: $i)) {
          border-top-left-radius: #{$i}px;
          border-bottom-left-radius: #{$i}px;
       }
-      @include modifier('right', $i)        {
+
+      @include builder ((modifier: 'right', value:$i)) {
          border-top-right-radius: #{$i}px;
          border-bottom-right-radius: #{$i}px;
       }
-      @include modifier('top-left', $i)     { border-top-left-radius: #{$i}px; }
-      @include modifier('top-right', $i)    { border-top-right-radius: #{$i}px; }
-      @include modifier('bottom-left', $i)  { border-bottom-right-radius: #{$i}px; }
-      @include modifier('bottom-right', $i) { border-bottom-left-radius: #{$i}px; }
+
+      @include builder ((modifier: 'top-left', value: $i))     { border-top-left-radius: #{$i}px;     }
+      @include builder ((modifier: 'top-right', value: $i))    { border-top-right-radius: #{$i}px;    }
+      @include builder ((modifier: 'bottom-left', value: $i))  { border-bottom-right-radius: #{$i}px; }
+      @include builder ((modifier: 'bottom-right', value: $i)) { border-bottom-left-radius: #{$i}px;  }
    }
 
    .border {
-      @include value($i) {
-         border-style: solid;
-         border-width: #{$i}px;
-      }
-      @include modifier('left', $i) {
+      @include builder ((value: $i)) { border: #{$i}px solid; }
+      @include builder ((modifier: 'left', value: $i)) {
          border-left-style: solid;
          border-left-width: #{$i}px;
       }
-      @include modifier('right', $i) {
+      @include builder ((modifier: 'right', value: $i)) {
          border-right-style: solid;
          border-right-width: #{$i}px;
       }
-      @include modifier('top', $i) {
+      @include builder ((modifier: 'top', value: $i)) {
          border-top-style: solid;
          border-top-width: #{$i}px;
       }
-      @include modifier('bottom', $i) {
+      @include builder ((modifier: 'bottom', value: $i)) {
          border-bottom-style: solid;
          border-bottom-width: #{$i}px;
       }

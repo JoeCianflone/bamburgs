@@ -1,85 +1,43 @@
-.flex {
-   &-direction {
-      @include modifier ('row')     { flex-direction: row;            }
-      @include modifier ('col')     { flex-direction: column;         }
-      @include modifier ('row-rev') { flex-direction: row-reverse;    }
-      @include modifier ('col-rev') { flex-direction: column-reverse; }
-   }
-   &-wrap {
-      @include modifier ('wrap')    { flex-wrap: wrap; }
-      @include modifier ('none')    { flex-wrap: nowrap;       }
-      @include modifier ('reverse') { flex-wrap: wrap-reverse; }
-   }
-   &-justify {
-      @include modifier ('start')   { justify-content: flex-start; }
-      @include modifier ('between') { justify-content: space-between; }
-      @include modifier ('around')  { justify-content: space-around; }
-      @include modifier ('end')     { justify-content: flex-end; }
-      @include modifier ('center')  { justify-content: center; }
-   }
-   &-items {
-      @include modifier ('center')    { align-items: center; }
-      @include modifier ('start')     { align-items: flex-start; }
-      @include modifier ('end')       { align-items: flex-end; }
-      @include modifier ('stretch')   { align-items: stretch; }
-      @include modifier ('baseline')  { align-items: baseline; }
-   }
-   &-content {
-      @include modifier ('center')   { align-content: center; }
-      @include modifier ('start')    { align-content: flex-start; }
-      @include modifier ('end')      { align-content: flex-end; }
-      @include modifier ('stretch')  { align-content: stretch; }
-      @include modifier ('baseline') { align-content: baseline; }
-   }
-   &-self {
-      @include modifier ('center')   { align-self: center; }
-      @include modifier ('start')    { align-self: flex-start; }
-      @include modifier ('end')      { align-self: flex-end; }
-      @include modifier ('stretch')  { align-self: stretch; }
-      @include modifier ('baseline') { align-self: baseline; }
-   }
-}
-
-@each $key, $breakpoint in $breakpoints {
+@each $key, $breakpoint in $breakpoint-list {
    .flex {
       &-direction {
-         @include resize-to ($key, 'row')     { flex-direction: row;            }
-         @include resize-to ($key, 'col')     { flex-direction: column;         }
-         @include resize-to ($key, 'row-rev') { flex-direction: row-reverse;    }
-         @include resize-to ($key, 'col-rev') { flex-direction: column-reverse; }
+         @include builder ((modifier: 'row', query: $key))     { flex-direction: row;            }
+         @include builder ((modifier: 'col', query: $key))     { flex-direction: column;         }
+         @include builder ((modifier: 'row-rev', query: $key)) { flex-direction: row-reverse;    }
+         @include builder ((modifier: 'col-rev', query: $key)) { flex-direction: column-reverse; }
       }
       &-wrap {
-         @include resize-to ($key, 'wrap')    { flex-wrap: wrap; }
-         @include resize-to ($key, 'none')    { flex-wrap: nowrap;       }
-         @include resize-to ($key, 'reverse') { flex-wrap: wrap-reverse; }
+         @include builder ((modifier: 'wrap', query: $key))    { flex-wrap: wrap;         }
+         @include builder ((modifier: 'none', query: $key))    { flex-wrap: nowrap;       }
+         @include builder ((modifier: 'reverse', query: $key)) { flex-wrap: wrap-reverse; }
       }
       &-justify {
-         @include resize-to ($key, 'start')   { justify-content: flex-start; }
-         @include resize-to ($key, 'between') { justify-content: space-between; }
-         @include resize-to ($key, 'around')  { justify-content: space-around; }
-         @include resize-to ($key, 'end')     { justify-content: flex-end; }
-         @include resize-to ($key, 'center')  { justify-content: center; }
+         @include builder ((modifier: 'start', query: $key))   { justify-content: flex-start;    }
+         @include builder ((modifier: 'between', query: $key)) { justify-content: space-between; }
+         @include builder ((modifier: 'around', query: $key))  { justify-content: space-around;  }
+         @include builder ((modifier: 'end', query: $key))     { justify-content: flex-end;      }
+         @include builder ((modifier: 'center', query: $key))  { justify-content: center;        }
       }
       &-items {
-         @include resize-to ($key, 'center')    { align-items: center; }
-         @include resize-to ($key, 'start')     { align-items: flex-start; }
-         @include resize-to ($key, 'end')       { align-items: flex-end; }
-         @include resize-to ($key, 'stretch')   { align-items: stretch; }
-         @include resize-to ($key, 'baseline')  { align-items: baseline; }
+         @include builder ((modifier: 'center', query: $key))    { align-items: center;     }
+         @include builder ((modifier: 'start', query: $key))     { align-items: flex-start; }
+         @include builder ((modifier: 'end', query: $key))       { align-items: flex-end;   }
+         @include builder ((modifier: 'stretch', query: $key))   { align-items: stretch;    }
+         @include builder ((modifier: 'baseline', query: $key))  { align-items: baseline;   }
       }
       &-content {
-         @include resize-to ($key, 'center')   { align-content: center; }
-         @include resize-to ($key, 'start')    { align-content: flex-start; }
-         @include resize-to ($key, 'end')      { align-content: flex-end; }
-         @include resize-to ($key, 'stretch')  { align-content: stretch; }
-         @include resize-to ($key, 'baseline') { align-content: baseline; }
+         @include builder ((modifier: 'center', query: $key))    { align-content: center;     }
+         @include builder ((modifier: 'start', query: $key))     { align-content: flex-start; }
+         @include builder ((modifier: 'end', query: $key))       { align-content: flex-end;   }
+         @include builder ((modifier: 'stretch', query: $key))   { align-content: stretch;    }
+         @include builder ((modifier: 'baseline', query: $key))  { align-content: baseline;   }
       }
       &-self {
-         @include resize-to ($key, 'center')   { align-self: center; }
-         @include resize-to ($key, 'start')    { align-self: flex-start; }
-         @include resize-to ($key, 'end')      { align-self: flex-end; }
-         @include resize-to ($key, 'stretch')  { align-self: stretch; }
-         @include resize-to ($key, 'baseline') { align-self: baseline; }
+         @include builder ((modifier: 'center', query: $key))    { align-self: center;     }
+         @include builder ((modifier: 'start', query: $key))     { align-self: flex-start; }
+         @include builder ((modifier: 'end', query: $key))       { align-self: flex-end;   }
+         @include builder ((modifier: 'stretch', query: $key))   { align-self: stretch;    }
+         @include builder ((modifier: 'baseline', query: $key))  { align-self: baseline;   }
       }
    }
 }

@@ -1,29 +1,15 @@
-.overflow {
-   @include modifier('hide') { overflow: hidden !important; }
-   @include modifier('scroll') { overflow: scroll !important; }
-
-   &-x {
-      @include modifier('hide') { overflow-x: hidden !important; }
-      @include modifier('scroll') { overflow-x: scroll !important; }
-   }
-   &-y {
-      @include modifier('hide') { overflow-y: hidden !important; }
-      @include modifier('scroll') { overflow-y: scroll !important; }
-   }
-}
-
-@each $key, $breakpoint in $breakpoints {
+@each $key, $breakpoint in $breakpoint-list {
    .overflow {
-      @include resize-to($key, 'hide') { overflow: hidden !important; }
-      @include resize-to($key, 'scroll') { overflow: scroll !important; }
+      @include builder ((modifier: 'hide', query: $key))   { overflow: hidden; }
+      @include builder ((modifier: 'scroll', query: $key)) { overflow: scroll; }
 
       &-x {
-         @include resize-to($key, 'hide') { overflow-x: hidden !important; }
-         @include resize-to($key, 'scroll') { overflow-x: scroll !important; }
+         @include builder ((modifier: 'hide', query: $key))   { overflow-x: hidden; }
+         @include builder ((modifier: 'scroll', query: $key)) { overflow-x: scroll; }
       }
       &-y {
-         @include resize-to($key, 'hide') { overflow-y: hidden !important; }
-         @include resize-to($key, 'scroll') { overflow-y: scroll !important; }
+         @include builder ((modifier: 'hide', query: $key))   { overflow-y: hidden; }
+         @include builder ((modifier: 'scroll', query: $key)) { overflow-y: scroll; }
       }
    }
 }

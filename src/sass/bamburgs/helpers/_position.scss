@@ -1,41 +1,22 @@
-.position {
-   @include modifier('rel') { position: relative; }
-   @include modifier('abs') { position: absolute; }
-   @include modifier('fixed') { position: fixed; }
-}
-
-.pin {
-   @include modifier('top') { top: 0; }
-   @include modifier('right') { right: 0; }
-   @include modifier('bottom') { bottom: 0; }
-   @include modifier('left') { left: 0; }
-   @include modifier('corners') {
-      bottom: 0;
-      left: 0;
-      right: 0;
-      top: 0;
-   }
-}
-
-@for $i from 1 through 100 {
+@for $i from 1 through $z-steps {
    .z {
-      @include value($i) { z-index: $i * 2; }
+      @include builder ((value: $i)) { z-index: $i * 2; }
    }
 }
 
-@each $key, $breakpoint in $breakpoints {
+@each $key, $breakpoint in $breakpoint-list {
    .position {
-      @include resize-to($key, 'rel') { position: relative; }
-      @include resize-to($key, 'abs') { position: absolute; }
-      @include resize-to($key, 'fixed') { position: fixed; }
+      @include builder ((modifier: 'rel', query: $key))   { position: relative; }
+      @include builder ((modifier: 'abs', query: $key))   { position: absolute; }
+      @include builder ((modifier: 'fixed', query: $key)) { position: fixed;    }
    }
 
    .pin {
-      @include resize-to($key, 'top') { top: 0; }
-      @include resize-to($key, 'right') { right: 0; }
-      @include resize-to($key, 'bottom') { bottom: 0; }
-      @include resize-to($key, 'left') { left: 0; }
-      @include resize-to($key, 'corners') {
+      @include builder ((modifier: 'top', query: $key))     { top: 0;    }
+      @include builder ((modifier: 'right', query: $key))   { right: 0;  }
+      @include builder ((modifier: 'bottom', query: $key))  { bottom: 0; }
+      @include builder ((modifier: 'left', query: $key))    { left: 0;   }
+      @include builder ((modifier: 'corners', query: $key)) {
          bottom: 0;
          left: 0;
          right: 0;

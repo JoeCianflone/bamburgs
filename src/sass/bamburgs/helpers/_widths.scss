@@ -1,64 +1,22 @@
-$width-multiple: 100 / $width-breaks;
-
-.width {
-   @include value('min') { width: $site-min; }
-   @include value('max') { width: $site-max; }
-   @include value('full') { width: 100%; }
-   @include modifier('center') {
-      margin-left: auto;
-      margin-right: auto;
-      width: $site-max;
-   }
-}
-
-.max-width {
-   @include value('min') { max-width: $site-min; }
-   @include value('max') { max-width: $site-max; }
-   @include value('full') { max-width: 100%; }
-   @include modifier('center') {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: $site-max;
-   }
-}
-
-.min-width {
-   @include value('min') { min-width: $site-min; }
-   @include value('max') { min-width: $site-max; }
-   @include value('full') { min-width: 100%; }
-   @include modifier('center') {
-      margin-left: auto;
-      margin-right: auto;
-      min-width: $site-max;
-   }
-}
-
 @for $i from 1 through $width-breaks {
    $value: $i * $width-multiple;
 
-   .width {
-      @include value($value) { width: $value * 1%; }
-   }
-
-   .min-width {
-      @include value($value) { min-width: $value * 1%; }
-   }
-
-   .max-width {
-      @include value($value) { max-width: $value * 1%; }
-   }
-
-   @each $key, $breakpoint in $breakpoints {
+   @each $key, $breakpoint in $breakpoint-list {
       .width {
-         @include resize-to($key, false, $value) { width: $value * 1%; }
-      }
+         @include builder ((value: 'min', query: $key))  { width: $site-min;   }
+         @include builder ((value: 'max', query: $key))  { width: $site-max;   }
+         @include builder ((value: 'full', query: $key)) { width: 100%;        }
+         @include builder ((value: $value, query: $key)) { width: $value * 1%; }
 
-      .min-width {
-         @include resize-to($key, false, $value) { min-width: $value * 1%; }
-      }
+         @include builder ((modifier: 'min', value: 'min', query: $key))  { min-width: $site-min;   }
+         @include builder ((modifier: 'min', value: 'max', query: $key))  { min-width: $site-max;   }
+         @include builder ((modifier: 'min', value: 'full', query: $key)) { min-width: 100%;        }
+         @include builder ((modifier: 'min', value: $value, query: $key)) { min-width: $value * 1%; }
 
-      .max-width {
-         @include resize-to($key, false, $value) { max-width: $value * 1%; }
+         @include builder ((modifier: 'max', value: 'min', query: $key))  { max-width: $site-min;   }
+         @include builder ((modifier: 'max', value: 'max', query: $key))  { max-width: $site-max;   }
+         @include builder ((modifier: 'max', value: 'full', query: $key)) { max-width: 100%;        }
+         @include builder ((modifier: 'max', value: $value, query: $key)) { max-width: $value * 1%; }
       }
    }
 }

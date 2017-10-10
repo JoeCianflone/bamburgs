@@ -1,14 +1,15 @@
 .bg {
    &-size {
-      @include modifier('cover')   { background-size: cover; }
-      @include modifier('contain') { background-size: contain; }
+      @include builder ((modifier: 'cover'))   { background-size: cover;   }
+      @include builder ((modifier: 'contain')) { background-size: contain; }
    }
 
-   &-position {
-      @include modifier('top')    { background-size: top; }
-      @include modifier('right')  { background-size: right; }
-      @include modifier('bottom') { background-size: bottom; }
-      @include modifier('left')   { background-size: left; }
-      @include modifier('center') { background-size: center; }
+   &-position  {
+      @include builder ((modifier: 'top'))    { background-size: top;    }
+      @include builder ((modifier: 'right'))  { background-size: right;  }
+      @include builder ((modifier: 'bottom')) { background-size: bottom; }
+      @include builder ((modifier: 'left'))   { background-size: left;   }
+      @include builder ((modifier: 'center')) { background-size: center; }
    }
 }
+

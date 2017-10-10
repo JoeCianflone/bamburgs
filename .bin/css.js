@@ -16,5 +16,5 @@ shell.exec(`node-sass ${cfg}`);
 wl('...Done Sass');
 
 wl('PostCSS...');
-shell.exec(`postcss ${output}/${config.dist.stylesFilename} --no-map -o ${output}/${config.dist.stylesFilename} -c ./postcss.config.js -r`);
+shell.exec(`postcss ${output}/${config.dist.stylesFilename} -o ${output}/${config.dist.stylesFilename} -c ./postcss.config.js -r`);
 wl('...Done PostCSS');

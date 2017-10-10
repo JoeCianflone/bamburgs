@@ -1,55 +1,28 @@
 .font-weight {
-   @include modifier('thin') { font-weight: 100; }
-   @include modifier('xlight') { font-weight: 200; }
-   @include modifier('light') { font-weight: 300; }
-   @include modifier('regular') { font-weight: 400; }
-   @include modifier('medium') { font-weight: 500; }
-   @include modifier('semi-bold') { font-weight: 600; }
-   @include modifier('bold') { font-weight: 700; }
-   @include modifier('xbold') { font-weight: 800; }
-   @include modifier('black') { font-weight: 900; }
+   @include builder ((modifier: 'thin'))      { font-weight: 100; }
+   @include builder ((modifier: 'xlight'))    { font-weight: 200; }
+   @include builder ((modifier: 'light'))     { font-weight: 300; }
+   @include builder ((modifier: 'regular'))   { font-weight: 400; }
+   @include builder ((modifier: 'medium'))    { font-weight: 500; }
+   @include builder ((modifier: 'semi-bold')) { font-weight: 600; }
+   @include builder ((modifier: 'bold'))      { font-weight: 700; }
+   @include builder ((modifier: 'xbold'))     { font-weight: 800; }
+   @include builder ((modifier: 'black'))     { font-weight: 900; }
 }
 
-.text {
-   &-align {
-      @include modifier('left') { text-align: left; }
-      @include modifier('right') { text-align: right; }
-      @include modifier('center') { text-align: center; }
-   }
-
-   &-transform {
-      @include modifier('uppercase') { text-transform: uppercase; }
-      @include modifier('lowercase') { text-transform: lowercase; }
-      @include modifier('capitalize') { text-transform: capitalize; }
-      @include modifier('full-width') { text-transform: full-width; }
-   }
-
-   &-hide {
-      overflow: hidden;
-      text-indent: 100%;
-      white-space: nowrap;
-   }
-}
-
-@each $key, $family in $font-families {
-   .font {
-      @include modifier($key) { font-family: $family; }
-   }
-}
-
-@each $key, $breakpoint in $breakpoints {
+@each $key, $breakpoint in $breakpoint-list {
    .text {
       &-align {
-         @include resize-to($key, 'left') { text-align: left; }
-         @include resize-to($key, 'right') { text-align: right; }
-         @include resize-to($key, 'center') { text-align: center; }
+         @include builder ((modifier: 'left'))   { text-align: left;   }
+         @include builder ((modifier: 'right'))  { text-align: right;  }
+         @include builder ((modifier: 'center')) { text-align: center; }
       }
 
       &-transform {
-         @include resize-to($key, 'uppercase') { text-transform: uppercase; }
-         @include resize-to($key, 'lowercase') { text-transform: lowercase; }
-         @include resize-to($key, 'capitalize') { text-transform: capitalize; }
-         @include resize-to($key, 'full-width') { text-transform: full-width; }
+         @include builder ((modifier: 'uppercase'))  { text-transform: uppercase;  }
+         @include builder ((modifier: 'lowercase'))  { text-transform: lowercase;  }
+         @include builder ((modifier: 'capitalize')) { text-transform: capitalize; }
+         @include builder ((modifier: 'full-width')) { text-transform: full-width; }
       }
 
       &-hide {
@@ -58,44 +31,40 @@
          white-space: nowrap;
       }
    }
-}
 
-$i: 1;
-@each $value in $font-sizes {
-   .font-size {
-      @include value($i) { font-size: $value; }
-      @each $key, $breakpoint in $breakpoints {
-         @include resize-to($key, false, $i) { font-size: $value; }
-      }
-
-      $i: $i + 1;
-   }
-}
-
-@for $i from 0 to 20 {
-   .letter-spacing {
-      @include value($i) { letter-spacing: #{$i}px; }
-
-      @if ($i > 0) {
-         @include value('-#{$i}') { letter-spacing: -#{$i}px; }
+   $fs: 1;
+   @each $value in $font-sizes {
+      .font-size {
+         @include builder ((value: $fs, query: $key)) { font-size: $value; }
+         $fs: $fs + 1;
       }
    }
 
-   .line-height {
-      @include value($i) { line-height: #{$i} / 10; }
-   }
+   @for $i from 0 through 20 {
+      $height: $i / 10;
 
-   @each $key, $breakpoint in $breakpoints {
       .letter-spacing {
-         @include resize-to($key, false, $i) { letter-spacing: #{$i}px; }
+         @include builder((value: $i, query: $key)) { letter-spacing: #{$i}px; }
 
          @if ($i > 0) {
-            @include resize-to($key, false, '-#{$i}') { letter-spacing: -#{$i}px; }
+            @include builder((value: '-#{$i}', query: $key)) { letter-spacing: -#{$i}px; }
          }
       }
 
       .line-height {
-         @include resize-to($key, false, $i) { line-height: #{$i} / 10; }
+         @include builder((value: $i, query: $key)) { line-height: $height; }
+
+         @if ($i > 0) {
+            @include builder((value: '-#{$i}', query: $key)) { line-height: -#{$height}; }
+         }
       }
    }
 }
+
+@each $key, $family in $font-families {
+   .font {
+      @include builder ((modifier: $key)) { font-family: $family; }
+   }
+}
+
+

@@ -1,0 +1,48 @@
+$block-width: 100% / $grid-columns;
+$row-compensation: $grid-gutter * -1;
+
+@mixin gutters() {
+   @if $grid-gutter-setting == 'split'  {
+      padding-left: $grid-gutter / 2;
+      padding-right: $grid-gutter / 2;
+   } @else {
+      padding-left: $grid-gutter;
+      padding-right: $grid-gutter;
+   }
+}
+
+@mixin row() {
+   align-content: center;
+   align-items: flex-start;
+   display: flex;
+   flex: 1 0 auto;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+}
+
+@mixin row-compensate() {
+   @if $grid-gutter-setting == 'split' {
+      $row-compensation: $row-compensation / 2;
+   }
+
+   margin-right: $row-compensation;
+   margin-left: $row-compensation;
+}
+
+@mixin column($value) {
+   @include gutters();
+   flex: 1 0 $value * $block-width;
+   max-width: $value * $block-width;
+   position: relative;
+}
+
+@mixin push($value) {
+   margin-left: $value * $block-width;
+}
+
+@mixin pull($value) {
+   margin-left: auto;
+   margin-right: $value * $block-width;
+}
+

@@ -9,46 +9,24 @@
    padding: 0;
 }
 
-@mixin modifier($name: false, $value: false, $state: false) {
-   $statement: "";
-
-   @if ($name != false) {
-      $statement: \[#{$name}\];
-   }
-
-   @if ($value != false) {
-      $statement: #{$statement}\:#{$value};
-   }
-
-   @if ($state != false) {
-      $statement: "#{$statement}:#{$state}";
-   }
-
-   @if ($statement != "") {
-     &#{$statement} {
-       @content
-     }
-   } @else {
-     @content;
-   }
+@function get-font-size($key) {
+   @return map-get($font-size, $key);
 }
 
-@mixin value($value) {
-   &\:#{$value} {
-      @content;
-   }
+@function get-color($key) {
+   @return map-get($colors, $key);
 }
 
-@mixin variant($value, $type) {
-   $x: '#{$value}\%';
+@function get-spacer($key) {
+   @return $spacer-multiplier * $key;
+}
 
-   @if ($type == 'lighten') {
-      $x: '\-#{$value}';
-   } @else if ($type == 'darken') {
-      $x: '\+#{$value}';
+@function str-replace($string, $search, $replace: '') {
+   $index: str-index($string, $search);
+
+   @if ($index) {
+      @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
    }
 
-   &\(#{$x}\) {
-      @content;
-   }
+   @return $string;
 }

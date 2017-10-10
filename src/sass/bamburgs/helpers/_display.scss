@@ -1,29 +1,15 @@
-.display {
-   @include modifier('block')        { display: block; }
-   @include modifier('show')         { display: block; }
-   @include modifier('hide')         { display: none; }
-   @include modifier('none')         { display: none; }
-   @include modifier('inline')       { display: inline; }
-   @include modifier('inline-block') { display: inline-block; }
-   @include modifier('flex')         { display: flex; }
-   @include modifier('inline-flex')  { display: inline-flex; }
-   @include modifier('grid')         { display: grid; }
-   @include modifier('inline-grid')  { display: inline-grid; }
-   @include modifier('subgrid')      { display: subgrid; }
-}
-
-@each $key, $value in $breakpoints {
    .display {
-      @include resize-to($key, 'block')        { display: block;  }
-      @include resize-to($key, 'show')         { display: block;  }
-      @include resize-to($key, 'inline')       { display: inline; }
-      @include resize-to($key, 'inline-block') { display: inline-block; }
-      @include resize-to($key, 'none')         { display: none; }
-      @include resize-to($key, 'hide')         { display: none; }
-      @include resize-to($key, 'flex')         { display: flex; }
-      @include resize-to($key, 'inline-flex')  { display: inline-flex; }
-      @include resize-to($key, 'grid')         { display: grid; }
-      @include resize-to($key, 'inline-grid')  { display: inline-grid; }
-      @include resize-to($key, 'subgrid')      { display: subgrid; }
+@each $key, $value in $breakpoint-list {
+      @include builder ((modifier: 'block', query: $key))        { display: block; }
+      @include builder ((modifier: 'show', query: $key))         { display: block; }
+      @include builder ((modifier: 'hide', query: $key))         { display: none; }
+      @include builder ((modifier: 'none', query: $key))         { display: none; }
+      @include builder ((modifier: 'inline', query: $key))       { display: inline; }
+      @include builder ((modifier: 'inline-block', query: $key)) { display: inline-block; }
+      @include builder ((modifier: 'flex', query: $key))         { display: flex; }
+      @include builder ((modifier: 'inline-flex', query: $key))  { display: inline-flex; }
+      @include builder ((modifier: 'grid', query: $key))         { display: grid; }
+      @include builder ((modifier: 'inline-grid', query: $key))  { display: inline-grid; }
+      @include builder ((modifier: 'subgrid', query: $key))      { display: subgrid; }
    }
 }

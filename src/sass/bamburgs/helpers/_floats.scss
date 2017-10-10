@@ -1,12 +1,8 @@
 .float {
-   @include modifier('right') { float: right; }
-   @include modifier('left') { float: left;  }
-   @include modifier('none') { float: none; }
-
-   @each $key, $breakpoint in $breakpoints {
-      @include resize-to($key, 'right') { float: right; }
-      @include resize-to($key, 'left')  { float: left;  }
-      @include resize-to($key, 'none')  { float: none; }
+   @each $key, $breakpoint in $breakpoint-list {
+      @include builder ((modifier: 'right', query: $key)) { float: right; }
+      @include builder ((modifier: 'left', query: $key)) { float: left;  }
+      @include builder ((modifier: 'none', query: $key)) { float: none; }
    }
 }
 

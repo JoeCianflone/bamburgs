@@ -19,7 +19,7 @@ $user-font-families: () !default;
 
 $grid-columns:        12        !default;
 $grid-gutter:         10px      !default;
-$grid-gutter-setting: 'padding' !default; // padding || split;
+$grid-gutter-setting: 'padding' !default; // padding | split;
 
 $site-min: 320px  !default;
 $site-max: 1440px !default;
@@ -32,12 +32,19 @@ $spacing-multiplier: 5  !default;
 
 $width-breaks: 20 !default;
 
+$color-gray-name: 'grey' !default; // gray | grey
+$color-disable-variants: true !default;
+$color-steps: 20 !default;
+
+$z-steps: 10 !default;
+
 // DEFAULT VALUES DO NOT EDIT BELOW THIS POINT ................................
 // All these things can be overridden/merged by $user-* lists see the docs
 // for more information
 
 // Breakpoints ................................................................
 $breakpoint-list: (
+   x: false,   //special breakpoint, don't delete it
    fl: 320px,
    xs: 480px,
    sm: 576px,
@@ -47,6 +54,11 @@ $breakpoint-list: (
 ) !global;
 
 $breakpoint-list: map-merge($breakpoint-list, $user-breakpoints);
+
+$break-type: 'max-width' !global;
+@if ($use-mobile-first-mq == true) {
+   $break-type: 'min-width';
+}
 
 // Colors .....................................................................
 $colors: (
@@ -58,7 +70,7 @@ $colors: (
    info:    #17a2b8
 ) !global;
 
-$breakpoint-list: map-merge($colors, $user-colors);
+$colors: map-merge($colors, $user-colors);
 
 // Font Families ..............................................................
 $font-families: (
@@ -74,6 +86,7 @@ $font-families: map-merge($font-families, $user-font-families);
    $font-sizes: setFontSizes($scale-ratio, $scale-bases, $scale-sets);
 }
 
-
+// Width sizes ................................................................
+$width-multiple: 100 / $width-breaks !global;
 
 

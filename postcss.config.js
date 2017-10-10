@@ -2,13 +2,11 @@ const config = require('./package.json').config;
 
 module.exports = function(ctx) {
    return {
-      map: ctx.options.map,
+      map: {inline: false},
       plugins: {
-         'postcss-easy-import': {
-            prefix:'_'
-         },
-         'postcss-flexbugs-fixes':{},
+         'postcss-import': {},
          'postcss-cssnext': {},
+         'postcss-flexbugs-fixes':{},
          'postcss-pxtorem': {
             propList: ["*"],
             rootValue: 10,
@@ -19,7 +17,17 @@ module.exports = function(ctx) {
             spritePath: config.dist.path + "/" + config.dist.sprites
          },
          'css-mqpacker': {},
-         'cssnano': config.env === 'production' ? {'presets': ['default', {'autoprefixer' : false}] } : false
+         'postcss-merge-selectors': {},
+         'cssnano': {
+            "autoprefixer": false,
+            "preset": [
+               "default",
+               {
+                  discardComments: {removeAll: true},
+                  normalizeWhitespace: (config.env === 'development') ? {} : false
+               }
+            ]
+         }
       }
    }
 }

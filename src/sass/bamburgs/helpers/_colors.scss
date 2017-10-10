@@ -1,84 +1,53 @@
+@mixin color-variants($key, $hex) {
+   @for $i from 1 through $color-steps {
+      $variant-val: $i * 5;
 
-@mixin color-variants($type, $hex) {
-   @for $i from 1 to 19 {
-      $key: $i * 5;
-      // Darken
       @if ($hex != #000000 or $hex != #000) {
-         @include variant($key, 'darken') { #{$type}: darken($hex, $key); }
+         @include color-builder('', $key, darken($hex, $variant-val), null, '+#{$variant-val}');
+         @include color-builder(':', $key, darken($hex, $variant-val), 'hover', '+#{$variant-val}');
+         @include color-builder('::', $key, darken($hex, $variant-val), 'focus','+#{$variant-val}');
+         @include color-builder('@', $key, darken($hex, $variant-val), 'active', '+#{$variant-val}');
       }
 
-      // Lighten
       @if ($hex != #ffffff or $hex != #fff) {
-         @include variant($key, 'lighten') { #{$type}: lighten($hex, $key); }
+         @include color-builder('', $key, lighten($hex, $variant-val), null, '-#{$variant-val}');
+         @include color-builder(':', $key, lighten($hex, $variant-val), 'hover', '-#{$variant-val}');
+         @include color-builder('::', $key, lighten($hex, $variant-val), 'focus','-#{$variant-val}');
+         @include color-builder('@', $key, lighten($hex, $variant-val), 'active', '-#{$variant-val}');
       }
 
-      // Opacity
-      @include variant($key,'opacity')  { #{$type}: rgba($hex, $key / 100); }
+      @include color-builder('', $key, rgba($hex, $variant-val / 100), null, '-#{$variant-val}');
+      @include color-builder(':', $key, rgba($hex, $variant-val / 100), 'hover', '-#{$variant-val}');
+      @include color-builder('::', $key, rgba($hex, $variant-val / 100), 'focus','-#{$variant-val}');
+      @include color-builder('@', $key, rgba($hex, $variant-val / 100), 'active', '-#{$variant-val}');
    }
 }
 
-@each $key, $hex in $colors {
-   .color {
-      @include modifier('background', $key) {
-         background-color: $hex;
+@mixin color-builder($modifier, $value, $hex, $state: null, $variant: null) {
+   @include builder ((modifier: "#{$modifier}background", value: $value, state: $state, variant: $variant)) { background-color: $hex; }
+   @include builder ((modifier: "#{$modifier}text",       value: $value, state: $state, variant: $variant)) { color: $hex;            }
+   @include builder ((modifier: "#{$modifier}border",     value: $value, state: $state, variant: $variant)) { border-color: $hex;     }
+}
 
-         @include color-variants('background-color', $hex);
+.color {
+   @each $key, $hex in $colors {
+      @include color-builder('', $key, $hex);
+      @include color-builder(':', $key, $hex, 'hover');
+      @include color-builder('::', $key, $hex, 'focus');
+      @include color-builder('@', $key, $hex, 'active');
+
+      @if ($color-disable-variants != true) {
+         @include color-variants($key, $hex);
       }
-      @include modifier('background', 'transparent') {
-         background-color: transparent;
-      }
-      @include modifier('text', $key) {
-         color: $hex;
+   }
 
-         @include color-variants('color', $hex);
-      }
-      @include modifier('border', $key) {
-         border-color: $hex;
+   @for $i from 1 through $color-steps {
+      $gray-val: $i * (100 / $color-steps);
 
-         @include color-variants('border', $hex);
-      }
-      @include modifier('border', 'transparent') {border-color: transparent; }
-
-      @include modifier(':background', $key, 'hover') {
-         background-color: $hex;
-
-         @include color-variants('background-color', $hex);
-      }
-      @include modifier(':background', 'transparent', 'hover') { background-color: transparent; }
-      @include modifier(':text', $key, 'hover') {
-         color: $hex;
-
-         @include color-variants('color', $hex);
-      }
-      @include modifier(':border', $key, 'hover') {border-color: $hex; }
-      @include modifier(':border', 'transparent', 'hover') {border-color: transparent; }
-
-      @include modifier('::background', $key, 'focus') {
-         background-color: $hex;
-
-         @include color-variants('background-color', $hex);
-      }
-      @include modifier('::background', 'transparent', 'focus') { background-color: transparent; }
-      @include modifier('::text', $key, 'focus') {
-         color: $hex;
-
-         @include color-variants('color', $hex);
-      }
-      @include modifier('::border', $key, 'focus') {border-color: $hex; }
-      @include modifier('::border', 'transparent', 'focus') {border-color: transparent; }
-
-      @include modifier('@background', $key, 'active') {
-         background-color: $hex;
-
-         @include color-variants('background-color', $hex);
-      }
-      @include modifier('@background', 'transparent', 'active') { background-color: transparent; }
-      @include modifier('@text', $key, 'active') {
-         color: $hex;
-
-         @include color-variants('color', $hex);
-      }
-      @include modifier('@border', $key, 'active') {border-color: $hex; }
-      @include modifier('@border', 'transparent', 'active') {border-color: transparent; }
+      @include color-builder('', $color-gray-name, darken(#fff, $gray-val), null, $gray-val);
+      @include color-builder(':', $color-gray-name, darken(#fff, $gray-val), 'hover', $gray-val);
+      @include color-builder('::', $color-gray-name, darken(#fff, $gray-val), 'focus', $gray-val);
+      @include color-builder('@', $color-gray-name, darken(#fff, $gray-val), 'active', $gray-val);
    }
 }
+

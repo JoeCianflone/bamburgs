@@ -1,0 +1,83 @@
+@mixin builder($list: ()) {
+   $build-statement: "";
+   $query: map-get($list, query);
+   $modifier: map-get($list, modifier);
+   $value: map-get($list, value);
+   $variant: map-get($list, variant);
+   $state: map-get($list, state);
+
+   @if ($modifier) {
+      $build-statement: #{$build-statement}#{make-modifier($modifier)};
+   }
+
+   @if ($value) {
+      $build-statement: #{$build-statement}#{make-value($value)};
+   }
+
+   @if ($variant) {
+      $build-statement: #{$build-statement}#{make-variant($variant)};
+   }
+
+   @if ($query and $query != 'x') {
+      $build-statement: #{$build-statement}#{make-query($query)};
+   }
+
+   @if ($state) {
+      $build-statement: #{$build-statement}#{make-state($state)};
+   }
+
+   @if ($build-statement != "") {
+      @include generate-statement($build-statement, $query) {
+         @content;
+      }
+   } @else {
+      @content;
+   }
+
+}
+
+@mixin generate-statement($build-statement, $query) {
+
+   &#{$build-statement} {
+      @if ($query and $query != 'x') {
+         @include mq($query) { @content; }
+      } @else {
+         @content;
+      }
+   }
+}
+
+@mixin mq($bp) {
+   $value: map-get($breakpoint-list, $bp);
+   $mq: 'screen and' + '(#{$break-type}: #{$value})';
+
+   @media #{$mq} { @content; }
+}
+
+@function make-query($item) {
+   @return \@#{$item};
+}
+
+@function make-modifier($item) {
+   @return \[#{$item}\];
+}
+
+@function make-value($item) {
+   @return \:#{$item};
+}
+
+@function make-variant($item) {
+   $item: str-replace(#{$item}, '+', '\\+');
+   $item: str-replace(#{$item}, '-', '\\-');
+   $item: str-replace(#{$item}, '%', '\\%');
+
+   @return \(#{$item}\);
+}
+
+@function make-query($item) {
+   @return \@#{$item};
+}
+
+@function make-state($item) {
+   @return ":#{$item}";
+}
