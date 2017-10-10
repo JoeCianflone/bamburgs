@@ -32,8 +32,12 @@ $row-compensation: $grid-gutter * -1;
 
 @mixin column($value) {
    @include gutters();
-   flex: 1 0 $value * $block-width;
-   max-width: $value * $block-width;
+
+   @if ($value != 'auto' or $value != auto) {
+      $value: $value * $block-width;
+   }
+   flex: 1 0 $value;
+   max-width: $value;
    position: relative;
 }
 

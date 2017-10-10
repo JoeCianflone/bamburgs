@@ -17,14 +17,13 @@ module.exports = function(ctx) {
             spritePath: config.dist.path + "/" + config.dist.sprites
          },
          'css-mqpacker': {},
-         'postcss-merge-selectors': {},
          'cssnano': {
             "autoprefixer": false,
             "preset": [
                "default",
                {
                   discardComments: {removeAll: true},
-                  normalizeWhitespace: (config.env === 'development') ? {} : false
+                  normalizeWhitespace: (config.env === 'production') ? {} : false
                }
             ]
          }

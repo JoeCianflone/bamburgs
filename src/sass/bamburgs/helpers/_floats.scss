@@ -1,8 +1,8 @@
 .float {
    @each $key, $breakpoint in $breakpoint-list {
       @include builder ((modifier: 'right', query: $key)) { float: right; }
-      @include builder ((modifier: 'left', query: $key)) { float: left;  }
-      @include builder ((modifier: 'none', query: $key)) { float: none; }
+      @include builder ((modifier: 'left', query: $key))  { float: left;  }
+      @include builder ((modifier: 'none', query: $key))  { float: none;  }
    }
 }
 

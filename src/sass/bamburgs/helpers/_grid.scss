@@ -8,31 +8,31 @@
    }
 
    @each $key, $breakpoint in $breakpoint-list {
-      // .col {
-      //    @include column(auto);
+      .col {
+         @include column(auto);
 
-      //    @include builder ((modifier: 'first', query: $key)) { order: 0; }
-      //    @include builder ((modifier: 'last', query: $key)) { order: 1; }
-      // }
+         @include builder ((modifier: 'first', query: $key)) { order: 0; }
+         @include builder ((modifier: 'last', query: $key)) { order: 1; }
+      }
 
-      // @for $i from 1 through $grid-columns {
-      //    .col {
-      //       @include builder ((value: $i, query: $key)) { @include column($i); }
-      //    }
+      @for $i from 1 through $grid-columns {
+         .col {
+            @include builder ((value: $i, query: $key)) { @include column($i); }
+         }
 
-      //    .push {
-      //       @include builder ((value: $i, query: $key)) { @include push($i); }
-      //    }
-      //    .pull {
-      //       @include builder ((value: $i, query: $key)) { @include pull($i); }
-      //    }
-      // }
+         .push {
+            @include builder ((value: $i, query: $key)) { @include push($i); }
+         }
+         .pull {
+            @include builder ((value: $i, query: $key)) { @include pull($i); }
+         }
+      }
 
-      // .pull {
-      //    @include builder ((value: 'right', query: $key)) {
-      //       margin-left: auto;
-      //       margin-right: 0;
-      //    }
-      // }
+      .pull {
+         @include builder ((value: 'right', query: $key)) {
+            margin-left: auto;
+            margin-right: 0;
+         }
+      }
    }
 }
