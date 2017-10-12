@@ -25,6 +25,7 @@
 
    img {
       @include flatten();
+
       border-style: none;
       max-width: 100%;
       font-style: italic;
@@ -35,26 +36,11 @@
       }
    }
 
-   table {
-      // display: block;
-      max-width: 100%;
-      overflow-x: auto;
-      width: 100%;
-   }
-
-   h1, h2, h3, h4, h5, h6 {
+   h1, h2, h3, h4, h5, h6, p, blockquote {
       @include flatten();
    }
 
    p, ul, ol { font-size: inherit; }
-
-   p {
-      @include flatten();
-   }
-
-   blockquote {
-      @include flatten();
-   }
 
    button, label { cursor: pointer; }
 

@@ -32,7 +32,7 @@ $spacing-multiplier: 5  !default;
 
 $width-breaks: 20 !default;
 
-$color-gray-name: 'grey' !default; // gray | grey
+$color-gray-name: 'gray' !default; // gray | grey
 $color-disable-variants: true !default;
 $color-steps: 20 !default;
 
@@ -89,4 +89,6 @@ $font-families: map-merge($font-families, $user-font-families);
 // Width sizes ................................................................
 $width-multiple: 100 / $width-breaks !global;
 
+
+$block-width: 100% / $grid-columns;
 

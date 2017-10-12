@@ -1,9 +1,5 @@
 @import 'normalize.css/normalize.css';
-@import 'tools/modular-scale';
-
-@import 'settings';
 
 @import 'tools/all';
-@import 'helpers/all';
-
-@import 'base';
+@import 'settings';
+@import 'components/all';
