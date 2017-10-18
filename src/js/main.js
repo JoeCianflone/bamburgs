@@ -1,10 +1,7 @@
-class CandyGrid extends HTMLElement {
-  connectedCallback () {
-    this.classList.add('loading')
-    CandyStore.load().then((data) => {
-      this.classList.remove('loading')
-      // Draw grid of candies
-    })
-  }
-}
-customElements.define('candy-grid', CandyGrid)
+window.Vue = require('vue');
+
+Vue.component('example', require('./components/Example.vue'));
+
+const app = new Vue({
+    el: '#app'
+});
