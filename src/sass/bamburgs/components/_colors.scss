@@ -2,52 +2,57 @@
    @for $i from 1 through $color-steps {
       $variant-val: $i * 5;
 
-      @if ($hex != #000000 or $hex != #000) {
-         @include color-builder('', $key, darken($hex, $variant-val), null, '+#{$variant-val}');
-         @include color-builder(':', $key, darken($hex, $variant-val), 'hover', '+#{$variant-val}');
-         @include color-builder('::', $key, darken($hex, $variant-val), 'focus','+#{$variant-val}');
-         @include color-builder('@', $key, darken($hex, $variant-val), 'active', '+#{$variant-val}');
+      @if ($hex != #000000 or $hex != #000 or $hex != #fff or $hex != #ffffff) {
+         @include color-builder($key, darken($hex, $variant-val), null, '+#{$variant-val}');
+         @include color-builder($key, darken($hex, $variant-val), 'hover', '+#{$variant-val}');
+         @include color-builder($key, darken($hex, $variant-val), 'focus','+#{$variant-val}');
+         @include color-builder($key, darken($hex, $variant-val), 'active', '+#{$variant-val}');
       }
 
-      @if ($hex != #ffffff or $hex != #fff) {
-         @include color-builder('', $key, lighten($hex, $variant-val), null, '-#{$variant-val}');
-         @include color-builder(':', $key, lighten($hex, $variant-val), 'hover', '-#{$variant-val}');
-         @include color-builder('::', $key, lighten($hex, $variant-val), 'focus','-#{$variant-val}');
-         @include color-builder('@', $key, lighten($hex, $variant-val), 'active', '-#{$variant-val}');
+      @if ($hex != #ffffff or $hex != #fff or $hex != #000000 or $hex != #000) {
+         @include color-builder($key, lighten($hex, $variant-val), null, '-#{$variant-val}');
+         @include color-builder($key, lighten($hex, $variant-val), 'hover', '-#{$variant-val}');
+         @include color-builder($key, lighten($hex, $variant-val), 'focus','-#{$variant-val}');
+         @include color-builder($key, lighten($hex, $variant-val), 'active', '-#{$variant-val}');
       }
 
-      @include color-builder('', $key, rgba($hex, $variant-val / 100), null, '-#{$variant-val}');
-      @include color-builder(':', $key, rgba($hex, $variant-val / 100), 'hover', '-#{$variant-val}');
-      @include color-builder('::', $key, rgba($hex, $variant-val / 100), 'focus','-#{$variant-val}');
-      @include color-builder('@', $key, rgba($hex, $variant-val / 100), 'active', '-#{$variant-val}');
+      @include color-builder($key, rgba($hex, $variant-val / 100), null, '#{$variant-val}%');
+      @include color-builder($key, rgba($hex, $variant-val / 100), 'hover', '#{$variant-val}%');
+      @include color-builder($key, rgba($hex, $variant-val / 100), 'focus','#{$variant-val}%');
+      @include color-builder($key, rgba($hex, $variant-val / 100), 'active', '#{$variant-val}%');
    }
 }
 
-@mixin color-builder($modifier, $value, $hex, $state: null, $variant: null) {
-   @include builder ((modifier: "#{$modifier}background", value: $value, state: $state, variant: $variant)) { background-color: $hex; }
-   @include builder ((modifier: "#{$modifier}text",       value: $value, state: $state, variant: $variant)) { color: $hex;            }
-   @include builder ((modifier: "#{$modifier}border",     value: $value, state: $state, variant: $variant)) { border-color: $hex;     }
+@mixin grayscale() {
+   @for $i from 1 through $color-steps {
+      $gray-val: $i * (100 / $color-steps);
+      @include color-builder($color-gray-name, darken(#fff, $gray-val), null, $gray-val);
+      @include color-builder($color-gray-name, darken(#fff, $gray-val), 'hover', $gray-val);
+      @include color-builder($color-gray-name, darken(#fff, $gray-val), 'focus', $gray-val);
+      @include color-builder($color-gray-name, darken(#fff, $gray-val), 'active', $gray-val);
+   }
 }
 
-.color {
+@mixin color-builder($value, $hex, $state: null, $variant: null) {
+   @include builder ((modifier: "bg", value: $value, state: $state, variant: $variant)) { background-color: $hex; }
+   @include builder ((modifier: "txt",value: $value, state: $state, variant: $variant)) { color: $hex;            }
+   @include builder ((modifier: "b",  value: $value, state: $state, variant: $variant)) { border-color: $hex;     }
+}
+
+.c {
    @each $key, $hex in $colors {
-      @include color-builder('', $key, $hex);
-      @include color-builder(':', $key, $hex, 'hover');
-      @include color-builder('::', $key, $hex, 'focus');
-      @include color-builder('@', $key, $hex, 'active');
+      @include color-builder($key, $hex);
+      @include color-builder($key, $hex, 'hover');
+      @include color-builder($key, $hex, 'focus');
+      @include color-builder($key, $hex, 'active');
 
       @if ($color-disable-variants != true) {
          @include color-variants($key, $hex);
       }
    }
 
-   @for $i from 1 through $color-steps {
-      $gray-val: $i * (100 / $color-steps);
-
-      @include color-builder('', $color-gray-name, darken(#fff, $gray-val), null, $gray-val);
-      @include color-builder(':', $color-gray-name, darken(#fff, $gray-val), 'hover', $gray-val);
-      @include color-builder('::', $color-gray-name, darken(#fff, $gray-val), 'focus', $gray-val);
-      @include color-builder('@', $color-gray-name, darken(#fff, $gray-val), 'active', $gray-val);
+   @if ($color-disable-grayscale != true) {
+      @include grayscale;
    }
 }
 

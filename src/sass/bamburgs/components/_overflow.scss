@@ -1,5 +1,5 @@
 @each $key, $breakpoint in $breakpoint-list {
-   .overflow {
+   .ovr {
       @include builder ((modifier: 'hide', query: $key))   { overflow: hidden; }
       @include builder ((modifier: 'scroll', query: $key)) { overflow: scroll; }
 

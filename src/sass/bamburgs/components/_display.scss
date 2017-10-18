@@ -1,15 +1,15 @@
-   .display {
-@each $key, $value in $breakpoint-list {
-      @include builder ((modifier: 'block', query: $key))        { display: block; }
-      @include builder ((modifier: 'show', query: $key))         { display: block; }
-      @include builder ((modifier: 'hide', query: $key))         { display: none; }
-      @include builder ((modifier: 'none', query: $key))         { display: none; }
-      @include builder ((modifier: 'inline', query: $key))       { display: inline; }
-      @include builder ((modifier: 'inline-block', query: $key)) { display: inline-block; }
-      @include builder ((modifier: 'flex', query: $key))         { display: flex; }
-      @include builder ((modifier: 'inline-flex', query: $key))  { display: inline-flex; }
-      @include builder ((modifier: 'grid', query: $key))         { display: grid; }
-      @include builder ((modifier: 'inline-grid', query: $key))  { display: inline-grid; }
-      @include builder ((modifier: 'subgrid', query: $key))      { display: subgrid; }
+.d {
+   @each $key, $value in $breakpoint-list {
+      @include builder ((modifier: 'b', query: $key))     { display: block;        }
+      @include builder ((modifier: 'show', query: $key))  { display: block;        }
+      @include builder ((modifier: 'hide', query: $key))  { display: none;         }
+      @include builder ((modifier: 'n', query: $key))     { display: none;         }
+      @include builder ((modifier: 'i', query: $key))     { display: inline;       }
+      @include builder ((modifier: 'ib', query: $key))    { display: inline-block; }
+      @include builder ((modifier: 'flx', query: $key))   { display: flex;         }
+      @include builder ((modifier: 'iflx', query: $key))  { display: inline-flex;  }
+      @include builder ((modifier: 'g', query: $key))     { display: grid;         }
+      @include builder ((modifier: 'ig', query: $key))    { display: inline-grid;  }
+      @include builder ((modifier: 'sg', query: $key))    { display: subgrid;      }
    }
 }

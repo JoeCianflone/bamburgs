@@ -1,3 +1,7 @@
+// Builder makes the styles look right
+//
+// .class:modifier:value:variant@media-query--state
+
 @mixin builder($list: ()) {
    $build-statement: "";
    $query: map-get($list, query);
@@ -7,6 +11,7 @@
    $state: map-get($list, state);
 
    @if ($modifier) {
+      //:modifier
       $build-statement: #{$build-statement}#{make-modifier($modifier)};
    }
 
@@ -37,7 +42,7 @@
 }
 
 @mixin generate-statement($build-statement, $query) {
-
+   @debug ( &#{$build-statement} );
    &#{$build-statement} {
       @if ($query and $query != 'x') {
          @include mq($query) { @content; }
@@ -59,7 +64,7 @@
 }
 
 @function make-modifier($item) {
-   @return \[#{$item}\];
+   @return \:#{$item};
 }
 
 @function make-value($item) {
@@ -71,7 +76,7 @@
    $item: str-replace(#{$item}, '-', '\\-');
    $item: str-replace(#{$item}, '%', '\\%');
 
-   @return \(#{$item}\);
+   @return \:#{$item};
 }
 
 @function make-query($item) {
@@ -79,5 +84,5 @@
 }
 
 @function make-state($item) {
-   @return ":#{$item}";
+   @return "--#{$item}:#{$item}";
 }

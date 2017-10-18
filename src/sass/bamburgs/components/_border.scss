@@ -1,7 +1,7 @@
 .circle { border-radius: 100%; }
 
 @for $i from 0 through $border-radius-amount {
-   .radius {
+   .r {
       @include builder ((value: $i)) { border-radius: #{$i}px; }
 
       @include builder ((modifier: 'left', value: $i)) {
@@ -14,13 +14,22 @@
          border-bottom-right-radius: #{$i}px;
       }
 
+      @include builder ((modifier: 'top', value: $i))     {
+         border-top-left-radius: #{$i}px;
+         border-top-right-radius: #{$i}px;
+      }
       @include builder ((modifier: 'top-left', value: $i))     { border-top-left-radius: #{$i}px;     }
       @include builder ((modifier: 'top-right', value: $i))    { border-top-right-radius: #{$i}px;    }
+
+      @include builder ((modifier: 'bottom', value: $i))     {
+         border-bottom-left-radius: #{$i}px;
+         border-bottom-right-radius: #{$i}px;
+      }
       @include builder ((modifier: 'bottom-left', value: $i))  { border-bottom-right-radius: #{$i}px; }
       @include builder ((modifier: 'bottom-right', value: $i)) { border-bottom-left-radius: #{$i}px;  }
    }
 
-   .border {
+   .b {
       @include builder ((value: $i)) { border: #{$i}px solid; }
       @include builder ((modifier: 'left', value: $i)) {
          border-left-style: solid;

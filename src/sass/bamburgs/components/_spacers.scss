@@ -18,11 +18,11 @@
 
 @each $key, $breakpoint in $breakpoint-list {
    @for $i from 0 through $spacing-amount {
-      @include spacer-type($i, 'padding', $key);
-      @include spacer-type($i, 'margin', $key);
+      @include spacer-type($i, 'p', $key);
+      @include spacer-type($i, 'm', $key);
    }
 
-   .margin {
+   .m {
       @include builder((modifier: 'center', query: $key)) {
          margin-left: auto !important;
          margin-right: auto !important;

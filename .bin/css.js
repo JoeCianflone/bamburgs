@@ -12,9 +12,12 @@ if (config.dist === 'production') {
 }
 
 wl('Sass...');
-shell.exec(`node-sass ${cfg}`);
-wl('...Done Sass');
+let sassComplete = shell.exec(`node-sass ${cfg}`);
 
-wl('PostCSS...');
-shell.exec(`postcss ${output}/${config.dist.stylesFilename} -o ${output}/${config.dist.stylesFilename} -c ./postcss.config.js -r`);
-wl('...Done PostCSS');
+
+if (sassComplete.code == 0 ) {
+   wl('...Done Sass');
+   wl('PostCSS...');
+   shell.exec(`postcss ${output}/${config.dist.stylesFilename} -o ${output}/${config.dist.stylesFilename} -c ./postcss.config.js -r`);
+   wl('...Done PostCSS');
+}

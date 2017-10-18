@@ -1,15 +1,13 @@
-.bg {
-   &-size {
-      @include builder ((modifier: 'cover'))   { background-size: cover;   }
-      @include builder ((modifier: 'contain')) { background-size: contain; }
-   }
+.bgs {
+   @include builder ((modifier: 'cover'))   { background-size: cover;   }
+   @include builder ((modifier: 'contain')) { background-size: contain; }
+}
 
-   &-position  {
-      @include builder ((modifier: 'top'))    { background-size: top;    }
-      @include builder ((modifier: 'right'))  { background-size: right;  }
-      @include builder ((modifier: 'bottom')) { background-size: bottom; }
-      @include builder ((modifier: 'left'))   { background-size: left;   }
-      @include builder ((modifier: 'center')) { background-size: center; }
-   }
+.bgp {
+   @include builder ((modifier: 'top'))    { background-size: top;    }
+   @include builder ((modifier: 'right'))  { background-size: right;  }
+   @include builder ((modifier: 'bottom')) { background-size: bottom; }
+   @include builder ((modifier: 'left'))   { background-size: left;   }
+   @include builder ((modifier: 'center')) { background-size: center; }
 }
 

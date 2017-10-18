@@ -1,4 +1,10 @@
-.float {
+/**
+ * flt--left
+ * flt--right
+ * flt--none
+ */
+
+.flt {
    @each $key, $breakpoint in $breakpoint-list {
       @include builder ((modifier: 'right', query: $key)) { float: right; }
       @include builder ((modifier: 'left', query: $key))  { float: left;  }

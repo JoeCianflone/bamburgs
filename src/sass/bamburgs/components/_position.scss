@@ -5,22 +5,31 @@
 }
 
 @each $key, $breakpoint in $breakpoint-list {
-   .position {
+   .pos {
       @include builder ((modifier: 'rel', query: $key))   { position: relative; }
       @include builder ((modifier: 'abs', query: $key))   { position: absolute; }
-      @include builder ((modifier: 'fixed', query: $key)) { position: fixed;    }
+      @include builder ((modifier: 'fix', query: $key)) { position: fixed;    }
    }
 
    .pin {
-      @include builder ((modifier: 'top', query: $key))     { top: 0;    }
-      @include builder ((modifier: 'right', query: $key))   { right: 0;  }
-      @include builder ((modifier: 'bottom', query: $key))  { bottom: 0; }
-      @include builder ((modifier: 'left', query: $key))    { left: 0;   }
-      @include builder ((modifier: 'corners', query: $key)) {
+      @include builder ((query: $key)) {
          bottom: 0;
          left: 0;
          right: 0;
          top: 0;
+      }
+      @include builder ((modifier: 'top', query: $key))     { top: 0;    }
+      @include builder ((modifier: 'right', query: $key))   { right: 0;  }
+      @include builder ((modifier: 'bottom', query: $key))  { bottom: 0; }
+      @include builder ((modifier: 'left', query: $key))    { left: 0;   }
+
+      @for $i from 0 through 100 {
+         @include builder ((modifier: 'top', value: $i, query: $key))     { top: #{$i}vh;    }
+         @include builder ((modifier: 'right', value: $i, query: $key))   { right: #{$i}vw;  }
+         @include builder ((modifier: 'bottom', value: $i, query: $key))  { bottom: #{$i}vh; }
+         @include builder ((modifier: 'left', value: $i, query: $key))    { left: #{$i}vw;   }
+
+         $i: $i+5;
       }
    }
 }

@@ -1,31 +1,30 @@
-.font-weight {
-   @include builder ((modifier: 'thin'))      { font-weight: 100; }
-   @include builder ((modifier: 'xlight'))    { font-weight: 200; }
-   @include builder ((modifier: 'light'))     { font-weight: 300; }
-   @include builder ((modifier: 'regular'))   { font-weight: 400; }
-   @include builder ((modifier: 'medium'))    { font-weight: 500; }
-   @include builder ((modifier: 'semi-bold')) { font-weight: 600; }
-   @include builder ((modifier: 'bold'))      { font-weight: 700; }
-   @include builder ((modifier: 'xbold'))     { font-weight: 800; }
-   @include builder ((modifier: 'black'))     { font-weight: 900; }
+.thin      { font-weight: 100; }
+.xlight    { font-weight: 200; }
+.light     { font-weight: 300; }
+.regular   { font-weight: 400; }
+.medium    { font-weight: 500; }
+.semi-bold { font-weight: 600; }
+.bold      { font-weight: 700; }
+.xbold     { font-weight: 800; }
+.black     { font-weight: 900; }
+
+@each $key, $family in $font-families {
+   .#{$key} { font-family: $family; }
 }
 
+
 @each $key, $breakpoint in $breakpoint-list {
-   .text {
-      &-align {
-         @include builder ((modifier: 'left'))   { text-align: left;   }
-         @include builder ((modifier: 'right'))  { text-align: right;  }
-         @include builder ((modifier: 'center')) { text-align: center; }
-      }
+   .txt {
+      @include builder ((modifier: 'left'))   { text-align: left;   }
+      @include builder ((modifier: 'right'))  { text-align: right;  }
+      @include builder ((modifier: 'center')) { text-align: center; }
 
-      &-transform {
-         @include builder ((modifier: 'uppercase'))  { text-transform: uppercase;  }
-         @include builder ((modifier: 'lowercase'))  { text-transform: lowercase;  }
-         @include builder ((modifier: 'capitalize')) { text-transform: capitalize; }
-         @include builder ((modifier: 'full-width')) { text-transform: full-width; }
-      }
+      @include builder ((modifier: 'upper'))  { text-transform: uppercase;  }
+      @include builder ((modifier: 'lower'))  { text-transform: lowercase;  }
+      @include builder ((modifier: 'cap')) { text-transform: capitalize; }
+      @include builder ((modifier: 'full')) { text-transform: full-width; }
 
-      &-hide {
+      @include builder ((modifier: 'hide')) {
          overflow: hidden;
          text-indent: 100%;
          white-space: nowrap;
@@ -34,7 +33,7 @@
 
    $fs: 1;
    @each $value in $font-sizes {
-      .font-size {
+      .size {
          @include builder ((value: $fs, query: $key)) { font-size: $value; }
          $fs: $fs + 1;
       }
@@ -43,7 +42,7 @@
    @for $i from 0 through 20 {
       $height: $i / 10;
 
-      .letter-spacing {
+      .ls {
          @include builder((value: $i, query: $key)) { letter-spacing: #{$i}px; }
 
          @if ($i > 0) {
@@ -51,7 +50,7 @@
          }
       }
 
-      .line-height {
+      .lh {
          @include builder((value: $i, query: $key)) { line-height: $height; }
 
          @if ($i > 0) {
@@ -61,10 +60,6 @@
    }
 }
 
-@each $key, $family in $font-families {
-   .font {
-      @include builder ((modifier: $key)) { font-family: $family; }
-   }
-}
+
 
 

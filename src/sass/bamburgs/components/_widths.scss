@@ -2,21 +2,26 @@
    $value: $i * $width-multiple;
 
    @each $key, $breakpoint in $breakpoint-list {
-      .width {
+      .w {
+         @include builder ((value: $value, query: $key)) { width: $value * 1%; }
+
          @include builder ((value: 'min', query: $key))  { width: $site-min;   }
          @include builder ((value: 'max', query: $key))  { width: $site-max;   }
          @include builder ((value: 'full', query: $key)) { width: 100%;        }
-         @include builder ((value: $value, query: $key)) { width: $value * 1%; }
+      }
+      .mnw {
+         @include builder ((value: $value, query: $key)) { min-width: $value * 1%; }
 
-         @include builder ((modifier: 'min', value: 'min', query: $key))  { min-width: $site-min;   }
-         @include builder ((modifier: 'min', value: 'max', query: $key))  { min-width: $site-max;   }
-         @include builder ((modifier: 'min', value: 'full', query: $key)) { min-width: 100%;        }
-         @include builder ((modifier: 'min', value: $value, query: $key)) { min-width: $value * 1%; }
+         @include builder ((value: 'min', query: $key))  { min-width: $site-min;   }
+         @include builder ((value: 'max', query: $key))  { min-width: $site-max;   }
+         @include builder ((value: 'full', query: $key)) { min-width: 100%;        }
+      }
+      .mxw {
+         @include builder ((value: $value, query: $key)) { max-width: $value * 1%; }
 
-         @include builder ((modifier: 'max', value: 'min', query: $key))  { max-width: $site-min;   }
-         @include builder ((modifier: 'max', value: 'max', query: $key))  { max-width: $site-max;   }
-         @include builder ((modifier: 'max', value: 'full', query: $key)) { max-width: 100%;        }
-         @include builder ((modifier: 'max', value: $value, query: $key)) { max-width: $value * 1%; }
+         @include builder ((value: 'min', query: $key))  { max-width: $site-min;   }
+         @include builder ((value: 'max', query: $key))  { max-width: $site-max;   }
+         @include builder ((value: 'full', query: $key)) { max-width: 100%;        }
       }
    }
 }
