@@ -42,7 +42,6 @@
 }
 
 @mixin generate-statement($build-statement, $query) {
-   @debug ( &#{$build-statement} );
    &#{$build-statement} {
       @if ($query and $query != 'x') {
          @include mq($query) { @content; }
