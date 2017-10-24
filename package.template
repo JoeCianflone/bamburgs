@@ -1,6 +1,6 @@
 {
    "name": "{{name}}",
-   "version": "0.0.1",
+   "version": "0.0.0",
    "description": "{{description}}",
    "author": "{{author}}",
    "email": "{{email}}",
@@ -45,7 +45,9 @@
       "build:copy": "copy",
       "build:images": "images",
       "build:css": "css",
-      "build:scripts": "scripts",
+      {{usejs}}
+      "build:vue": "vue",
+      {{/usejs}}
       "clean": "clean",
       "deploy": "npm-run-all clean lint build:*",
       "lint": "lint",
@@ -53,10 +55,21 @@
       "watch:copy": "watch-copy",
       "watch:images": "watch-images",
       "watch:css": "watch-css",
-      "watch:scripts": "watch-scripts"
+      {{usejs}}
+      "watch:vue": "watch-vue"
+      {{/usejs}}
    },
    "dependencies": {
       "npm-run-all": "^4.1.1",
-      "bamburgs": "joecianflone/bamburgs"
+      "bamburgs": "joecianflone/bamburgs",
+      {{usejs}}
+      "babel-core": "^6.26.0",
+      "babel-preset-env": "^1.6.0",
+      "browserify": "^14.4.0",
+      "vue": "^2.4.2",
+      "vue-template-compiler": "^2.4.2",
+      "vueify": "^9.4.1",
+      "uglify-js": "^3.0.28"
+      {{/usejs}}
    }
 }

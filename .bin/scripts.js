@@ -7,14 +7,14 @@ let jsInput          = `${config.src.path}/${config.src.scripts}/${config.src.js
 let jsOutput         = `${config.dist.path}/${config.dist.scripts}/${config.src.jsFilename}.js`;
 let jsOutputMinified = `${config.dist.path}/${config.dist.scripts}/${config.src.jsFilename}.min.js`;
 
-wl('Compiling VueJS...');
+wl('Compiling Scripts...');
 
 shell.exec(`browserify -t vueify -e ${jsInput} -o ${jsOutput} -v`);
 
 if (config.env === 'production') {
-   wl('Uglifying VueJS...');
+   wl('Uglifying Scripts...');
 
    shell.exec(`uglifyjs ${jsOutput} -o ${jsOutputMinified} -c -m`);
 }
 
-wl('...Done compiling VueJS');
+wl('...Done compiling scripts');

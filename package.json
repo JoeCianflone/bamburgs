@@ -75,12 +75,9 @@
       "watch-copy": "./.bin/watch-copy.js",
       "watch-images": "./.bin/watch-images.js",
       "watch-css": "./.bin/watch-css.js",
-      "watch-vue": "./.bin/watch-vue.js"
+      "watch-vue": "./.bin/watch-vue.js",
    },
    "dependencies": {
-      "babel-core": "^6.26.0",
-      "babel-preset-env": "^1.6.0",
-      "browserify": "^14.4.0",
       "css-mqpacker": "^6.0.1",
       "cssnano": "^4.0.0-rc.2",
       "editorconfig-tools": "^0.1.1",
@@ -105,9 +102,6 @@
       "sass-lint": "^1.11.1",
       "sassdoc": "^2.3.0",
       "shelljs": "^0.7.8",
-      "uglify-js": "^3.0.28",
-      "vue": "^2.4.2",
-      "vue-template-compiler": "^2.4.2",
-      "vueify": "^9.4.1"
+
    }
 }
