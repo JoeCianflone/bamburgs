@@ -75,7 +75,7 @@
       "watch-copy": "./.bin/watch-copy.js",
       "watch-images": "./.bin/watch-images.js",
       "watch-css": "./.bin/watch-css.js",
-      "watch-vue": "./.bin/watch-vue.js",
+      "watch-vue": "./.bin/watch-vue.js"
    },
    "dependencies": {
       "css-mqpacker": "^6.0.1",
@@ -101,7 +101,6 @@
       "postcss-sprites": "^4.2.1",
       "sass-lint": "^1.11.1",
       "sassdoc": "^2.3.0",
-      "shelljs": "^0.7.8",
-
+      "shelljs": "^0.7.8"
    }
 }
