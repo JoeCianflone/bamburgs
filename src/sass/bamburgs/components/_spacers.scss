@@ -1,31 +1,37 @@
-@mixin spacer-type ($i, $type, $key) {
-   .#{$type} {
-      @include builder ((value: $i, query: $key))                     { #{$type}: #{$i * $spacing-multiplier}px;        }
-      @include builder ((modifier: 'top', value: $i, query: $key))    { #{$type}-top: #{$i * $spacing-multiplier}px;    }
-      @include builder ((modifier: 'right', value: $i, query: $key))  { #{$type}-right: #{$i * $spacing-multiplier}px;  }
-      @include builder ((modifier: 'bottom', value: $i, query: $key)) { #{$type}-bottom: #{$i * $spacing-multiplier}px; }
-      @include builder ((modifier: 'left', value: $i, query: $key))   { #{$type}-left: #{$i * $spacing-multiplier}px;   }
-      @include builder ((modifier: 'top-bottom', value: $i, query: $key)) {
-         #{$type}-bottom: #{$i * $spacing-multiplier}px;
-         #{$type}-top:    #{$i * $spacing-multiplier}px;
-      }
-      @include builder ((modifier: 'left-right', value: $i, query: $key)) {
-         #{$type}-left:  #{$i * $spacing-multiplier}px;
-         #{$type}-right: #{$i * $spacing-multiplier}px;
-      }
+$increment: true;
+$responsive: true;
+$have-states: false;
+
+@mixin class($state, $type) {
+   #{$type}margin-x-auto { margin-left: auto; margin-right: auto;}
+}
+
+@mixin classes ($i, $state, $type) {
+   $val: $i * $spacing-multiplier * 1px;
+
+   #{$type}margin {
+      &-#{$i} { margin: $val; }
+      &-#{$i}-top { margin-top: $val; }
+      &-#{$i}-right { margin-right: $val; }
+      &-#{$i}-bottom { margin-bottom: $val; }
+      &-#{$i}-left { margin-left: $val; }
+      &-#{$i}-x { margin-left: $val; margin-right: $val; }
+      &-#{$i}-y { margin-top: $val; margin-bottom: $val;}
+   }
+
+   #{$type}padding {
+      &-#{$i} { padding: $val; }
+      &-#{$i}-top { padding-top: $val; }
+      &-#{$i}-right { padding-right: $val; }
+      &-#{$i}-bottom { padding-bottom: $val; }
+      &-#{$i}-left { padding-left: $val; }
+      &-#{$i}-x { padding-left: $val; padding-right: $val; }
+      &-#{$i}-y { padding-top: $val; padding-bottom: $val;}
    }
 }
 
-@each $key, $breakpoint in $breakpoint-list {
-   @for $i from 0 through $spacing-amount {
-      @include spacer-type($i, 'p', $key);
-      @include spacer-type($i, 'm', $key);
-   }
+@include build(false, $responsive, $have-states);
 
-   .m {
-      @include builder((modifier: 'center', query: $key)) {
-         margin-left: auto !important;
-         margin-right: auto !important;
-      }
-   }
+@for $i from 0 through $spacing-amount {
+   @include build($i, $responsive, $have-states);
 }

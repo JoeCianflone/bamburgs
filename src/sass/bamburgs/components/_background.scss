@@ -1,13 +1,28 @@
-.bgs {
-   @include builder ((modifier: 'cover'))   { background-size: cover;   }
-   @include builder ((modifier: 'contain')) { background-size: contain; }
+$increment: false;
+$responsive: true;
+$have-states: false;
+
+@mixin class($state, $type) {
+   #{$type}bg {
+      &-cover   { background-size: cover;   }
+      &-contain { background-size: contain; }
+
+      &-top    { background-position: top;    }
+      &-top-right { background-position: right top; }
+      &-top-left { background-position: left top; }
+      &-right  { background-position: right;  }
+      &-bottom { background-position: bottom; }
+      &-bottom-right { background-position: right bottom; }
+      &-bottom-left { background-position: left bottom; }
+      &-left   { background-position: left;   }
+      &-center { background-position: center; }
+
+      &-repeat    { background-repeat: repeat; }
+      &-no-repeat { background-repeat: no-repeat; }
+      &-repeat-x  { background-repeat: repeat-x; }
+      &-repeat-y  { background-repeat: repeat-y; }
+   }
 }
 
-.bgp {
-   @include builder ((modifier: 'top'))    { background-size: top;    }
-   @include builder ((modifier: 'right'))  { background-size: right;  }
-   @include builder ((modifier: 'bottom')) { background-size: bottom; }
-   @include builder ((modifier: 'left'))   { background-size: left;   }
-   @include builder ((modifier: 'center')) { background-size: center; }
-}
+@include build($increment, $responsive, $have-states);
 

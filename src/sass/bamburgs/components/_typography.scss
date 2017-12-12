@@ -1,65 +1,81 @@
-.thin      { font-weight: 100; }
-.xlight    { font-weight: 200; }
-.light     { font-weight: 300; }
-.regular   { font-weight: 400; }
-.medium    { font-weight: 500; }
-.semi-bold { font-weight: 600; }
-.bold      { font-weight: 700; }
-.xbold     { font-weight: 800; }
-.black     { font-weight: 900; }
+$increment: false;
+$responsive: true;
+$have-states: true;
 
-@each $key, $family in $font-families {
-   .#{$key} { font-family: $family; }
-}
+$weights: (
+   thin: 100,
+   extra-light: 200,
+   light: 300,
+   regular: 400,
+   medium: 500,
+   semi-bold: 600,
+   bold: 700,
+   extra-bold: 800,
+   black: 900,
+);
 
+@mixin class($state, $type) {
 
-@each $key, $breakpoint in $breakpoint-list {
-   .txt {
-      @include builder ((modifier: 'left'))   { text-align: left;   }
-      @include builder ((modifier: 'right'))  { text-align: right;  }
-      @include builder ((modifier: 'center')) { text-align: center; }
+   #{$type}tracking {
+      &-auto { letter-spacing: auto; }
+      &-tight { letter-spacing: -0.05em; }
+      &-normal { letter-spacing: 0; }
+      &-wide { letter-spacing: 0.05em; }
+   }
 
-      @include builder ((modifier: 'upper'))  { text-transform: uppercase;  }
-      @include builder ((modifier: 'lower'))  { text-transform: lowercase;  }
-      @include builder ((modifier: 'cap')) { text-transform: capitalize; }
-      @include builder ((modifier: 'full')) { text-transform: full-width; }
+   #{$type}leading {
+      &-auto { line-height: 1 }
+      &-tight { line-height: 1.25; }
+      &-normal { line-height: 1.5; }
+      &-loose { line-height: 2; }
+   }
 
-      @include builder ((modifier: 'hide')) {
+   #{$type}text {
+      &-left#{$state} { text-align: left;   }
+      &-right#{$state} { text-align: right;  }
+      &-center#{$state} { text-align: center; }
+      &-justify#{$state} { text-align: justify; }
+
+      &-roman#{$state} { font-style: none; }
+      &-italic#{$state} { font-style: italic; }
+
+      &-underline#{$state} { text-decoration: underline;  }
+      &-no-underline#{$state} { text-decoration: none;  }
+
+      &-upper#{$state} { text-transform: uppercase;  }
+      &-strike#{$state} { text-transform: line-through;  }
+      &-no-strike#{$state} { text-transform: normal; }
+      &-normal#{$state} { text-transform: none; }
+      &-lower#{$state} { text-transform: lowercase;  }
+      &-cap#{$state} { text-transform: capitalize; }
+      &-full#{$state} { text-transform: full-width; }
+      &-hidden#{$state} {
          overflow: hidden;
          text-indent: 100%;
          white-space: nowrap;
       }
    }
 
-   $fs: 1;
-   @each $value in $font-sizes {
-      .size {
-         @include builder ((value: $fs, query: $key)) { font-size: $value; }
-         $fs: $fs + 1;
-      }
-   }
+   #{$type}font {
+      @each $name, $family in $font-families {
+         &-#{$name}#{$state} { font-family: $family; }
 
-   @for $i from 0 through 20 {
-      $height: $i / 10;
-
-      .ls {
-         @include builder((value: $i, query: $key)) { letter-spacing: #{$i}px; }
-
-         @if ($i > 0) {
-            @include builder((value: '-#{$i}', query: $key)) { letter-spacing: -#{$i}px; }
+         @if ($name != 'mono' or $name != 'code') {
+            @each $key, $value in $weights {
+               &-#{$name}-#{$key}#{$state} { font-family: $family; font-weight: $value; }
+            }
          }
       }
 
-      .lh {
-         @include builder((value: $i, query: $key)) { line-height: $height; }
+      @each $key, $value in $weights {
+         &-#{$key}#{$state} { font-weight: $value; }
+      }
 
-         @if ($i > 0) {
-            @include builder((value: '-#{$i}', query: $key)) { line-height: -#{$height}; }
-         }
+      @for $i from $font-count through 1 {
+         $position: ($font-count + 1) - $i;
+         &-size-#{$i} { font-size: nth($font-sizes, $position); }
       }
    }
 }
 
-
-
-
+@include build($increment, $responsive, $have-states);

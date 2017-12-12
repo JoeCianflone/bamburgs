@@ -1,15 +1,18 @@
-@each $key, $breakpoint in $breakpoint-list {
-   .ovr {
-      @include builder ((modifier: 'hide', query: $key))   { overflow: hidden; }
-      @include builder ((modifier: 'scroll', query: $key)) { overflow: scroll; }
+$increment: false;
+$responsive: true;
+$have-states: false;
 
-      &-x {
-         @include builder ((modifier: 'hide', query: $key))   { overflow-x: hidden; }
-         @include builder ((modifier: 'scroll', query: $key)) { overflow-x: scroll; }
-      }
-      &-y {
-         @include builder ((modifier: 'hide', query: $key))   { overflow-y: hidden; }
-         @include builder ((modifier: 'scroll', query: $key)) { overflow-y: scroll; }
-      }
+@mixin class($state, $type) {
+   #{$type}overflow {
+      &-hide { overflow: hidden; }
+      &-scroll { overflow: scroll; }
+
+      &-x-hide { overflow-x: hidden; }
+      &-x-scroll { overflow-x: scroll; }
+
+      &-y-hide { overflow-y: hidden; }
+      &-y-scroll { overflow-y: scroll; }
    }
 }
+
+@include build($increment, $responsive, $have-states);

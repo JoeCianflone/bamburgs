@@ -1,87 +1,58 @@
 // Builder makes the styles look right
-//
-// .class:modifier:value:variant@media-query--state
 
-@mixin builder($list: ()) {
-   $build-statement: "";
-   $query: map-get($list, query);
-   $modifier: map-get($list, modifier);
-   $value: map-get($list, value);
-   $variant: map-get($list, variant);
-   $state: map-get($list, state);
-
-   @if ($modifier) {
-      //:modifier
-      $build-statement: #{$build-statement}#{make-modifier($modifier)};
+@function get-state($s) {
+   @if ($s != false) {
+      @return '\\:#{$s}:#{$s}';
    }
 
-   @if ($value) {
-      $build-statement: #{$build-statement}#{make-value($value)};
-   }
+   @return '';
+}
 
-   @if ($variant) {
-      $build-statement: #{$build-statement}#{make-variant($variant)};
-   }
-
-   @if ($query and $query != 'x') {
-      $build-statement: #{$build-statement}#{make-query($query)};
-   }
-
-   @if ($state) {
-      $build-statement: #{$build-statement}#{make-state($state)};
-   }
-
-   @if ($build-statement != "") {
-      @include generate-statement($build-statement, $query) {
-         @content;
+@mixin build($i:false, $should-respond: true, $should-state: true) {
+   @if ($should-respond == true) {
+      @each $query, $value in $breakpoint-list {
+         @include state-loop($should-state, $state, $query, $i);
       }
    } @else {
-      @content;
+      @include state-loop($should-state, $state, false, $i);
    }
-
 }
 
-@mixin generate-statement($build-statement, $query) {
-   &#{$build-statement} {
-      @if ($query and $query != 'x') {
-         @include mq($query) { @content; }
+@mixin state-loop($should-state, $state, $query, $i) {
+   @if ($should-state == true) {
+      @each $state in $states {
+         $s: get-state($state);
+         @include build-bit($query, $i, $s);
+      }
+   } @else {
+      @include build-bit($query, $i, false);
+   }
+}
+
+@mixin build-bit($query, $i, $s) {
+   @if ($query == 'x' or $query == false) {
+      @if ($i == false) {
+         @include class($s, '.');
       } @else {
-         @content;
+         @include classes($i, $s, '.');
+      }
+   } @else {
+      @include mq($query) {
+         .#{$query}\: {
+            @if ($i == false) {
+               @include class($s, '&');
+            } @else {
+               @include classes($i, $s, '&');
+            }
+         }
       }
    }
 }
+
 
 @mixin mq($bp) {
    $value: map-get($breakpoint-list, $bp);
    $mq: 'screen and' + '(#{$break-type}: #{$value})';
 
    @media #{$mq} { @content; }
-}
-
-@function make-query($item) {
-   @return \@#{$item};
-}
-
-@function make-modifier($item) {
-   @return \:#{$item};
-}
-
-@function make-value($item) {
-   @return \:#{$item};
-}
-
-@function make-variant($item) {
-   $item: str-replace(#{$item}, '+', '\\+');
-   $item: str-replace(#{$item}, '-', '\\-');
-   $item: str-replace(#{$item}, '%', '\\%');
-
-   @return \:#{$item};
-}
-
-@function make-query($item) {
-   @return \@#{$item};
-}
-
-@function make-state($item) {
-   @return "--#{$item}:#{$item}";
 }

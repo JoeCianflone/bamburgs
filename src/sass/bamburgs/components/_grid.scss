@@ -1,3 +1,7 @@
+$increment: false;
+$responsive: true;
+$have-states: false;
+
 $block-width: 100% / $grid-columns;
 
 @mixin gutters() {
@@ -52,9 +56,8 @@ $block-width: 100% / $grid-columns;
 }
 
 
-
-@if ($use-flexbox-grid == true) {
-   .row {
+@mixin class($state, $type) {
+   #{$type}row {
       @include row();
 
       .row {
@@ -62,32 +65,30 @@ $block-width: 100% / $grid-columns;
       }
    }
 
-   @each $key, $breakpoint in $breakpoint-list {
-      .col {
-         @include column(auto);
+   #{$type}col {
+      @include column(auto);
 
-         @include builder ((modifier: 'first', query: $key)) { order: 0; }
-         @include builder ((modifier: 'last', query: $key)) { order: 1; }
+      &-first { order: 0; }
+      &-last { order: 1; }
+   }
+
+   #{$type}pull-right {
+      margin-left: auto;
+      margin-right: 0;
       }
+}
 
-      @for $i from 1 through $grid-columns {
-         .col {
-            @include builder ((value: $i, query: $key)) { @include column($i); }
-         }
+@mixin classes($i, $state, $type) {
+   #{$type}col-#{$i} { @include column($i);}
+   #{$type}push-#{$i} { @include push($i); }
+   #{$type}pull-#{$i} {@include pull($i); }
+}
 
-         .push {
-            @include builder ((value: $i, query: $key)) { @include push($i); }
-         }
-         .pull {
-            @include builder ((value: $i, query: $key)) { @include pull($i); }
-         }
-      }
+@if ($use-flexbox-grid == true) {
+   @include build($increment, $state, $have-states);
 
-      .pull {
-         @include builder ((value: 'right', query: $key)) {
-            margin-left: auto;
-            margin-right: 0;
-         }
-      }
+   @for $i from 1 through $grid-columns {
+      @include build($i, $state, $have-states);
    }
 }
+

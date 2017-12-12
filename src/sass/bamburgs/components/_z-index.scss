@@ -1,0 +1,7 @@
+@mixin classes($i, $state, $type) {
+   #{$type}z-#{$i} { z-index: $i * 2; }
+}
+
+@for $i from 1 through $z-steps {
+   @include build-no-state($i);
+}

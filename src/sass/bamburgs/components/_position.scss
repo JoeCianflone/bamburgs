@@ -1,35 +1,24 @@
-@for $i from 1 through $z-steps {
-   .z {
-      @include builder ((value: $i)) { z-index: $i * 2; }
+$increment: false;
+$responsive: true;
+$have-states: false;
+
+@include class($state, $type) {
+   #{$type}relative { position: relative; }
+   #{$type}absolute { position: absolute; }
+   #{$type}fixed { position: fixed;    }
+}
+
+@include classes($i, $state, $type) {
+   #{$type}position-at {
+      &-#{$i}-top    { top: #{$i}vh;    }
+      &-#{$i}-right  { right: #{$i}vw;  }
+      &-#{$i}-bottom { bottom: #{$i}vh; }
+      &-#{$i}-left   { left: #{$i}vw;   }
    }
 }
 
-@each $key, $breakpoint in $breakpoint-list {
-   .pos {
-      @include builder ((modifier: 'rel', query: $key))   { position: relative; }
-      @include builder ((modifier: 'abs', query: $key))   { position: absolute; }
-      @include builder ((modifier: 'fix', query: $key)) { position: fixed;    }
-   }
-
-   .pin {
-      @include builder ((query: $key)) {
-         bottom: 0;
-         left: 0;
-         right: 0;
-         top: 0;
-      }
-      @include builder ((modifier: 'top', query: $key))     { top: 0;    }
-      @include builder ((modifier: 'right', query: $key))   { right: 0;  }
-      @include builder ((modifier: 'bottom', query: $key))  { bottom: 0; }
-      @include builder ((modifier: 'left', query: $key))    { left: 0;   }
-
-      @for $i from 0 through 100 {
-         @include builder ((modifier: 'top', value: $i, query: $key))     { top: #{$i}vh;    }
-         @include builder ((modifier: 'right', value: $i, query: $key))   { right: #{$i}vw;  }
-         @include builder ((modifier: 'bottom', value: $i, query: $key))  { bottom: #{$i}vh; }
-         @include builder ((modifier: 'left', value: $i, query: $key))    { left: #{$i}vw;   }
-
-         $i: $i+5;
-      }
-   }
+@include build($increment, $responsive, $have-states);
+@for $i from 0 through 100 {
+   $i: $i * 10;
+   @include build($i, $responsive, $have-states);
 }

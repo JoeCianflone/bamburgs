@@ -61,7 +61,7 @@
    },
    "dependencies": {
       "npm-run-all": "^4.1.1",
-      "bamburgs": "joecianflone/bamburgs",
+      "bamburgs": "github:joecianflone/bamburgs",
       {{usejs}}
       "babel-core": "^6.26.0",
       "babel-preset-env": "^1.6.0",

@@ -7,11 +7,12 @@ $use-mobile-first-mq:   false !default;
 $use-sensible-defaults: true  !default;
 $use-flexbox-grid:      true  !default;
 $use-modular-scale:     true  !default;
+$use-all-states:        false  !default;
 
 $font-sizes:  ()            !default; // only set this if $use-modular-scale = false
-$scale-ratio: 1.5           !default;
-$scale-sets:  5             !default;
-$scale-bases: (1, 1.1, 1.2) !default;
+$scale-ratio: 1.2           !default;
+$scale-sets:  9             !default;
+$scale-bases: (1) !default;
 
 $user-breakpoints:   () !default;
 $user-colors:        () !default;
@@ -24,24 +25,27 @@ $grid-gutter-setting: 'padding' !default; // padding | split;
 $site-min: 320px  !default;
 $site-max: 1440px !default;
 
-$border-size-amount:   20 !default;
-$border-radius-amount: 10 !default;
+$border-amount: 10 !default;
 
 $spacing-amount:     20 !default;
 $spacing-multiplier: 5  !default;
 
-$width-breaks: 20 !default;
-
-$color-gray-name: 'gray' !default; // gray | grey
-$color-disable-variants: true !default;
-$color-disable-grayscale: false !default;
-$color-steps: 20 !default;
+$size-breaks: 20 !default;
+$use-color-variants: true !default;
 
 $z-steps: 10 !default;
 
 // DEFAULT VALUES DO NOT EDIT BELOW THIS POINT ................................
 // All these things can be overridden/merged by $user-* lists see the docs
 // for more information
+
+$states: false, 'hover';
+$state: '';
+
+@if ($use-all-states) {
+   $states: false, 'hover', 'active', 'focus';
+}
+
 
 // Breakpoints ................................................................
 $breakpoint-list: (
@@ -75,21 +79,22 @@ $colors: map-merge($colors, $user-colors);
 
 // Font Families ..............................................................
 $font-families: (
-   serif: #{'Playfair Display', Georgia, serif},
-   sans:  #{Oswald,'Helvetica Neue', Helvetica, Arial, sans-serif},
-   code:  #{Menlo, Consolas, Monaco, 'Andale Mono', monospace},
+   primary:  #{Oswald,'Helvetica Neue', Helvetica, Arial, sans-serif},
+   secondary: #{'Playfair Display', Georgia, serif},
+   mono:  #{Menlo, Consolas, Monaco, 'Andale Mono', monospace},
 ) !global;
 
 $font-families: map-merge($font-families, $user-font-families);
 
 // Font Sizes .................................................................
+$font-count: $scale-sets * length($scale-bases);
+
 @if ($use-modular-scale == true){
    $font-sizes: setFontSizes($scale-ratio, $scale-bases, $scale-sets);
 }
 
 // Width sizes ................................................................
-$width-multiple: 100 / $width-breaks !global;
-
+$size-multiple: 100 / $size-breaks !global;
 
 $block-width: 100% / $grid-columns;
 

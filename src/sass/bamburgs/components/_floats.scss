@@ -1,16 +1,6 @@
-/**
- * flt--left
- * flt--right
- * flt--none
- */
-
-.flt {
-   @each $key, $breakpoint in $breakpoint-list {
-      @include builder ((modifier: 'right', query: $key)) { float: right; }
-      @include builder ((modifier: 'left', query: $key))  { float: left;  }
-      @include builder ((modifier: 'none', query: $key))  { float: none;  }
-   }
-}
+$increment: false;
+$responsive: true;
+$have-states: false;
 
 .clearfix,
 %clearfix {
@@ -20,3 +10,12 @@
         clear: both;
     }
 }
+
+@mixin class($state, $type) {
+   #{$type}float-right { float: right; }
+   #{$type}float-left { float: left; }
+   #{$type}float-none { float: none; }
+}
+
+@include build($increment, $responsive, $have-states);
+

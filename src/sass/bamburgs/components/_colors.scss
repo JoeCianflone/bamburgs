@@ -1,58 +1,42 @@
-@mixin color-variants($key, $hex) {
-   @for $i from 1 through $color-steps {
-      $variant-val: $i * 5;
+$increment: false;
+$responsive: false;
+$have-states: true;
 
-      @if ($hex != #000000 or $hex != #000 or $hex != #fff or $hex != #ffffff) {
-         @include color-builder($key, darken($hex, $variant-val), null, '+#{$variant-val}');
-         @include color-builder($key, darken($hex, $variant-val), 'hover', '+#{$variant-val}');
-         @include color-builder($key, darken($hex, $variant-val), 'focus','+#{$variant-val}');
-         @include color-builder($key, darken($hex, $variant-val), 'active', '+#{$variant-val}');
-      }
+@mixin class($state, $type) {
+   @each $name, $hex in $colors {
+      #{$type}bg-color-#{$name}#{$state} { background-color: $hex; }
+      #{$type}text-color-#{$name}#{$state} { color: $hex; }
+      #{$type}border-color-#{$name}#{$state} { border-color: $hex; }
 
-      @if ($hex != #ffffff or $hex != #fff or $hex != #000000 or $hex != #000) {
-         @include color-builder($key, lighten($hex, $variant-val), null, '-#{$variant-val}');
-         @include color-builder($key, lighten($hex, $variant-val), 'hover', '-#{$variant-val}');
-         @include color-builder($key, lighten($hex, $variant-val), 'focus','-#{$variant-val}');
-         @include color-builder($key, lighten($hex, $variant-val), 'active', '-#{$variant-val}');
-      }
-
-      @include color-builder($key, rgba($hex, $variant-val / 100), null, '#{$variant-val}%');
-      @include color-builder($key, rgba($hex, $variant-val / 100), 'hover', '#{$variant-val}%');
-      @include color-builder($key, rgba($hex, $variant-val / 100), 'focus','#{$variant-val}%');
-      @include color-builder($key, rgba($hex, $variant-val / 100), 'active', '#{$variant-val}%');
-   }
-}
-
-@mixin grayscale() {
-   @for $i from 1 through $color-steps {
-      $gray-val: $i * (100 / $color-steps);
-      @include color-builder($color-gray-name, darken(#fff, $gray-val), null, $gray-val);
-      @include color-builder($color-gray-name, darken(#fff, $gray-val), 'hover', $gray-val);
-      @include color-builder($color-gray-name, darken(#fff, $gray-val), 'focus', $gray-val);
-      @include color-builder($color-gray-name, darken(#fff, $gray-val), 'active', $gray-val);
-   }
-}
-
-@mixin color-builder($value, $hex, $state: null, $variant: null) {
-   @include builder ((modifier: "bg", value: $value, state: $state, variant: $variant)) { background-color: $hex; }
-   @include builder ((modifier: "txt",value: $value, state: $state, variant: $variant)) { color: $hex;            }
-   @include builder ((modifier: "b",  value: $value, state: $state, variant: $variant)) { border-color: $hex;     }
-}
-
-.c {
-   @each $key, $hex in $colors {
-      @include color-builder($key, $hex);
-      @include color-builder($key, $hex, 'hover');
-      @include color-builder($key, $hex, 'focus');
-      @include color-builder($key, $hex, 'active');
-
-      @if ($color-disable-variants != true) {
-         @include color-variants($key, $hex);
+      @if ($use-color-variants == true) {
+         @include color-variants($name, $hex, $type, $state);
       }
    }
+}
 
-   @if ($color-disable-grayscale != true) {
-      @include grayscale;
+@mixin color-variants($name, $hex, $type, $state) {
+   @if ($hex != #000 and $hex != #000000 and $hex != #fff and $hex != #ffffff) {
+      #{$type}bg-color-#{$name}-lightest#{$state} { background-color: lighten($hex, 64%); }
+      #{$type}bg-color-#{$name}-lighter#{$state} { background-color: lighten($hex, 32%); }
+      #{$type}bg-color-#{$name}-light#{$state} { background-color: lighten($hex, 16%); }
+      #{$type}bg-color-#{$name}-dark#{$state} { background-color: darken($hex, 16%); }
+      #{$type}bg-color-#{$name}-darker#{$state} { background-color: darken($hex, 32%); }
+      #{$type}bg-color-#{$name}-darkest#{$state} { background-color: darken($hex, 64%); }
+
+      #{$type}text-color-#{$name}-lightest#{$state} { color: lighten($hex, 64%); }
+      #{$type}text-color-#{$name}-lighter#{$state} { color: lighten($hex, 32%); }
+      #{$type}text-color-#{$name}-light#{$state} { color: lighten($hex, 16%); }
+      #{$type}text-color-#{$name}-dark#{$state} { color: darken($hex, 16%); }
+      #{$type}text-color-#{$name}-darker#{$state} { color: darken($hex, 32%); }
+      #{$type}text-color-#{$name}-darkest#{$state} { color: darken($hex, 64%); }
+
+      #{$type}border-color-#{$name}-lightest#{$state} { border-color: lighten($hex, 64%); }
+      #{$type}border-color-#{$name}-lighter#{$state} { border-color: lighten($hex, 32%); }
+      #{$type}border-color-#{$name}-light#{$state} { border-color: lighten($hex, 16%); }
+      #{$type}border-color-#{$name}-dark#{$state} { border-color: darken($hex, 16%); }
+      #{$type}border-color-#{$name}-darker#{$state} { border-color: darken($hex, 32%); }
+      #{$type}border-color-#{$name}-darkest#{$state} { border-color: darken($hex, 64%); }
    }
 }
 
+@include build($increment, $responsive, $have-states);

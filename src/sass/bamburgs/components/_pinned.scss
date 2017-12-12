@@ -1,0 +1,20 @@
+$increment: false;
+$responsive: true;
+$have-states: false;
+
+@include class($state, $type) {
+   #{$type}pin {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+
+      &-top    { top: 0;    }
+      &-right  { right: 0;  }
+      &-bottom { bottom: 0; }
+      &-left   { left: 0;   }
+
+   }
+}
+
+@include build($increment, $responsive, $have-states);

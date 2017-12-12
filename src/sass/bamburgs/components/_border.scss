@@ -1,51 +1,45 @@
-.circle { border-radius: 100%; }
+$increment: false;
+$responsive: true;
+$have-states: true;
 
-@for $i from 0 through $border-radius-amount {
-   .r {
-      @include builder ((value: $i)) { border-radius: #{$i}px; }
+@mixin class($state, $type) {
+   #{$type}circle#{$state} { border-radius: 100%; }
+}
 
-      @include builder ((modifier: 'left', value: $i)) {
-         border-top-left-radius: #{$i}px;
-         border-bottom-left-radius: #{$i}px;
-      }
-
-      @include builder ((modifier: 'right', value:$i)) {
-         border-top-right-radius: #{$i}px;
-         border-bottom-right-radius: #{$i}px;
-      }
-
-      @include builder ((modifier: 'top', value: $i))     {
-         border-top-left-radius: #{$i}px;
-         border-top-right-radius: #{$i}px;
-      }
-      @include builder ((modifier: 'top-left', value: $i))     { border-top-left-radius: #{$i}px;     }
-      @include builder ((modifier: 'top-right', value: $i))    { border-top-right-radius: #{$i}px;    }
-
-      @include builder ((modifier: 'bottom', value: $i))     {
-         border-bottom-left-radius: #{$i}px;
-         border-bottom-right-radius: #{$i}px;
-      }
-      @include builder ((modifier: 'bottom-left', value: $i))  { border-bottom-right-radius: #{$i}px; }
-      @include builder ((modifier: 'bottom-right', value: $i)) { border-bottom-left-radius: #{$i}px;  }
+@mixin classes($i, $state, $type) {
+   #{$type}border {
+      &-#{$i}#{$state}    { border: #{$i}px; }
+      &-#{$i}-top#{$state} { border-top-style: solid; border-top-width: #{$i}px; }
+      &-#{$i}-right#{$state} { border-right-style: solid; border-right-width: #{$i}px; }
+      &-#{$i}-bottom#{$state} { border-bottom-style: solid; border-bottom-width: #{$i}px; }
+      &-#{$i}-left#{$state} { border-left-style: solid; border-left-width: #{$i}px; }
    }
 
-   .b {
-      @include builder ((value: $i)) { border: #{$i}px solid; }
-      @include builder ((modifier: 'left', value: $i)) {
-         border-left-style: solid;
-         border-left-width: #{$i}px;
-      }
-      @include builder ((modifier: 'right', value: $i)) {
-         border-right-style: solid;
-         border-right-width: #{$i}px;
-      }
-      @include builder ((modifier: 'top', value: $i)) {
-         border-top-style: solid;
-         border-top-width: #{$i}px;
-      }
-      @include builder ((modifier: 'bottom', value: $i)) {
-         border-bottom-style: solid;
-         border-bottom-width: #{$i}px;
-      }
+   #{$type}round {
+      &-#{$i}#{$state}    { border-radius: #{$i}px; }
+      &-#{$i}-top#{$state} { border-top-left-radius: #{$i}px; border-top-right-radius: #{$i}px; }
+      &-#{$i}-top-left#{$state} { border-top-left-radius: #{$i}px; }
+      &-#{$i}-top-right#{$state} { border-top-right-radius: #{$i}px; }
+      &-#{$i}-right#{$state} { border-top-right-radius: #{$i}px; border-bottom-right-radius: #{$i}px; }
+      &-#{$i}-bottom#{$state} { border-bottom-left-radius: #{$i}px; border-bottom-right-radius: #{$i}px;}
+      &-#{$i}-bottom-left#{$state} { border-bottom-left-radius: #{$i}px; }
+      &-#{$i}-bottom-right#{$state} { border-bottom-right-radius: #{$i}px; }
+      &-#{$i}-left#{$state} { border-top-left-radius: #{$i}px; border-bottom-left-radius: #{$i}px; }
    }
- }
+}
+
+@include build($increment, $responsive, $have-states);
+@for $i from 0 through $border-amount {
+   @include build($i, $responsive, $have-states);
+}
+
+
+
+
+
+
+
+
+
+
+
