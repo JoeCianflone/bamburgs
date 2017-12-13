@@ -2,7 +2,7 @@ $increment: false;
 $responsive: true;
 $have-states: false;
 
-@include class($state, $type) {
+@mixin class($state, $type) {
    #{$type}pin {
       bottom: 0;
       left: 0;

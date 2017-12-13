@@ -5,6 +5,7 @@ module.exports = function(ctx) {
       map: {inline: false},
       plugins: {
          'postcss-import': {},
+         'postcss-simple-extend': {},
          'postcss-cssnext': {},
          'postcss-flexbugs-fixes':{},
          'postcss-pxtorem': {

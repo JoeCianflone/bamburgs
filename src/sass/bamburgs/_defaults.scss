@@ -27,8 +27,8 @@
       @include flatten();
 
       border-style: none;
-      max-width: 100%;
       font-style: italic;
+      max-width: 100%;
       vertical-align: middle;
 
       &[width], &[height] {

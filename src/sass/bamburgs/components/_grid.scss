@@ -2,8 +2,6 @@ $increment: false;
 $responsive: true;
 $have-states: false;
 
-$block-width: 100% / $grid-columns;
-
 @mixin gutters() {
    @if $grid-gutter-setting == 'split'  {
       padding-left: $grid-gutter / 2;

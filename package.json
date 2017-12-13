@@ -98,6 +98,7 @@
       "postcss-flexbugs-fixes": "^3.2.0",
       "postcss-import": "^11.0.0",
       "postcss-pxtorem": "^4.0.1",
+      "postcss-simple-extend": "^1.0.0",
       "postcss-sprites": "^4.2.1",
       "sass-lint": "^1.11.1",
       "sassdoc": "^2.3.0",

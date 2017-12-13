@@ -2,13 +2,13 @@ $increment: false;
 $responsive: true;
 $have-states: false;
 
-@include class($state, $type) {
+@mixin class($state, $type) {
    #{$type}relative { position: relative; }
    #{$type}absolute { position: absolute; }
    #{$type}fixed { position: fixed;    }
 }
 
-@include classes($i, $state, $type) {
+@mixin classes($i, $state, $type) {
    #{$type}position-at {
       &-#{$i}-top    { top: #{$i}vh;    }
       &-#{$i}-right  { right: #{$i}vw;  }
