@@ -15,8 +15,11 @@
    }
 
    :focus { outline: none; }
+   ::selection { text-shadow: none; }
 
    body {
+      @extend .leading-loose;
+
       -moz-osx-font-smoothing: grayscale !important;
       -webkit-font-smoothing: antialiased !important;
       height: 100vh;
@@ -36,9 +39,16 @@
       }
    }
 
-   h1, h2, h3, h4, h5, h6, p, blockquote {
-      @include flatten();
-   }
+   svg { fill: currentColor; }
+
+   h1, h2, h3, h4, h5, h6, p, blockquote { @include flatten(); }
+
+   h1 { @extend .font-size-1; }
+   h2 { @extend .font-size-2; }
+   h3 { @extend .font-size-3; }
+   h4 { @extend .font-size-4; }
+   h5 { @extend .font-size-5; }
+   h6 { @extend .font-size-6; }
 
    p, ul, ol { font-size: inherit; }
 
@@ -54,6 +64,12 @@
       }
    }
 
+   table { border-collapse: collapse; }
+
+   textarea { resize: vertical; }
+
+   audio, canvas, iframe, img, svg, video { vertical-align: middle; }
+
    nav {
       ol, ul {
          @include flatten();
@@ -65,5 +81,16 @@
          }
       }
    }
+
+   a, area, button, input, label, select, summary, textarea, [tabindex] {
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+   }
+
+   [aria-busy="true"] { cursor: progress; }
+
+   [aria-controls] { cursor: pointer; }
+
+   [aria-disabled] { cursor: default; }
 }
 
