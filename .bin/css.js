@@ -1,23 +1,18 @@
 #! /usr/bin/env node
 const shell  = require("shelljs");
-const wl     = require('../tools/wl.js');
 const config = require(process.cwd() + '/package.json').config;
 
-let input   = `${config.src.path}/${config.src.styles}/${config.src.stylesFilename}`;
-let output  = `${config.dist.path}/${config.dist.styles}`;
-let cfg = `--output-style='nested' --sourcemap=none --error-bell ${input} -o ${output}`;
+let input   = `${config.src.path}/${config.src.folders.styles}`;
+let output  = `${config.dist.path}/${config.dist.folders.styles}`;
 
-if (config.dist === 'production') {
-   cfg = `--output-style='nested' --sourcemap=none --error-bell ${input} -o ${output}`;
+console.log(`\nCompile Sass to CSS`);
+
+// SourceMaps and Output compression both handled
+// by PostCSS don't worry about them here
+let compiledSass = shell.exec(`node-sass --output-style='nested' --sourcemap=none --error-bell ${input} -o ${output}`);
+
+if (compiledSass.code == 0 ) {
+   console.log(`\nRunning PostCSS`);
+   shell.exec(`postcss ${output}/bamburgs.css -o ${output}/bamburgs.css -c ./postcss.config.js -r`);
 }
 
-wl('Sass...');
-let sassComplete = shell.exec(`node-sass ${cfg}`);
-
-
-if (sassComplete.code == 0 ) {
-   wl('...Done Sass');
-   wl('PostCSS...');
-   shell.exec(`postcss ${output}/${config.dist.stylesFilename} -o ${output}/${config.dist.stylesFilename} -c ./postcss.config.js -r`);
-   wl('...Done PostCSS');
-}

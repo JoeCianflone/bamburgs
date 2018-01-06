@@ -1,25 +1,14 @@
 #! /usr/bin/env node
 const shell  = require("shelljs");
 const config = require(process.cwd() + '/package.json').config;
-const wl     = require('../tools/wl.js');
 const fs     = require('fs-extra');
 
-let p       = `${config.dist.path}`;
-let folders = [
-   `${p}/${config.dist.styles}`,
-   `${p}/${config.dist.scripts}`,
-   `${p}/${config.dist.fonts}`,
-   `${p}/${config.dist.images}`
-];
-
-wl('Cleaning files/folders...');
+let p   = `${config.dist.path}`;
 
 fs.remove(p)
    .then(() => {
-      folders.forEach((val, i) => {
-         fs.mkdirs(val).catch(e =>wl(`Oh snap... couldn't create ${val}`));
+      Object.getOwnPropertyNames(config.dist.folders).forEach((key, i) => {
+         fs.mkdirs(`${p}/${config.dist.folders[key]}`).catch(e => console.log(`Oh snap... couldn't create ${key}`));
       });
    })
-   .catch(() => wl(`oh snap... removing of ${p} failed`));
-
-wl('...Cleaned');
+   .catch(() => console.log(`oh snap... removing of ${p} failed`));

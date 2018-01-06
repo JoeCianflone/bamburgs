@@ -1,0 +1,11 @@
+$increment: true;
+$responsive: true;
+$have-states: false;
+
+@mixin classes($i, $state, $type) {
+   #{$type}z-#{$i} { z-index: $i * 2; }
+}
+
+@for $i from 1 through $z-steps {
+   @include build($i, $responsive, $have-states);
+}

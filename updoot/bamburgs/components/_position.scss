@@ -1,0 +1,24 @@
+$increment: false;
+$responsive: true;
+$have-states: false;
+
+@mixin class($state, $type) {
+   #{$type}relative { position: relative; }
+   #{$type}absolute { position: absolute; }
+   #{$type}fixed { position: fixed;    }
+}
+
+@mixin classes($i, $state, $type) {
+   #{$type}position-at {
+      &-#{$i}-top    { top: #{$i}vh;    }
+      &-#{$i}-right  { right: #{$i}vw;  }
+      &-#{$i}-bottom { bottom: #{$i}vh; }
+      &-#{$i}-left   { left: #{$i}vw;   }
+   }
+}
+
+@include build($increment, $responsive, $have-states);
+@for $i from 0 through 100 {
+   $i: $i * 10;
+   @include build($i, $responsive, $have-states);
+}

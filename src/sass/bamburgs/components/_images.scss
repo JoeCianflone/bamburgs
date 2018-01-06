@@ -1,0 +1,39 @@
+$increment: false;
+$responsive: false;
+$have-states: false;
+
+@mixin image-display($url) {
+   @if ($use-inline-images == true) {
+      background-image: inline($url);
+   } @else {
+      background-image: resolve($url);
+   }
+   background-repeat: no-repeat;
+}
+
+@mixin class($state, $type) {
+   .image {
+      @each $name, $url in $images {
+         &-#{$name} {
+            @include image-display($url);
+
+            height: height($url);
+            width: width($url);
+
+            &-cover {
+               @include image-display($url);
+
+               background-size: cover;
+            }
+
+            &-contain {
+               @include image-display($url);
+
+               background-size: contain;
+            }
+         }
+      }
+   }
+}
+
+@include build($increment, $responsive, $have-states);

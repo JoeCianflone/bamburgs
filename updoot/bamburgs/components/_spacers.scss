@@ -1,0 +1,37 @@
+$increment: true;
+$responsive: true;
+$have-states: false;
+
+@mixin class($state, $type) {
+   #{$type}margin-x-auto { margin-left: auto; margin-right: auto;}
+}
+
+@mixin classes ($i, $state, $type) {
+   $val: $i * $spacing-multiplier * 1px;
+
+   #{$type}margin {
+      &-#{$i} { margin: $val; }
+      &-#{$i}-top { margin-top: $val; }
+      &-#{$i}-right { margin-right: $val; }
+      &-#{$i}-bottom { margin-bottom: $val; }
+      &-#{$i}-left { margin-left: $val; }
+      &-#{$i}-x { margin-left: $val; margin-right: $val; }
+      &-#{$i}-y { margin-top: $val; margin-bottom: $val;}
+   }
+
+   #{$type}padding {
+      &-#{$i} { padding: $val; }
+      &-#{$i}-top { padding-top: $val; }
+      &-#{$i}-right { padding-right: $val; }
+      &-#{$i}-bottom { padding-bottom: $val; }
+      &-#{$i}-left { padding-left: $val; }
+      &-#{$i}-x { padding-left: $val; padding-right: $val; }
+      &-#{$i}-y { padding-top: $val; padding-bottom: $val;}
+   }
+}
+
+@include build(false, $responsive, $have-states);
+
+@for $i from 0 through $spacing-amount {
+   @include build($i, $responsive, $have-states);
+}

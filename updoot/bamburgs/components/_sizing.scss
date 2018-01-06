@@ -1,0 +1,26 @@
+$increment: true;
+$responsive: true;
+$have-state: false;
+
+@mixin classes($i, $state, $type) {
+   #{$type}width-#{$i} { width: $i * 1%; }
+   #{$type}max-width-#{$i} { max-width: $i * 1%; }
+   #{$type}min-width-#{$i} { min-width: $i * 1%; }
+
+   #{$type}height-#{$i} { height: $i * 1%; }
+   #{$type}max-height-#{$i} { max-height: $i * 1%; }
+   #{$type}min-height-#{$i} { min-height: $i * 1%; }
+
+   #{$type}screen-width-#{$i} { width: $i * 1vw; }
+   #{$type}max-screen-width-#{$i} { max-width: $i * 1vw; }
+   #{$type}min-screen-width-#{$i} { min-width: $i * 1vw; }
+
+   #{$type}screen-height-#{$i} { height: $i * 1vh; }
+   #{$type}max-screen-height-#{$i} { max-height: $i * 1vh; }
+   #{$type}min-screen-height-#{$i} { min-height: $i * 1vh; }
+}
+
+@for $i from 1 through $size-breaks {
+   $value: $i * $size-multiple;
+   @include build($value, $responsive, $have-state);
+}

@@ -1,0 +1,62 @@
+$increment: false;
+$responsive: true;
+$have-states: false;
+
+@mixin class($state, $type) {
+   .flex {
+      &-row { flex-direction: row; }
+      &-row-reverse { flex-direction: row-reverse; }
+
+      &-col { flex-direction: column; }
+      &-col-reverse { flex-direction: column-reverse; }
+
+      &-wrap { flex-wrap: wrap; }
+      &-no-wrap {flex-wrap: nowrap; }
+      &-wrap-reverse { flex-direction: wrap-reverse; }
+
+      &-grow { flex-grow: 1; }
+      &-no-grow { flex-grow: 0; }
+
+      &-shrink { flex-shrink: 1; }
+      &-no-shrink {  flex-shrink: 0; }
+
+      &-fixed { flex: none; }
+      &-auto { flex: auto; }
+      &-fluid { flex: 1; }
+      &-initial { flex: initial; }
+   }
+
+   .justify {
+      &-start   { justify-content: flex-start;    }
+      &-between { justify-content: space-between; }
+      &-around  { justify-content: space-around;  }
+      &-end     { justify-content: flex-end;      }
+      &-center  { justify-content: center;        }
+   }
+
+   .items {
+      &-center    { align-items: center;     }
+      &-start     { align-items: flex-start; }
+      &-end       { align-items: flex-end;   }
+      &-stretch   { align-items: stretch;    }
+      &-baseline  { align-items: baseline;   }
+   }
+
+   .content {
+      &-center    { align-content: center;     }
+      &-start     { align-content: flex-start; }
+      &-end       { align-content: flex-end;   }
+      &-stretch   { align-content: stretch;    }
+      &-baseline  { align-content: baseline;   }
+   }
+
+   .self {
+      &-center    { align-self: center;     }
+      &-start     { align-self: flex-start; }
+      &-end       { align-self: flex-end;   }
+      &-stretch   { align-self: stretch;    }
+      &-baseline  { align-self: baseline;   }
+   }
+}
+
+@include build($increment, $responsive, $have-states);

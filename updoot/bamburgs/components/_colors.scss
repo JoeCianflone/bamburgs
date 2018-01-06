@@ -1,0 +1,42 @@
+$increment: false;
+$responsive: false;
+$have-states: true;
+
+@mixin class($state, $type) {
+   @each $name, $hex in $colors {
+      #{$type}bg-color-#{$name}#{$state} { background-color: $hex; }
+      #{$type}text-color-#{$name}#{$state} { color: $hex; }
+      #{$type}border-color-#{$name}#{$state} { border-color: $hex; }
+
+      @if ($use-color-variants == true) {
+         @include color-variants($name, $hex, $type, $state);
+      }
+   }
+}
+
+@mixin color-variants($name, $hex, $type, $state) {
+   @if ($hex != #000 and $hex != #000000 and $hex != #fff and $hex != #ffffff) {
+      #{$type}bg-color-#{$name}-lightest#{$state} { background-color: lighten($hex, 64%); }
+      #{$type}bg-color-#{$name}-lighter#{$state} { background-color: lighten($hex, 32%); }
+      #{$type}bg-color-#{$name}-light#{$state} { background-color: lighten($hex, 16%); }
+      #{$type}bg-color-#{$name}-dark#{$state} { background-color: darken($hex, 16%); }
+      #{$type}bg-color-#{$name}-darker#{$state} { background-color: darken($hex, 32%); }
+      #{$type}bg-color-#{$name}-darkest#{$state} { background-color: darken($hex, 64%); }
+
+      #{$type}text-color-#{$name}-lightest#{$state} { color: lighten($hex, 64%); }
+      #{$type}text-color-#{$name}-lighter#{$state} { color: lighten($hex, 32%); }
+      #{$type}text-color-#{$name}-light#{$state} { color: lighten($hex, 16%); }
+      #{$type}text-color-#{$name}-dark#{$state} { color: darken($hex, 16%); }
+      #{$type}text-color-#{$name}-darker#{$state} { color: darken($hex, 32%); }
+      #{$type}text-color-#{$name}-darkest#{$state} { color: darken($hex, 64%); }
+
+      #{$type}border-color-#{$name}-lightest#{$state} { border-color: lighten($hex, 64%); }
+      #{$type}border-color-#{$name}-lighter#{$state} { border-color: lighten($hex, 32%); }
+      #{$type}border-color-#{$name}-light#{$state} { border-color: lighten($hex, 16%); }
+      #{$type}border-color-#{$name}-dark#{$state} { border-color: darken($hex, 16%); }
+      #{$type}border-color-#{$name}-darker#{$state} { border-color: darken($hex, 32%); }
+      #{$type}border-color-#{$name}-darkest#{$state} { border-color: darken($hex, 64%); }
+   }
+}
+
+@include build($increment, $responsive, $have-states);
