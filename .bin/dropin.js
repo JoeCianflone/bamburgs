@@ -17,22 +17,19 @@ fs.copy('./node_modules/bamburgs/src/sass', folderPath, (err) => {
    }
 });
 
-fs.copy('./node_modules/bamburgs/package.json', `${folderPath}/bamburgs.package.json`, (err) => {
-   if (err) {
-      return console.log(err);
-   }
-});
-
 fs.copy('./node_modules/bamburgs/postcss.config.js', `${folderPath}/bamburgs.postcss.config.js`, (err) => {
    if (err) {
       return console.log(err);
    }
 });
 
-console.log ('Files Dropped into your folder. BUT THIS WONT YET WORK!');
-console.log('You will need to copy the following values to your package.json file');
-console.log(package.config);
-console.log(package.dependencies);
-console.log(package.browserslist);
-
-
+console.log (`**************************************************`);
+console.log (`**************************************************`);
+console.log (`Files Dropped into your folder. BUT THIS WONT YET WORK!`);
+console.log (`You will need to copy the following values to your package.json file`);
+console.log (`config: { ${package.config} },`);
+console.log (`dependencies: { ${package.dependencies} },`);
+console.log (`browserslist: { ${package.dependencies} },`);
+console.log (`FINAL STEP: COPY ${folderPath}/bamburgs.postcss.config.js to your ROOT FOLDER`);
+console.log (`**************************************************`);
+console.log (`**************************************************`);
