@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 const shell = require("shelljs");
 const fs = require('fs-extra');
+const package = require(process.cwd() + '/node_modules/bamburgs/package.json');
 
 if (process.argv[2] == undefined) {
    console.log("You need to specifiy a folder: `npm run dropin path/to/place/files`");
@@ -27,3 +28,11 @@ fs.copy('./node_modules/bamburgs/postcss.config.js', `${folderPath}/bamburgs.pos
       return console.log(err);
    }
 });
+
+console.log ('Files Dropped into your folder. BUT THIS WONT YET WORK!');
+console.log('You will need to copy the following values to your package.json file');
+console.log(package.config);
+console.log(package.dependencies);
+console.log(package.browserslist);
+
+
