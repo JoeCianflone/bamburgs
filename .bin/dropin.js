@@ -10,19 +10,19 @@ if (process.argv[2] == undefined) {
 
 let folderPath = process.argv[2];
 
-fs.copy('./src/sass', folderPath, (err) => {
+fs.copy('./node_modules/bamburgs/src/sass', folderPath, (err) => {
    if (err) {
       return console.log(err);
    }
 });
 
-fs.copy('./package.json', `${folderPath}/bamburgs.package.json`, (err) => {
+fs.copy('./node_modules/bamburgs/package.json', `${folderPath}/bamburgs.package.json`, (err) => {
    if (err) {
       return console.log(err);
    }
 });
 
-fs.copy('./postcss.config.js', `${folderPath}/bamburgs.postcss.config.js`, (err) => {
+fs.copy('./node_modules/bamburgs/postcss.config.js', `${folderPath}/bamburgs.postcss.config.js`, (err) => {
    if (err) {
       return console.log(err);
    }
