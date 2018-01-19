@@ -1,7 +1,9 @@
 #! /usr/bin/env node
+let p = process.cwd() + '/node_modules/bamburgs';
+
 const shell = require("shelljs");
 const fs = require('fs-extra');
-const package = require(process.cwd() + '/package.json');
+const package = require(p + '/package.json');
 const util = require('util');
 
 if (process.argv[2] == undefined) {
@@ -10,13 +12,13 @@ if (process.argv[2] == undefined) {
    return false;
 }
 
-fs.copy('./src/sass', process.argv[2], (err) => {
+fs.copy(p + '/src/sass', process.argv[2], (err) => {
    if (err) {
       return console.log(err);
    }
 });
 
-fs.copy('./postcss.config.js', `${process.argv[2]}/bamburgs.postcss.config.js`, (err) => {
+fs.copy(p+'/postcss.config.js', `${process.argv[2]}/bamburgs.postcss.config.js`, (err) => {
    if (err) {
       return console.log(err);
    }
